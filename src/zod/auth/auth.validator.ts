@@ -34,4 +34,4 @@ export const loginSchema = z.object({
     .string()
     .min(1, { message: "Password is required" }),
 });
-
+export type LoginType = z.infer<typeof loginSchema>;

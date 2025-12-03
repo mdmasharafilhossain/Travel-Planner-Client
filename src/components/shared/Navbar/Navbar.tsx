@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
+  console.log(user,"User in Navbar");
   const router = useRouter();
   const [open, setOpen] = useState(false);
 

@@ -6,7 +6,7 @@ import { axiosClient } from "./baseApi";
 export const AuthAPI = {
   login: (payload: any) => axiosClient.post("/api/auth/login", payload),
   register: (payload: any) => axiosClient.post("/api/auth/register", payload),
-  me: () => axiosClient.get("/api/auth/me"),
+  me: () => axiosClient.get("/api/users/me"),
   logout: () => axiosClient.post("/api/auth/logout")
 };
 

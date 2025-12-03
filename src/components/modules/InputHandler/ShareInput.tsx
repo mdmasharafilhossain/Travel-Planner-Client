@@ -3,7 +3,7 @@ import FormError from "@/components/error/FormError";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 
-export default function InputHandler({
+export default function ShareInput({
   label,
   register,
   error,
