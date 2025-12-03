@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const { user, logout } = useAuth();
+  const { user, logout,loading } = useAuth();
   console.log(user,"User in Navbar");
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -15,7 +15,13 @@ export default function Navbar() {
     logout();
     router.push("/");
   };
-
+  if (loading) {
+    return (
+      <div className="w-full py-4 flex justify-center">
+        <div className="animate-spin h-6 w-6 border-4 border-orange-500 border-t-transparent rounded-full"></div>
+      </div>
+    );
+  }
   return (
     <nav className="bg-gray-50 border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
