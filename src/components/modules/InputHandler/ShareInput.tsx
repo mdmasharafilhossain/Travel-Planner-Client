@@ -1,8 +1,9 @@
 "use client";
+import FormError from "@/components/error/FormError";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 
-export default function RHFInput({
+export default function InputHandler({
   label,
   register,
   error,
