@@ -28,14 +28,20 @@ export default function PlanForm({
       className="space-y-6 bg-white rounded-2xl shadow-lg border border-gray-100 p-6"
     >
       {/* Header */}
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h3 className="text-lg font-semibold text-gray-800">Create / Edit Plan</h3>
-          <p className="text-sm text-gray-500 mt-1">
-            Add plan details and set dates, budget and travel type.
-          </p>
-        </div>
-      </div>
+      
+<div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
+  <div>
+    <h3 className="text-xl font-bold bg-linear-to-r from-orange-500 to-orange-700 text-transparent bg-clip-text">
+      Create / Edit Plan
+    </h3>
+    <p className="text-sm text-gray-500 mt-1">
+      Add plan details and configure dates, budget and visibility.
+    </p>
+  </div>
+
+  
+</div>
+
 
       {/* Basic fields */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -84,27 +90,12 @@ export default function PlanForm({
 
       {/* Travel type & description */}
       <div className="grid grid-cols-1 gap-4">
-        <div>
-          <label className="block text-sm text-gray-600 mb-2">Travel Type</label>
-          <div className="inline-flex gap-2 flex-wrap">
-            <select
-              {...register("travelType")}
-              className="rounded-lg border border-gray-200 p-2 min-w-[160px] focus:outline-none focus:ring-2 focus:ring-orange-300"
-            >
-              <option value="SOLO">Solo</option>
-              <option value="FAMILY">Family</option>
-              <option value="FRIENDS">Friends</option>
-              <option value="COUPLE">Couple</option>
-              <option value="GROUP">Group</option>
-            </select>
-          </div>
-          {errors.travelType && (
-            <p className="text-xs text-red-500 mt-1">{errors.travelType?.message as any}</p>
-          )}
-        </div>
+        {/* Travel Type */}
+        
 
+        {/* Description */}
         <div>
-          <label className="block text-sm text-gray-600 mb-2">Description</label>
+          <label className="block text-sm text-gray-600 mb-2">Description (Optional)</label>
           <textarea
             {...register("description")}
             rows={4}
@@ -118,7 +109,42 @@ export default function PlanForm({
           )}
         </div>
       </div>
+        <div className="grid lg:grid-cols-2  grid-cols-1 gap-4">
+          <div>
+          <label className="block text-sm text-gray-600 mb-2">Travel Type (Optional)</label>
+          <select
+            {...register("travelType")}
+            className="rounded-lg border border-gray-200 p-2 w-full focus:outline-none focus:ring-2 focus:ring-orange-300"
+          >
+            <option value="SOLO">Solo</option>
+            <option value="FAMILY">Family</option>
+            <option value="FRIENDS">Friends</option>
+            <option value="COUPLE">Couple</option>
+            <option value="GROUP">Group</option>
+          </select>
 
+          {errors.travelType && (
+            <p className="text-xs text-red-500 mt-1">{errors.travelType?.message as any}</p>
+          )}
+        </div>
+
+        {/* NEW FIELD → Visibility */}
+        <div>
+          <label className="block text-sm text-gray-600 mb-2">Visibility (Optional)</label>
+
+          <select
+            {...register("visibility")}
+            className="rounded-lg border border-gray-200 p-2 w-full focus:outline-none focus:ring-2 focus:ring-orange-300"
+          >
+            <option value="PUBLIC">Public</option>
+            <option value="PRIVATE">Private</option>
+          </select>
+
+          {errors.visibility && (
+            <p className="text-xs text-red-500 mt-1">{errors.visibility?.message as any}</p>
+          )}
+        </div>
+        </div>
       {/* Budget */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
@@ -164,7 +190,7 @@ export default function PlanForm({
           className={`inline-flex items-center gap-3 rounded-md px-4 py-2 text-white font-medium transition ${
             isSubmitting
               ? "bg-orange-400 cursor-wait"
-              : "bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700"
+              : "bg-linear-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700"
           }`}
         >
           {isSubmitting ? (

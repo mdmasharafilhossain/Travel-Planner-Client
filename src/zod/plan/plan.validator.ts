@@ -26,17 +26,16 @@ export const createPlanSchema = z
         message: "Invalid end date format",
       }),
 
-    budgetMin: z
+     budgetMin: z
       .number()
-      .int()
       .nonnegative("Minimum budget cannot be negative")
       .optional(),
 
     budgetMax: z
       .number()
-      .int()
       .nonnegative("Maximum budget cannot be negative")
       .optional(),
+      
 
     travelType: z.enum(["SOLO", "FAMILY", "FRIENDS", "COUPLE", "GROUP"], {
       message: "Invalid travel type",
