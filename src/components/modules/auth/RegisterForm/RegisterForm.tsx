@@ -78,7 +78,7 @@ export default function RegisterForm() {
                 <input type="checkbox" className="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
                 <span>Accept terms & conditions</span>
               </label>
-              <a className="text-orange-600 hover:underline" href="/terms">Terms</a>
+              
             </div>
 
             <button
