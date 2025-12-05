@@ -21,10 +21,12 @@ export default function AddPlan() {
 
   return (
     
-      <div className="max-w-2xl mx-auto">
-        <h2 className="text-2xl font-bold mb-4 bg-linear-to-r from-orange-500 to-orange-700 text-transparent bg-clip-text">
+      <div className="max-w-2xl mt-10 mx-5 md:mx-auto lg:mx-auto ">
+       <h2 className="mx-2 md:mx-0 lg:mx-0 text-2xl md:text-3xl lg:text-3xl font-bold text-gray-800 mb-4 relative inline-block">
   Create Travel Plan
+  <span className="absolute left-0 -bottom-1 w-12 h-1 bg-orange-500 rounded-full"></span>
 </h2>
+
 
         <PlanForm onSubmit={onSubmit} />
       </div>
