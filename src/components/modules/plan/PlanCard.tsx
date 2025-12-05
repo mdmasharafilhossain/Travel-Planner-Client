@@ -10,7 +10,7 @@ export default function PlanCard({ plan }: { plan: ITravelPlan }) {
       <p className="text-sm text-gray-600">{plan.description}</p>
       <div className="mt-2 text-xs text-gray-500">{new Date(plan.startDate).toLocaleDateString()} - {new Date(plan.endDate).toLocaleDateString()}</div>
       <div className="mt-3">
-        <Link href={`/travel-plans/${plan.id}`}><a className="text-indigo-600 text-sm">View details</a></Link>
+        <Link href={`/travel-plans/${plan.id}`}>view details</Link>
       </div>
     </div>
   );
