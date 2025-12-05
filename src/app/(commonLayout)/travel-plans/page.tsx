@@ -1,6 +1,7 @@
 
 
 import PlanCard from "@/components/modules/plan/PlanCard";
+import AuthWrapper from "@/lib/AuthWrapper";
 import { API_BASE } from "@/lib/baseApi";
 import { ITravelPlan } from "@/types/travelPlan.interface";
 import Link from "next/link";
@@ -15,7 +16,9 @@ export default async function PlansPage() {
   const plans: ITravelPlan[] = json.plans || [];
 
   return (
-    <div className="min-h-screen px-4 md:px-8 py-6">
+    <AuthWrapper>
+
+        <div className="min-h-screen px-4 md:px-8 py-6">
 
       
       <div className="flex justify-between items-center mb-6">
@@ -28,7 +31,7 @@ export default async function PlansPage() {
 
         <Link
           href="/travel-plans/add"
-          className="px-4 py-2 rounded-md bg-gradient-to-r from-orange-500 to-orange-600 
+          className="px-4 py-2 rounded-md bg-linear-to-r from-orange-500 to-orange-600 
                      text-white font-medium hover:from-orange-600 hover:to-orange-700 
                      transition"
         >
@@ -76,5 +79,6 @@ export default async function PlansPage() {
         </div>
       )}
     </div>
+    </AuthWrapper>
   );
 }
