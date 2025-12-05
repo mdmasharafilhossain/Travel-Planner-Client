@@ -19,7 +19,13 @@ export default function RegisterForm() {
   async function onSubmit(data: RegType) {
     try {
       await registerUser(data);
-      Swal.fire("Success", "Account created", "success");
+      
+      Swal.fire({
+            title: "Successful Registration!",
+            text: "Welcome to TravelPlanner!",
+            icon: "success",
+            confirmButtonColor: "#f97316",
+          });
       router.push("/");
     } catch (err: any) {
       Swal.fire("Error", err?.response?.data?.message || err.message, "error");
@@ -100,17 +106,7 @@ export default function RegisterForm() {
             <div className="flex-1 h-px bg-gray-100"></div>
           </div>
 
-          {/* Social buttons (visual only) */}
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            <button type="button" className="flex items-center justify-center gap-2 py-2 rounded-md border border-gray-200 hover:shadow-sm text-gray-700">
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 11-20 0 10 10 0 0120 0z" /></svg>
-              <span className="text-sm">Google</span>
-            </button>
-            <button type="button" className="flex items-center justify-center gap-2 py-2 rounded-md border border-gray-200 hover:shadow-sm text-gray-700">
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7l3-7z" /></svg>
-              <span className="text-sm">GitHub</span>
-            </button>
-          </div>
+
 
           <p className="mt-6 text-center text-sm text-gray-500">
             Already have an account?{" "}
