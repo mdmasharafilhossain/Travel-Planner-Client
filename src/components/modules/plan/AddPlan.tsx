@@ -13,7 +13,7 @@ export default function AddPlan() {
     try {
       await PlansAPI.create({ ...data, budgetMin: Number(data.budgetMin || 0), budgetMax: Number(data.budgetMax || 0) });
       Swal.fire("Saved", "Plan created", "success");
-      router.push("/travel-plans");
+       router.refresh();
     } catch (err: any) {
       Swal.fire("Error", err?.response?.data?.message || err.message, "error");
     }
