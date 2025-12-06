@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React from "react";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import type { z } from "zod";
+
 import { UserAPI } from "@/lib/api";
 import Swal from "sweetalert2";
 import { updateUserSchema, UpdateUserType } from "@/zod/profile.validator";
