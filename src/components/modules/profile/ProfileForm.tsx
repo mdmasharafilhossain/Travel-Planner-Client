@@ -9,6 +9,7 @@ import type { z } from "zod";
 import { UserAPI } from "@/lib/api";
 import Swal from "sweetalert2";
 import { updateUserSchema, UpdateUserType } from "@/zod/profile.validator";
+import { PhotoUpload } from "@/components/shared/PhotoUpload/PhotoUpload";
 
 
 
@@ -43,8 +44,14 @@ export default function ProfileForm({
       return;
     }
 
+ let profileImageUrl = "";
+
+if (data.profileImage && data.profileImage.length > 0) {
+  const uploadResponse = await PhotoUpload(data.profileImage[0]);
+  profileImageUrl = uploadResponse?.data?.display_url ;
+}
     // Convert comma-separated strings into arrays if user passed strings
-    const payload: any = { ...data };
+    const payload: any = { ...data, profileImage:profileImageUrl };
 
     // If fields are strings (user may have typed comma-separated), normalize to arrays
     if (typeof (payload.travelInterests as any) === "string") {
@@ -63,7 +70,7 @@ export default function ProfileForm({
 
     try {
       const res = await UserAPI.updateProfile(defaultValues.id, payload);
-      const updated = res.data?.data || res.data?.user || res.data || payload;
+      const updated = res.data?.data || res.data?.user || res.data ||  payload;
       Swal.fire({
         title: "Saved",
         text: "Profile updated successfully.",
@@ -95,7 +102,7 @@ export default function ProfileForm({
 
         <div>
           <label className="block text-sm text-gray-600 mb-1">Profile image URL</label>
-          <input {...register("profileImage")} className="w-full rounded-lg border p-3 focus:outline-none focus:ring-2 focus:ring-orange-300" />
+          <input  type="file" {...register("profileImage")} className="w-full rounded-lg border p-3 focus:outline-none focus:ring-2 focus:ring-orange-300" />
           {errors.profileImage && <p className="text-xs text-red-500 mt-1">{String(errors.profileImage.message)}</p>}
         </div>
 
