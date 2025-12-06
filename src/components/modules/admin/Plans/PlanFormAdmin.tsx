@@ -1,30 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React from "react";
+
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { PlansAPI } from "@/lib/api";
-import { ITravelPlan } from "@/types/travelPlan.interface";
+import {TravelFormProps, TravelFormValues } from "@/types/travelPlan.interface";
 
 
-type TravelFormProps = {
-  plan: ITravelPlan;
-  onCancel: () => void;
-  onSaved: (plan: ITravelPlan) => void;
-};
 
-type TravelFormValues = {
-  title: string;
-  destination: string;
-  startDate: string;
-  endDate: string;
-  budgetMin: string;
-  budgetMax: string;
-  travelType: ITravelPlan["travelType"];
-  description: string;
-  visibility: ITravelPlan["visibility"];
-};
 
 export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormProps) {
   const { register, handleSubmit, formState, reset } = useForm<TravelFormValues>({
