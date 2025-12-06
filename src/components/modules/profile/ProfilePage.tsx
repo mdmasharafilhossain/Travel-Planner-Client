@@ -260,10 +260,10 @@ export default function ProfilePage() {
           (safe as any)[k] = val;
         } else if (typeof val === "object") {
           try {
-            // try JSON round-trip as quick plain-object test
+            
             (safe as any)[k] = JSON.parse(JSON.stringify(val));
           } catch {
-            // skip complex/circular values
+           
           }
         } else {
           (safe as any)[k] = val;
