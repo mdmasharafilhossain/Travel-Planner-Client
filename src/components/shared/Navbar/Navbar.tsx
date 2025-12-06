@@ -52,7 +52,7 @@ export default function Navbar() {
                   Dashboard
                 </Link>
 
-                <Link href={`/profile/${user.id}`} className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">
+                <Link href={`/profile`} className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">
                   Profile
                 </Link>
 
