@@ -1,20 +1,12 @@
 import React from "react";
 import Image from "next/image";
-
 import UserCard from "./UserCard";
 import ActionButtons from "./ActionButtons";
-import { IUser } from "@/types/user.interface";
+import { UsersTableProps } from "@/types";
 
-type Props = {
-  users: IUser[];
-  loading: boolean;
-  error: string | null;
-  actionLoading: string | null;
-  onDelete: (userId: string, userName?: string) => void;
-  onChangeRole: (userId: string, currentRole: string, userName?: string) => void;
-};
 
-export default function UsersTable({ users, loading, error, onDelete, onChangeRole, actionLoading }: Props) {
+
+export default function UsersTable({ users, loading, error, onDelete, onChangeRole, actionLoading }: UsersTableProps) {
   const formatDate = (iso?: string | null) => {
     if (!iso) return "-";
     try {

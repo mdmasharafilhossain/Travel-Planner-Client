@@ -15,3 +15,11 @@ export type UserCardsProps = {
   onDelete: (id: string, name?: string) => void;
   onChangeRole: (id: string, role: string, name?: string) => void;
 };
+export type UsersTableProps = {
+  users: IUser[];
+  loading: boolean;
+  error: string | null;
+  actionLoading: string | null;
+  onDelete: (userId: string, userName?: string) => void;
+  onChangeRole: (userId: string, currentRole: string, userName?: string) => void;
+};
