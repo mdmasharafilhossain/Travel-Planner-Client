@@ -29,3 +29,20 @@ export type TravelPlanProps = {
   onEdit: (plan: ITravelPlan) => void;
   onDelete: (plan: ITravelPlan) => void;
 };
+export type TravelFormProps = {
+  plan: ITravelPlan;
+  onCancel: () => void;
+  onSaved: (plan: ITravelPlan) => void;
+};
+
+export type TravelFormValues = {
+  title: string;
+  destination: string;
+  startDate: string;
+  endDate: string;
+  budgetMin: string;
+  budgetMax: string;
+  travelType: ITravelPlan["travelType"];
+  description: string;
+  visibility: ITravelPlan["visibility"];
+};

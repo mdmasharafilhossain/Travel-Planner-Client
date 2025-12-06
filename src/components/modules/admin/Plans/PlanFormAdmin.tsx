@@ -8,13 +8,13 @@ import { PlansAPI } from "@/lib/api";
 import { ITravelPlan } from "@/types/travelPlan.interface";
 
 
-type Props = {
+type TravelFormProps = {
   plan: ITravelPlan;
   onCancel: () => void;
   onSaved: (plan: ITravelPlan) => void;
 };
 
-type FormValues = {
+type TravelFormValues = {
   title: string;
   destination: string;
   startDate: string;
@@ -26,8 +26,8 @@ type FormValues = {
   visibility: ITravelPlan["visibility"];
 };
 
-export default function PlanFormAdmin({ plan, onCancel, onSaved }: Props) {
-  const { register, handleSubmit, formState, reset } = useForm<FormValues>({
+export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormProps) {
+  const { register, handleSubmit, formState, reset } = useForm<TravelFormValues>({
     defaultValues: {
       title: plan.title || "",
       destination: plan.destination,
@@ -47,7 +47,7 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: Props) {
     },
   });
 
-  const onSubmit = async (values: FormValues) => {
+  const onSubmit = async (values: TravelFormValues) => {
     try {
       const payload: any = {
         ...values,
