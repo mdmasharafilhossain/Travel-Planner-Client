@@ -8,7 +8,7 @@ export default function ActionButtons({ userId, userName, role, actionLoading, o
   return (
     <>
       <button
-        onClick={() => onChangeRole(userId, role, userName)}
+        onClick={() => onChangeRole(userId, role , userName)}
         disabled={busy}
         className="px-3 py-1 rounded-md text-sm border border-gray-200 hover:bg-gray-50"
         title="Change Role"

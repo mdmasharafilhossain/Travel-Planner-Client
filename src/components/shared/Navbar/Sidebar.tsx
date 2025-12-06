@@ -39,15 +39,15 @@ export default function Sidebar() {
   }, []);
 
   const navigation = [
-    { name: 'Users', href: '/Admin/user-management', icon: Users },
-    { name: 'Plans', href: '/Admin/projects', icon: Layers },
-    { name: 'Activity', href: '/Admin/about', icon: Activity },
+    { name: 'Users', href: '/admin/user-management', icon: Users },
+    { name: 'Plans', href: '/admin/projects', icon: Layers },
+    { name: 'Activity', href: '/admin/about', icon: Activity },
     { name: 'Home', href: '/', icon: Home },
   ];
 
   const isActiveRoute = (href: string) => {
     if (href === '/') return pathname === '/';
-    if (href === '/Admin') return pathname === '/Admin';
+    if (href === '/admin') return pathname === '/admin';
     return pathname?.startsWith(href);
   };
 
