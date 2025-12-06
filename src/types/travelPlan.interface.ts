@@ -20,3 +20,12 @@ export interface ITravelPlan {
     profileImage?: string | null;
   };
 }
+export type TravelPlanProps = {
+  plans: ITravelPlan[];
+  loading: boolean;
+  error: string | null;
+  actionLoadingId: string | null;
+  onView: (plan: ITravelPlan) => void;
+  onEdit: (plan: ITravelPlan) => void;
+  onDelete: (plan: ITravelPlan) => void;
+};

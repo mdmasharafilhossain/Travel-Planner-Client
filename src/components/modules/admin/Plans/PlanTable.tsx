@@ -1,15 +1,4 @@
-import { ITravelPlan } from "@/types/travelPlan.interface";
-
-
-type Props = {
-  plans: ITravelPlan[];
-  loading: boolean;
-  error: string | null;
-  actionLoadingId: string | null;
-  onView: (plan: ITravelPlan) => void;
-  onEdit: (plan: ITravelPlan) => void;
-  onDelete: (plan: ITravelPlan) => void;
-};
+import { TravelPlanProps } from "@/types/travelPlan.interface";
 
 export default function PlanTable({
   plans,
@@ -19,7 +8,7 @@ export default function PlanTable({
   onView,
   onEdit,
   onDelete,
-}: Props) {
+}: TravelPlanProps) {
   const formatDate = (iso: string) =>
     new Date(iso).toLocaleDateString(undefined, {
       year: "numeric",
