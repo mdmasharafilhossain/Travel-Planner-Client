@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ITravelPlan {
+  updatedAt: string;
   id: string;
   title?: string;
   destination: string;
