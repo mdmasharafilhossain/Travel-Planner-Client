@@ -13,4 +13,36 @@ export interface ITravelPlan {
   visibility?: string;
   hostId?: string;
   createdAt?: string;
+  host?: {
+    id: string;
+    email: string;
+    fullName?: string | null;
+    profileImage?: string | null;
+  };
 }
+export type TravelPlanProps = {
+  plans: ITravelPlan[];
+  loading: boolean;
+  error: string | null;
+  actionLoadingId: string | null;
+  onView: (plan: ITravelPlan) => void;
+  onEdit: (plan: ITravelPlan) => void;
+  onDelete: (plan: ITravelPlan) => void;
+};
+export type TravelFormProps = {
+  plan: ITravelPlan;
+  onCancel: () => void;
+  onSaved: (plan: ITravelPlan) => void;
+};
+
+export type TravelFormValues = {
+  title: string;
+  destination: string;
+  startDate: string;
+  endDate: string;
+  budgetMin: string;
+  budgetMax: string;
+  travelType: ITravelPlan["travelType"];
+  description: string;
+  visibility: ITravelPlan["visibility"];
+};

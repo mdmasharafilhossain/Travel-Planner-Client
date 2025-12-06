@@ -13,7 +13,9 @@ export const AuthAPI = {
 export const UserAPI = {
   getProfile: (id: string) => axiosClient.get(`/api/users/${id}`),
   updateProfile: (id: string, payload: any) => axiosClient.patch(`/api/users/${id}`, payload),
-  listUsers: (params?: any) => axiosClient.get("/api/users", { params })
+  listUsers: (params?: any) => axiosClient.get("/api/users", { params }),
+   deleteUser: (id: string) => axiosClient.delete(`/api/users/${id}`),
+   changeRole: (id: string, role: "USER" | "ADMIN") =>axiosClient.patch(`/api/users/${id}/role`, { role }),
 };
 
 export const PlansAPI = {
@@ -21,7 +23,8 @@ export const PlansAPI = {
   list: (params?: any) => axiosClient.get("/api/travel-plans", { params }),
   get: (id: string) => axiosClient.get(`/api/travel-plans/${id}`),
   update: (id: string, payload: any) => axiosClient.patch(`/api/travel-plans/${id}`, payload),
-  remove: (id: string) => axiosClient.delete(`/api/travel-plans/${id}`)
+  remove: (id: string) => axiosClient.delete(`/api/travel-plans/${id}`),
+  
 };
 
 export const ReviewAPI = {

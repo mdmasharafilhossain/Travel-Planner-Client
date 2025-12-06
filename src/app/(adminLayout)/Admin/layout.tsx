@@ -3,6 +3,7 @@
 import { AuthProvider } from "@/components/modules/auth/AuthProvider/AuthProvider";
 import Sidebar from "@/components/shared/Navbar/Sidebar";
 
+
 import AuthWrapper from "@/lib/AuthWrapper";
 
 

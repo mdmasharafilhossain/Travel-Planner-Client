@@ -1,11 +1,12 @@
-import React from 'react';
+import UserManagementPage from "@/components/modules/admin/User/UsersManagementPage";
 
-const UserManagementPage = () => {
+
+const AdminUserManagementPage = () => {
     return (
         <div>
-            <h1>uoiieu</h1>
+          <UserManagementPage/>
         </div>
     );
 };
 
-export default UserManagementPage;
+export default AdminUserManagementPage;
