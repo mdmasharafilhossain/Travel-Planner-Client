@@ -241,21 +241,21 @@ export default function ProfilePage() {
   if (!updated) return;
 
   try {
-    // fetch a fresh, server-side user object (guaranteed to be plain JSON)
-    const res = await AuthAPI.me(); // ensure AuthAPI.me() exists and returns { data: { data: user } } or similar
+   
+    const res = await AuthAPI.me();
     const fresh = res.data?.data || res.data?.user || res.data || null;
     if (fresh) {
-      setUser(fresh as any); // cast to any or to your IUser type
+      setUser(fresh as any); 
       return;
     }
   } catch (err) {
     console.error("Failed to refresh /me after profile update:", err);
-    // fallback: try to merge only plain properties (safe shallow merge)
+    
     try {
       const safe = { ...(user || {}) };
       for (const k of Object.keys(updated)) {
         const val = (updated as any)[k];
-        // only copy primitives & plain objects/arrays (avoid functions)
+     
         if (val === null) {
           (safe as any)[k] = val;
         } else if (typeof val === "object") {
