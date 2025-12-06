@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 
-export const PhotoUpload = async (image: string ): Promise<any> => {
+export const PhotoUpload = async (image: File ): Promise<any> => {
   const formData = new FormData();
   formData.append("image", image);
 

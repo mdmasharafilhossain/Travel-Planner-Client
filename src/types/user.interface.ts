@@ -12,6 +12,8 @@ export interface IUser {
   currentLocation?: string | null;
   role?: Role;
   isPremium?: boolean;
+  createdAt: string;
+  updatedAt: string;
   paymentStatus?: PaymentStatus;
   premiumExpiresAt?: string | null;
 }

@@ -1,16 +1,14 @@
+import ProfilePage from '@/components/modules/profile/ProfilePage';
 import useAuth from '@/hooks/useAuth';
 import React from 'react';
 
-const ProfilePage = () => {
-    const {user, loading} = useAuth();
+const ProfilePageInside = () => {
+   
     return (
-        <div>
-            Name:
-           {
-            user?.fullName
-           }
-        </div>
+       <div>
+         <ProfilePage/>
+       </div>
     );
 };
 
-export default ProfilePage;
+export default ProfilePageInside;
