@@ -1,6 +1,6 @@
 import ProfilePage from '@/components/modules/profile/ProfilePage';
-import useAuth from '@/hooks/useAuth';
-import React from 'react';
+
+
 
 const ProfilePageInside = () => {
    

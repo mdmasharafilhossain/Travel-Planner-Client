@@ -235,7 +235,7 @@ export default function ProfilePage() {
 
   const u = user;
 
-  // Called when ProfileForm returns updated data — update global user using setUser
+ 
   async function handleProfileUpdated(updated: any) {
   // if update operation returned nothing useful, bail
   if (!updated) return;
