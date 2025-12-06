@@ -16,7 +16,7 @@ export default async function PlansPage() {
   const plans: ITravelPlan[] = json.plans || [];
 
   return (
-    <AuthWrapper>
+   
 
         <div className="min-h-screen px-4 md:px-8 py-6">
 
@@ -79,6 +79,6 @@ export default async function PlansPage() {
         </div>
       )}
     </div>
-    </AuthWrapper>
+    
   );
 }
