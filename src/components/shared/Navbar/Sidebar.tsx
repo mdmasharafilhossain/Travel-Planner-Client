@@ -40,7 +40,7 @@ export default function Sidebar() {
 
   const navigation = [
     { name: 'Users', href: '/admin/user-management', icon: Users },
-    { name: 'Plans', href: '/admin/projects', icon: Layers },
+    { name: 'Plans', href: '/admin/plan-management', icon: Layers },
     { name: 'Activity', href: '/admin/about', icon: Activity },
     { name: 'Home', href: '/', icon: Home },
   ];

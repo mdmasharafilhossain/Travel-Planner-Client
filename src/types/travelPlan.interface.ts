@@ -13,4 +13,10 @@ export interface ITravelPlan {
   visibility?: string;
   hostId?: string;
   createdAt?: string;
+  host?: {
+    id: string;
+    email: string;
+    fullName?: string | null;
+    profileImage?: string | null;
+  };
 }

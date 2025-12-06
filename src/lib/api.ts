@@ -23,7 +23,8 @@ export const PlansAPI = {
   list: (params?: any) => axiosClient.get("/api/travel-plans", { params }),
   get: (id: string) => axiosClient.get(`/api/travel-plans/${id}`),
   update: (id: string, payload: any) => axiosClient.patch(`/api/travel-plans/${id}`, payload),
-  remove: (id: string) => axiosClient.delete(`/api/travel-plans/${id}`)
+  remove: (id: string) => axiosClient.delete(`/api/travel-plans/${id}`),
+  
 };
 
 export const ReviewAPI = {
