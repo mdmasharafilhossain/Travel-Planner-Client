@@ -45,7 +45,7 @@ export default function Sidebar() {
     { name: 'Home', href: '/', icon: Home },
   ];
 
-  const isActiveRoute = (href) => {
+  const isActiveRoute = (href: string) => {
     if (href === '/') return pathname === '/';
     if (href === '/Admin') return pathname === '/Admin';
     return pathname?.startsWith(href);
@@ -115,12 +115,12 @@ export default function Sidebar() {
             {!isCollapsed && (
               <Link href="/dashboard" className="flex items-center gap-3 group">
                 <div className="relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-gray-700 rounded-lg blur opacity-20"></div>
-                  <div className="relative w-9 h-9 bg-gradient-to-br from-orange-500 to-gray-700 rounded-lg flex items-center justify-center shadow-sm">
+                  <div className="absolute -inset-1 bg-linear-to-r from-orange-400 to-gray-700 rounded-lg blur opacity-20"></div>
+                  <div className="relative w-9 h-9 bg-linear-to-br from-orange-500 to-gray-700 rounded-lg flex items-center justify-center shadow-sm">
                     <Sparkles className="text-white" size={18} />
                   </div>
                 </div>
-                <span className="text-xl font-extrabold bg-gradient-to-r from-orange-500 to-gray-700 bg-clip-text text-transparent leading-tight">
+                <span className="text-xl font-extrabold bg-linear-to-r from-orange-500 to-gray-700 bg-clip-text text-transparent leading-tight">
                   Dashboard
                 </span>
               </Link>
@@ -150,7 +150,7 @@ export default function Sidebar() {
                     onClick={() => setIsMobileOpen(false)}
                     className={`flex items-center gap-3 w-full p-3 rounded-xl transition-all duration-200 group
                       ${isActive
-                        ? 'bg-gradient-to-r from-orange-50 to-gray-50 dark:from-orange-900/10 dark:to-gray-800/10 text-orange-600 shadow'
+                        ? 'bg-linear-to-r from-orange-50 to-gray-50 dark:from-orange-900/10 dark:to-gray-800/10 text-orange-600 shadow'
                         : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-orange-600'
                       }`}
                     aria-current={isActive ? 'page' : undefined}
@@ -170,7 +170,7 @@ export default function Sidebar() {
         {/* Footer / user */}
         <div className="p-4 border-t border-gray-100 dark:border-gray-800">
           <div className={`flex items-center gap-3 p-3 rounded-xl ${isCollapsed ? 'justify-center' : ''} bg-gray-50 dark:bg-gray-800/50 mb-4`}>
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-orange-500 to-gray-700 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-full bg-linear-to-br from-orange-500 to-gray-700 flex items-center justify-center">
               <span className="text-white text-sm font-semibold">
                 {user?.fullName?.charAt(0).toUpperCase() || 'U'}
               </span>
