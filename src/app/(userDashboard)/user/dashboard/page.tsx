@@ -25,7 +25,7 @@ type TravelPlan = {
 
 export default function UserDashboardPage() {
   const { user } = useAuth();
-  const [token, setToken] = useState<string | null>(null);
+ 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<any | null>(null);
 
