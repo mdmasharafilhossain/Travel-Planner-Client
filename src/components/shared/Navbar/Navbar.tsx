@@ -48,7 +48,7 @@ export default function Navbar() {
 
             {user ? (
               <>
-                <Link href="/dashboard" className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">
+                <Link href="/user" className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">
                   Dashboard
                 </Link>
 
