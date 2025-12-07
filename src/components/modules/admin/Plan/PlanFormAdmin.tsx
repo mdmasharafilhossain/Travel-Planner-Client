@@ -6,11 +6,13 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { PlansAPI } from "@/lib/api";
 import {TravelFormProps, TravelFormValues } from "@/types/travelPlan.interface";
+import { useRouter } from "next/navigation";
 
 
 
 
 export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormProps) {
+  const router = useRouter();   
   const { register, handleSubmit, formState, reset } = useForm<TravelFormValues>({
     defaultValues: {
       title: plan.title || "",
@@ -52,6 +54,7 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
       });
 
       onSaved(updated);
+       
       reset(values);
     } catch (err: any) {
       console.error(err);

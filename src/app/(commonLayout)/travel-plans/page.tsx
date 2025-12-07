@@ -9,7 +9,7 @@ import Link from "next/link";
 export default async function PlansPage() {
   const res = await fetch(
     `${API_BASE}/api/travel-plans`,
-    { next: { revalidate: 30 } }
+    {cache: "no-store",}
   );
   const json = await res.json();
 

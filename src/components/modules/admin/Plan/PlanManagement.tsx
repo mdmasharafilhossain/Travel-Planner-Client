@@ -127,6 +127,8 @@ export default function PlanManagementPage() {
   const handleUpdateSaved = (updated: ITravelPlan) => {
     setPlans(prev => prev.map(p => (p.id === updated.id ? updated : p)));
     setEditingPlan(null);
+   
+
   };
 
   return (
