@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type { z } from "zod";
 
 import Swal from "sweetalert2";
-import { changePasswordSchema } from "@/zod/profile.validator";
+import { changePasswordSchema } from "@/zod/profile/profile.validator";
 import { axiosClient } from "@/lib/baseApi";
 
 type ChangePasswordType = z.infer<typeof changePasswordSchema>;
