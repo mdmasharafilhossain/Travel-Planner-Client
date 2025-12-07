@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // app/payment/success/page.tsx
 "use client";
@@ -29,7 +30,9 @@ export default function PaymentSuccessPage() {
             clearInterval(interval);
             
           }
-          router.push('/user/dashboard');
+          setTimeout(() => {
+          router.push("/user/dashboard");
+        }, 5000);
         }
       } catch (err) {
         console.error(err);
@@ -37,7 +40,7 @@ export default function PaymentSuccessPage() {
     }
 
     if (transactionId) {
-      // poll every 2.5s for status updates (IPN may arrive slightly after redirect)
+      
       fetchStatus();
       interval = setInterval(fetchStatus, 2500);
     } else {
@@ -49,7 +52,10 @@ export default function PaymentSuccessPage() {
 
   return (
     <div className="max-w-lg mx-auto mt-12 p-6 bg-white rounded shadow text-center">
-      <h2 className="text-xl font-semibold">Processing payment...</h2>
+      <h2 className="text-xl font-semibold">{
+
+        status ? "Payment Successful!" : "Processing Payment..."
+}</h2>
       <p className="mt-4">Transaction: <span className="font-mono">{transactionId}</span></p>
       <p className="mt-4">Status: <strong>{status ?? "Checking..."}</strong></p>
     </div>

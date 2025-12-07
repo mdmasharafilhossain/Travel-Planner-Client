@@ -1,18 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // app/payment/init/page.tsx
 "use client";
-import React from "react";
+
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import useAuth from "@/hooks/useAuth";
 
 const API = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
 
 export default function PaymentInitPage() {
   const { register, handleSubmit } = useForm<{ plan: string; phone?: string }>();
   const router = useRouter();
-
+const {user} = useAuth();
   async function onSubmit(data: { plan: string; phone?: string }) {
     try {
       const res = await axios.post(`${API}/api/payments/init-subscription`, data, { withCredentials: true });
@@ -22,6 +23,15 @@ export default function PaymentInitPage() {
     } catch (err: any) {
       Swal.fire("Payment init failed", err?.response?.data?.message || err.message, "error");
     }
+  }
+
+  if(user?.premiumExpiresAt && new Date(user.premiumExpiresAt) > new Date()){
+    return (
+      <div className="max-w-md mx-auto p-6 bg-white rounded shadow text-center">
+        <h2 className="text-xl font-semibold mb-4">You are already a premium user!</h2>
+        <p>Your premium subscription is valid until <strong>{new Date(user.premiumExpiresAt).toLocaleDateString()}</strong>.</p>
+      </div>
+    );
   }
 
   return (
