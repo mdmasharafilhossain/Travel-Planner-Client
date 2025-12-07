@@ -26,7 +26,7 @@ type TravelPlan = {
 
 export default function MatchesPage() {
     const { user } = useAuth();
-  const [token, setToken] = useState<string | null>(null);
+  
   const [upcomingPlans, setUpcomingPlans] = useState<TravelPlan[]>([]);
   const [matchesByPlan, setMatchesByPlan] = useState<Record<string, TravelPlan[]>>({});
   const [loading, setLoading] = useState(true);
@@ -39,7 +39,7 @@ export default function MatchesPage() {
       return;
     }
     fetchMatches();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [user]);
 
   async function fetchMatches() {
