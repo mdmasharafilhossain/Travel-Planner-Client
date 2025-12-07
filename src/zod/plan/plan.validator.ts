@@ -49,7 +49,18 @@ export const createPlanSchema = z
 
     visibility: z.enum(["PUBLIC", "PRIVATE"]).optional(),
   })
+ .refine((data) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
+    const start = new Date(data.startDate);
+    start.setHours(0, 0, 0, 0);
+
+    return start >= today;
+  }, {
+    message: "Start date cannot be in the past",
+    path: ["startDate"],
+  })
 
   .refine((data) => {
     const start = new Date(data.startDate);
