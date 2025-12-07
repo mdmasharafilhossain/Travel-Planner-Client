@@ -250,7 +250,7 @@ function MatchCard({ plan }: { plan: MatchPlan }) {
             {/* img/simple fallback; Next Image চাইলে use করতে পারো */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={plan.host.profileImage || "/avatar.png"}
+              src={plan.host.profileImage || "https://i.ibb.co.com/jvLMWbX0/image.png"}
               alt={plan.host.fullName || "Traveler"}
               className="h-full w-full object-cover"
             />
