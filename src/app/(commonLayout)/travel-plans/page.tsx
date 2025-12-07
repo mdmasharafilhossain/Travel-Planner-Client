@@ -1,7 +1,7 @@
 
 
 import PlanCard from "@/components/modules/plan/PlanCard";
-import AuthWrapper from "@/lib/AuthWrapper";
+
 import { API_BASE } from "@/lib/baseApi";
 import { ITravelPlan } from "@/types/travelPlan.interface";
 import Link from "next/link";
