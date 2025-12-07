@@ -59,7 +59,7 @@ export default function UserSidebar() {
       text: 'Are you sure you want to logout?',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#EA580C', // orange-500
+      confirmButtonColor: '#EA580C', 
       cancelButtonColor: '#6B7280',
       confirmButtonText: 'Yes, logout!',
       cancelButtonText: 'Cancel',
