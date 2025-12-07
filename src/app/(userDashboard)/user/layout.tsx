@@ -1,11 +1,11 @@
 
 
 import { AuthProvider } from "@/components/modules/auth/AuthProvider/AuthProvider";
-import Sidebar from "@/components/shared/Sidebar";
+
 import UserSidebar from "@/components/shared/UserSidebar";
 
 
-import AuthWrapper from "@/lib/AuthWrapper";
+
 
 
 
