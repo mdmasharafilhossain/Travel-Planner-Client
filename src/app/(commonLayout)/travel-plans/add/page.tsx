@@ -5,7 +5,7 @@ import AuthWrapper from "@/lib/AuthWrapper";
 const AddPlanPage = () => {
     return (
         <div>
-            <AuthWrapper><AddPlan/> </AuthWrapper>
+            <AddPlan/> 
            
         </div>
     );

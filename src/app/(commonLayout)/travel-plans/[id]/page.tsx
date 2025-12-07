@@ -3,6 +3,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ITravelPlan } from "@/types/travelPlan.interface";
+import Image from "next/image";
+import ClientPlanActions from "@/components/modules/plan/ClientPlanActions";
 
 type Props = { params: { id: string } };
 
@@ -33,7 +35,7 @@ export default async function PlanDetail({ params }: Props) {
       <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
         {/* Hero */}
         <div className="sm:flex">
-          <div className="sm:w-2/5 bg-gradient-to-br from-orange-50 to-white p-6 flex items-center justify-center">
+          <div className="sm:w-2/5 bg-linear-to-br from-orange-50 to-white p-6 flex items-center justify-center">
             {/* Placeholder image / illustration */}
             <div className="w-full h-44 sm:h-56 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 text-orange-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -132,7 +134,7 @@ export default async function PlanDetail({ params }: Props) {
                 <div className="shrink-0">
                   {host.profileImage ? (
                     // if you have a URL use next/image in client components; here just show img fallback
-                    <img src={host.profileImage} alt={host.fullName || "Host"} className="h-20 w-20 rounded-full object-cover border border-gray-200" />
+                    <Image src={host.profileImage} alt={host.fullName || "Host"} className="h-20 w-20 rounded-full object-cover border border-gray-200" />
                   ) : (
                     <div className="h-20 w-20 rounded-full bg-gradient-to-br from-orange-300 to-orange-500 flex items-center justify-center text-white text-lg font-semibold border border-orange-200">
                       {host.fullName ? String(host.fullName).charAt(0).toUpperCase() : "H"}
@@ -252,6 +254,13 @@ export default async function PlanDetail({ params }: Props) {
               </div>
             </div>
           </div>
+          {host && endDate && (
+            <ClientPlanActions
+              planId={plan.id}
+              hostId={host.id}
+              planEndDate={endDate.toISOString()}
+            />
+          )}
         </div>
       </div>
     </div>

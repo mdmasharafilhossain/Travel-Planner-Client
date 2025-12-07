@@ -27,14 +27,14 @@ export const createPlanSchema = z
       }),
 
      budgetMin: z
-      .number()
-      .nonnegative("Minimum budget cannot be negative")
-      .optional(),
+     .string(),
+      
+      
 
     budgetMax: z
-      .number()
-      .nonnegative("Maximum budget cannot be negative")
-      .optional(),
+     .string(),
+    
+      
       
 
     travelType: z.enum(["SOLO", "FAMILY", "FRIENDS", "COUPLE", "GROUP"], {
