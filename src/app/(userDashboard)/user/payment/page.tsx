@@ -53,23 +53,5 @@ const {user} = useAuth();
       </form>
     </div>
   );
-//   return (
-//     <div className="max-w-md mx-auto p-6 bg-white rounded shadow">
-//       <h2 className="text-xl font-semibold mb-4">Choose subscription</h2>
-//       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-//         <select {...register("plan")} className="w-full border p-2 rounded">
-//           <option value="monthly">Monthly — BDT {process.env.NEXT_PUBLIC_PRICE_MONTHLY || "299"}</option>
-//           <option value="yearly">Yearly — BDT {process.env.NEXT_PUBLIC_PRICE_YEARLY || "2999"}</option>
-//           <option value="verified_badge">Verified Badge — BDT {process.env.NEXT_PUBLIC_PRICE_VERIFIED_BADGE || "199"}</option>
-//         </select>
 
-//         <div>
-//           <label className="block text-sm">Phone (required for SSLCommerz)</label>
-//           <input {...register("phone")} className="w-full border p-2 rounded" placeholder="017xxxxxxxx" />
-//         </div>
-
-//         <button type="submit" className="w-full py-2 bg-indigo-600 text-white rounded">Proceed to Payment</button>
-//       </form>
-//     </div>
-//   );
 }
