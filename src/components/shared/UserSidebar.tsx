@@ -15,7 +15,8 @@ import {
   Sparkles,
   LayoutDashboard,
   DollarSignIcon,
-  SaveAll
+  SaveAll,
+  ScanEye
 } from 'lucide-react';
 
 import Swal from 'sweetalert2';
@@ -44,7 +45,7 @@ export default function UserSidebar() {
   const navigation = [
     { name: 'Dashboard', href: '/user/dashboard', icon: LayoutDashboard },
     { name: 'Make Payment', href: '/user/payment', icon: DollarSignIcon },
-    { name: 'My Posted Plan', href: '/user/my-posted-plan', icon: SaveAll },
+    { name: 'My Posted Plan', href: '/user/my-posted-plan', icon: ScanEye },
     { name: 'Home', href: '/', icon: Home },
   ];
 
