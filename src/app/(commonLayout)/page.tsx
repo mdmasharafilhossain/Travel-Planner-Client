@@ -42,7 +42,7 @@ export default function HomePage() {
             <div className="relative w-full max-w-md">
               {/* Main card */}
               <div className="relative rounded-3xl bg-white shadow-xl border border-orange-100 p-5">
-                <div className="h-40 rounded-2xl bg-gradient-to-tr from-orange-400 via-orange-300 to-yellow-200 mb-4" />
+                <div className="h-40 rounded-2xl bg-linear-to-tr from-orange-400 via-orange-300 to-yellow-200 mb-4" />
                 <div className="flex items-center justify-between mb-1">
                   <h3 className="font-semibold text-gray-900">Bali, Indonesia</h3>
                   <span className="text-xs px-2 py-1 rounded-full bg-orange-100 text-orange-700">
