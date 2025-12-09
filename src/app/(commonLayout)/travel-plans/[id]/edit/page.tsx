@@ -1,85 +1,95 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import {
+  updatePlanSchema,
+  UpdatePlanFormType,
+} from "@/zod/plan/plan.validator";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
 
 export default function EditPlanPage() {
   const router = useRouter();
   const params = useParams();
-
-  // ✅ NEXT.JS 16 SAFE
   const planId = params?.id as string;
 
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-
-  const [form, setForm] = useState({
-    title: "",
-    destination: "",
-    startDate: "",
-    endDate: "",
-    description: "",
-    budgetMin: "",
-    budgetMax: "",
-    travelType: "SOLO",
-    visibility: "PUBLIC",
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors, isSubmitting },
+  } = useForm<UpdatePlanFormType>({
+    resolver: zodResolver(updatePlanSchema),
+    defaultValues: {
+      title: "",
+      destination: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+      budgetMin: "",
+      budgetMax: "",
+      travelType: "SOLO",
+      visibility: "PUBLIC",
+    },
   });
 
+  // ✅ Load plan
   useEffect(() => {
-    loadPlan();
-  }, []);
+    if (!planId) return;
 
-  async function loadPlan() {
-    try {
-      const res = await fetch(`${API_BASE}/api/travel-plans/${planId}`, {
-        credentials: "include",
-      });
-      const json = await res.json();
+    (async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/travel-plans/${planId}`, {
+          credentials: "include",
+        });
+        const json = await res.json();
 
-      if (!json.success) {
-        Swal.fire("Error", json.message, "error");
-        return;
+        if (!json.success) {
+          Swal.fire("Error", json.message, "error");
+          return;
+        }
+
+        const p = json.plan;
+
+        setValue("title", p.title || "");
+        setValue("destination", p.destination);
+        setValue("startDate", p.startDate.split("T")[0]);
+        setValue("endDate", p.endDate.split("T")[0]);
+        setValue("description", p.description || "");
+        setValue("budgetMin", p.budgetMin?.toString() || "");
+        setValue("budgetMax", p.budgetMax?.toString() || "");
+        setValue("travelType", p.travelType);
+        setValue("visibility", p.visibility);
+      } catch (err) {
+        console.error(err);
       }
+    })();
+  }, [planId, setValue]);
 
-      const p = json.plan;
-
-      setForm({
-        title: p.title || "",
-        destination: p.destination,
-        startDate: p.startDate.split("T")[0],
-        endDate: p.endDate.split("T")[0],
-        description: p.description || "",
-        budgetMin: p.budgetMin || "",
-        budgetMax: p.budgetMax || "",
-        travelType: p.travelType,
-        visibility: p.visibility,
-      });
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  function updateField(key: string, value: any) {
-    setForm((prev) => ({ ...prev, [key]: value }));
-  }
-
-  async function handleSave(e: any) {
-    e.preventDefault();
-    setSaving(true);
-
+  // ✅ Submit
+  const onSubmit = async (data: UpdatePlanFormType) => {
     try {
-      const res = await fetch(`${API_BASE}/api/travel-plans/user/update/${planId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(form),
-      });
+      const payload = {
+        ...data,
+        budgetMin: data.budgetMin ? Number(data.budgetMin) : null,
+        budgetMax: data.budgetMax ? Number(data.budgetMax) : null,
+      };
+
+      const res = await fetch(
+        `${API_BASE}/api/travel-plans/user/update/${planId}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(payload),
+        }
+      );
 
       const json = await res.json();
 
@@ -88,128 +98,120 @@ export default function EditPlanPage() {
         return;
       }
 
-      Swal.fire("Updated!", "Travel plan updated successfully.", "success");
+      await Swal.fire("Success", "Travel plan updated", "success");
       router.push(`/travel-plans/${planId}`);
     } catch (err) {
       console.error(err);
-    } finally {
-      setSaving(false);
     }
-  }
-
-  if (loading) {
-    return <p className="text-gray-500 text-sm">Loading...</p>;
-  }
+  };
 
   return (
     <div className="max-w-xl mx-auto px-4 py-10">
       <h1 className="text-xl font-bold mb-4">Edit Travel Plan</h1>
 
-      <form className="space-y-4" onSubmit={handleSave}>
-        <div>
-          <label className="text-sm">Title</label>
-          <input
-            type="text"
-            value={form.title}
-            onChange={(e) => updateField("title", e.target.value)}
-            className="w-full px-2 py-2 border rounded"
-          />
-        </div>
+      <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+        {/* Title */}
+        <Input label="Title" {...register("title")} error={errors.title?.message} />
 
-        <div>
-          <label className="text-sm">Destination</label>
-          <input
-            type="text"
-            value={form.destination}
-            onChange={(e) => updateField("destination", e.target.value)}
-            className="w-full px-2 py-2 border rounded"
-          />
-        </div>
+        {/* Destination */}
+        <Input
+          label="Destination"
+          {...register("destination")}
+          error={errors.destination?.message}
+        />
 
+        {/* Dates */}
         <div className="flex gap-3">
-          <div className="flex-1">
-            <label className="text-sm">Start Date</label>
-            <input
-              type="date"
-              value={form.startDate}
-              onChange={(e) => updateField("startDate", e.target.value)}
-              className="w-full px-2 py-2 border rounded"
-            />
-          </div>
-
-          <div className="flex-1">
-            <label className="text-sm">End Date</label>
-            <input
-              type="date"
-              value={form.endDate}
-              onChange={(e) => updateField("endDate", e.target.value)}
-              className="w-full px-2 py-2 border rounded"
-            />
-          </div>
+          <Input
+            label="Start Date"
+            type="date"
+            {...register("startDate")}
+            error={errors.startDate?.message}
+          />
+          <Input
+            label="End Date"
+            type="date"
+            {...register("endDate")}
+            error={errors.endDate?.message}
+          />
         </div>
 
+        {/* Description */}
         <div>
           <label className="text-sm">Description</label>
           <textarea
-            value={form.description}
-            onChange={(e) => updateField("description", e.target.value)}
-            className="w-full px-2 py-2 border rounded"
+            {...register("description")}
             rows={3}
+            className="w-full border rounded px-2 py-2"
           />
+          {errors.description && (
+            <p className="text-xs text-red-500">{errors.description.message}</p>
+          )}
         </div>
 
+        {/* Budget */}
         <div className="flex gap-3">
-          <input
+          <Input
+            label="Min Budget"
             type="number"
-            placeholder="Min Budget"
-            value={form.budgetMin}
-            onChange={(e) => updateField("budgetMin", e.target.value)}
-            className="w-full px-2 py-2 border rounded"
+            {...register("budgetMin")}
+            error={errors.budgetMin?.message}
           />
-
-          <input
+          <Input
+            label="Max Budget"
             type="number"
-            placeholder="Max Budget"
-            value={form.budgetMax}
-            onChange={(e) => updateField("budgetMax", e.target.value)}
-            className="w-full px-2 py-2 border rounded"
+            {...register("budgetMax")}
+            error={errors.budgetMax?.message}
           />
         </div>
 
-        <div>
-          <label className="text-sm">Travel Type</label>
-          <select
-            value={form.travelType}
-            onChange={(e) => updateField("travelType", e.target.value)}
-            className="w-full px-2 py-2 border rounded"
-          >
-            <option value="SOLO">Solo</option>
-            <option value="FAMILY">Family</option>
-            <option value="FRIENDS">Friends</option>
-            <option value="COUPLE">Couple</option>
-          </select>
-        </div>
+        {/* Selects */}
+        <Select
+          label="Travel Type"
+          {...register("travelType")}
+          options={["SOLO", "FAMILY", "FRIENDS", "COUPLE", "GROUP"]}
+        />
 
-        <div>
-          <label className="text-sm">Visibility</label>
-          <select
-            value={form.visibility}
-            onChange={(e) => updateField("visibility", e.target.value)}
-            className="w-full px-2 py-2 border rounded"
-          >
-            <option value="PUBLIC">Public</option>
-            <option value="PRIVATE">Private</option>
-          </select>
-        </div>
+        <Select
+          label="Visibility"
+          {...register("visibility")}
+          options={["PUBLIC", "PRIVATE"]}
+        />
 
         <button
-          type="submit"
-          disabled={saving}
+          disabled={isSubmitting}
           className="w-full py-2 rounded bg-orange-600 text-white hover:bg-orange-700"
         >
-          {saving ? "Saving..." : "Save Changes"}
+          {isSubmitting ? "Saving..." : "Save Changes"}
         </button>
       </form>
+    </div>
+  );
+}
+
+/* ✅ Reusable Inputs */
+
+function Input({ label, error, ...props }: any) {
+  return (
+    <div className="flex-1">
+      <label className="text-sm">{label}</label>
+      <input {...props} className="w-full px-2 py-2 border rounded" />
+      {error && <p className="text-xs text-red-500">{error}</p>}
+    </div>
+  );
+}
+
+function Select({ label, options, ...props }: any) {
+  return (
+    <div>
+      <label className="text-sm">{label}</label>
+      <select {...props} className="w-full px-2 py-2 border rounded">
+        {options.map((o: string) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }
