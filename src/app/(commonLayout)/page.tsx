@@ -7,20 +7,21 @@ export default function HomePage() {
   const { user } = useAuth();
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 via-white to-gray-100">
-
+    <div className="bg-linear-to-br from-gray-50 via-white to-gray-100">
       {/* ================= HERO SECTION ================= */}
       <section className="relative overflow-hidden">
         <div className="container mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
+          {/* Left: Text + CTA */}
           <div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
               Travel is better <span className="text-orange-500">together</span>
             </h1>
             <p className="mt-5 text-lg text-gray-600 max-w-xl">
-              Find travel buddies, create plans, and explore destinations with like-minded travelers around the world.
+              Find travel buddies, create plans, and explore destinations with like-minded
+              travelers around the world.
             </p>
 
-            <div className="mt-8 flex gap-4">
+            <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="/travel-plans"
                 className="px-6 py-3 rounded-lg bg-orange-500 text-white font-semibold hover:bg-orange-600 transition"
@@ -36,8 +37,41 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="hidden md:block">
-            <div className="rounded-3xl bg-orange-100 h-96 w-full shadow-inner"></div>
+          {/* Right: Travel cards illustration (replaces empty box) */}
+          <div className="hidden md:flex justify-end">
+            <div className="relative w-full max-w-md">
+              {/* Main card */}
+              <div className="relative rounded-3xl bg-white shadow-xl border border-orange-100 p-5">
+                <div className="h-40 rounded-2xl bg-gradient-to-tr from-orange-400 via-orange-300 to-yellow-200 mb-4" />
+                <div className="flex items-center justify-between mb-1">
+                  <h3 className="font-semibold text-gray-900">Bali, Indonesia</h3>
+                  <span className="text-xs px-2 py-1 rounded-full bg-orange-100 text-orange-700">
+                    3 buddies
+                  </span>
+                </div>
+                <p className="text-xs text-gray-500 mb-3">
+                  Surf, sunsets and new friends on a 7-day island trip.
+                </p>
+                <div className="flex items-center justify-between text-xs text-gray-500">
+                  <span>June · Budget: $600</span>
+                  <span>Solo · Looking for 2</span>
+                </div>
+              </div>
+
+              {/* Small floating card top-left */}
+              <div className="absolute -top-6 -left-4 w-36 rounded-2xl bg-white shadow-lg border border-gray-100 p-3">
+                <p className="text-xs font-semibold text-gray-800">Paris weekend</p>
+                <p className="text-[11px] text-gray-500 mt-1">2 buddies matched</p>
+              </div>
+
+              {/* Small floating card bottom-right */}
+              <div className="absolute -bottom-8 -right-4 w-40 rounded-2xl bg-orange-500 text-white shadow-xl p-3">
+                <p className="text-xs font-semibold">2,300+ trips created</p>
+                <p className="text-[11px] text-orange-100 mt-1">
+                  Join a community of real travelers.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -51,13 +85,18 @@ export default function HomePage() {
             </h2>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="p-5 rounded-xl border bg-gray-50 hover:shadow-md transition">
+              {[1, 2, 3].map((i) => (
+                <div
+                  key={i}
+                  className="p-5 rounded-xl border bg-gray-50 hover:shadow-md transition"
+                >
                   <div className="h-10 w-10 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold">
                     T
                   </div>
                   <h3 className="mt-3 font-semibold text-gray-800">Traveler {i}</h3>
-                  <p className="text-sm text-gray-500">Interested in mountains & culture</p>
+                  <p className="text-sm text-gray-500">
+                    Interested in mountains &amp; culture
+                  </p>
                 </div>
               ))}
             </div>
@@ -76,7 +115,7 @@ export default function HomePage() {
               { step: '01', title: 'Sign Up', desc: 'Create your profile and share your travel interests.' },
               { step: '02', title: 'Create Plan', desc: 'Add destination, budget, and travel date.' },
               { step: '03', title: 'Find Buddy', desc: 'Match with travelers going the same way.' },
-            ].map(item => (
+            ].map((item) => (
               <div key={item.step} className="bg-white p-6 rounded-xl shadow-sm">
                 <div className="text-orange-500 font-extrabold text-4xl">{item.step}</div>
                 <h3 className="mt-3 font-semibold text-lg">{item.title}</h3>
@@ -88,19 +127,54 @@ export default function HomePage() {
       </section>
 
       {/* ================= POPULAR DESTINATIONS ================= */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-gray-900 mb-10">Popular Destinations</h2>
+     <section className="py-20 bg-white">
+  <div className="container mx-auto px-6">
+    <div className="flex items-center justify-between mb-10">
+      <h2 className="text-3xl font-bold text-gray-900">
+        Popular Destinations
+      </h2>
+      <span className="text-sm text-gray-500">
+        Loved by travelers worldwide
+      </span>
+    </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {['Paris', 'Thailand', 'Nepal', 'Turkey'].map(place => (
-              <div key={place} className="h-48 rounded-xl bg-gray-100 flex items-end p-4 font-semibold text-gray-800">
-                {place}
-              </div>
-            ))}
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {[
+        { name: 'Paris', tag: 'City of Love' },
+        { name: 'Thailand', tag: 'Beaches & Culture' },
+        { name: 'Nepal', tag: 'Mountains & Adventure' },
+        { name: 'Turkey', tag: 'History & Food' },
+      ].map((place) => (
+        <div
+          key={place.name}
+          className="group relative h-52 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300"
+        >
+          {/* Background */}
+          <div className="absolute inset-0 bg-gray-100" />
+
+          {/* Dark overlay */}
+          
+
+          {/* Content */}
+          <div className="relative z-10 h-full p-5 flex flex-col justify-end">
+            <h3 className="text-orange-600 font-extrabold text-2xl">
+              {place.name}
+            </h3>
+            <p className="text-sm text-orange-500 mt-1">
+              {place.tag}
+            </p>
+
+            <span className="mt-3 inline-block text-xs font-semibold px-3 py-1 rounded-full bg-white text-gray-800 w-fit">
+              Explore Trips
+            </span>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
+
 
       {/* ================= WHY CHOOSE US ================= */}
       <section className="py-20 bg-gray-50">
@@ -108,11 +182,7 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-10">Why Choose Us</h2>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              'Verified Travelers',
-              'Secure Messaging',
-              'Smart Matching Algorithm',
-            ].map(text => (
+            {['Verified Travelers', 'Secure Messaging', 'Smart Matching Algorithm'].map((text) => (
               <div key={text} className="bg-white p-6 rounded-xl shadow-sm">
                 <h3 className="font-semibold text-lg">{text}</h3>
                 <p className="mt-2 text-sm text-gray-600">
@@ -130,7 +200,7 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-gray-900">Success Stories</h2>
 
           <div className="mt-12 grid md:grid-cols-3 gap-6">
-            {['Anna', 'Rahim', 'Sofia'].map(name => (
+            {['Anna', 'Rahim', 'Sofia'].map((name) => (
               <div key={name} className="bg-gray-50 p-6 rounded-xl">
                 <p className="text-gray-600 italic">
                   “I found my perfect travel buddy here — unforgettable experience!”
@@ -155,7 +225,6 @@ export default function HomePage() {
           Get Started Now
         </Link>
       </section>
-
     </div>
   );
 }

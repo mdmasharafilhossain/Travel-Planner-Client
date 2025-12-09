@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import { useAuthContext } from "../auth/AuthProvider/AuthProvider";
+import { Router } from "next/router";
 
 type Participant = {
   id: string;
@@ -340,54 +341,8 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
     }
   }
 
-  // 🔹 Review edit
-  async function handleEditReview(review: Review) {
-    if (!userId) return;
-
-    const newRatingStr = prompt("Update rating (1-5)", String(review.rating));
-    if (!newRatingStr) return;
-    const newRating = Number(newRatingStr);
-
-    const promptResult = prompt("Update comment", review.comment || "");
-    const newComment = (promptResult ?? review.comment) || "";
-
-    try {
-      const res = await fetch(`${API_BASE}/api/reviews/${review.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ rating: newRating, comment: newComment }),
-      });
-      const json = await res.json();
-      if (!res.ok || !json.success) {
-        await Swal.fire({
-          icon: "error",
-          title: "Update failed",
-          text: json.message || "Failed to update review.",
-          confirmButtonColor: "#f97316",
-        });
-        return;
-      }
-
-      await Swal.fire({
-        icon: "success",
-        title: "Review Updated",
-        confirmButtonColor: "#22c55e",
-      });
-
-      await fetchHostReviews();
-    } catch (err) {
-      console.error(err);
-      await Swal.fire({
-        icon: "error",
-        title: "Something went wrong",
-        text: "Unable to update review.",
-        confirmButtonColor: "#f97316",
-      });
-    }
-  }
+ 
+ 
 
   // 🔹 Review delete
   async function handleDeleteReview(reviewId: string) {
@@ -445,6 +400,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
   if (!userId) {
     joinLabel = "Login to Join";
     joinDisabled = false;
+    
   } else if (userId === hostId) {
     joinLabel = "You are the host";
     joinDisabled = true;
@@ -483,7 +439,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
           className={`inline-flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium ${
             joinDisabled
               ? "bg-gray-300 text-gray-700 cursor-not-allowed"
-              : "bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700"
+              : "bg-linear-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700"
           } transition`}
         >
           {joinLabel}
