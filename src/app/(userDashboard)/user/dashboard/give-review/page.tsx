@@ -24,7 +24,7 @@ type TravelPlan = {
 
 export default function GiveReviewPage() {
   const { user } = useAuth();
-  const [token, setToken] = useState<string | null>(null);
+  
   const [trips, setTrips] = useState<TravelPlan[]>([]);
   const [loading, setLoading] = useState(true);
 
