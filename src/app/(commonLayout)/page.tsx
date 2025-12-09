@@ -11,7 +11,7 @@ export default function HomePage() {
 
       {/* ================= HERO SECTION ================= */}
       <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
               Travel is better <span className="text-orange-500">together</span>
@@ -45,7 +45,7 @@ export default function HomePage() {
       {/* ================= LOGGED-IN RECOMMENDATIONS ================= */}
       {user && (
         <section className="py-16 bg-white border-t">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="container mx-auto px-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               Recommended Travel Buddies for You
             </h2>
@@ -67,7 +67,7 @@ export default function HomePage() {
 
       {/* ================= HOW IT WORKS ================= */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-gray-900">How It Works</h2>
           <p className="mt-3 text-gray-600">Start your journey in just 3 simple steps</p>
 
@@ -89,7 +89,7 @@ export default function HomePage() {
 
       {/* ================= POPULAR DESTINATIONS ================= */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-gray-900 mb-10">Popular Destinations</h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -104,7 +104,7 @@ export default function HomePage() {
 
       {/* ================= WHY CHOOSE US ================= */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-gray-900 mb-10">Why Choose Us</h2>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -126,7 +126,7 @@ export default function HomePage() {
 
       {/* ================= TESTIMONIALS ================= */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-gray-900">Success Stories</h2>
 
           <div className="mt-12 grid md:grid-cols-3 gap-6">
