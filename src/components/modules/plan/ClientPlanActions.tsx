@@ -55,11 +55,17 @@ const [editingComment, setEditingComment] = useState<string>("");
   const [comment, setComment] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  // userId: তোমার IUser যদি _id হিসেবে থাকে, সেটাও cover করছি
+ 
   const userId = (user as any)?._id || (user as any)?.id;
   const isHost = userId && userId === hostId;
   const isCompleted = new Date(planEndDate) < new Date();
-  const canReview = !isHost && isCompleted && myStatus === "ACCEPTED";
+ 
+const hasMyReview =
+  !!userId && reviews.some((r) => r.authorId === userId);
+
+
+const canReview =
+  !!user && !isHost && isCompleted && myStatus === "ACCEPTED" && !hasMyReview;
 function startEditReview(review: Review) {
   setEditingId(review.id);
   setEditingRating(review.rating);
@@ -432,7 +438,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
     }
   }
 
-  // 🔹 button label for user
+ 
   let joinLabel = "Request to Join";
   let joinDisabled = false;
 
@@ -710,13 +716,23 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
           </div>
         )}
 
-        {user && !canReview && !isHost && (
-          <div className="mt-4 text-xs text-gray-500">
-            You can review this host only after the trip is completed and if your
-            request is
-            <span className="font-semibold"> ACCEPTED</span>.
-          </div>
-        )}
+        {user && !isHost && (
+  <div className="mt-4 text-xs text-gray-500">
+    {hasMyReview ? (
+      <span>
+        You have already reviewed this host. You can edit or delete your review above.
+      </span>
+    ) : !isCompleted ? (
+      <span>
+        You can review this host after the trip is completed.
+      </span>
+    ) : myStatus !== "ACCEPTED" ? (
+      <span>
+        Only accepted participants can review this host.
+      </span>
+    ) : null}
+  </div>
+)}
       </div>
     </div>
   );
