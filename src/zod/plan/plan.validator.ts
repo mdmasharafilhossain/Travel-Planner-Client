@@ -27,12 +27,12 @@ export const createPlanSchema = z
       }),
 
      budgetMin: z
-     .string(),
-      
-      
+    .string()
+    .refine((v) => !isNaN(Number(v)), "Minimum budget must be a valid number"),
 
-    budgetMax: z
-     .string(),
+  budgetMax: z
+    .string()
+    .refine((v) => !isNaN(Number(v)), "Maximum budget must be a valid number"),
     
       
       
