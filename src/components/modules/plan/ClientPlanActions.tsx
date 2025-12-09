@@ -48,7 +48,9 @@ export default function ClientPlanActions({ planId, hostId, planEndDate }: Props
   const [avgRating, setAvgRating] = useState<number | null>(null);
   const [totalReviews, setTotalReviews] = useState(0);
   const [loadingReviews, setLoadingReviews] = useState(true);
-
+const [editingId, setEditingId] = useState<string | null>(null);
+const [editingRating, setEditingRating] = useState<number>(5);
+const [editingComment, setEditingComment] = useState<string>("");
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -58,6 +60,58 @@ export default function ClientPlanActions({ planId, hostId, planEndDate }: Props
   const isHost = userId && userId === hostId;
   const isCompleted = new Date(planEndDate) < new Date();
   const canReview = !isHost && isCompleted && myStatus === "ACCEPTED";
+function startEditReview(review: Review) {
+  setEditingId(review.id);
+  setEditingRating(review.rating);
+  setEditingComment(review.comment || "");
+}
+async function handleEditReviewSubmit(e: React.FormEvent) {
+  e.preventDefault();
+  if (!userId || !editingId) return;
+
+  try {
+    const res = await fetch(`${API_BASE}/api/reviews/${editingId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        rating: editingRating,
+        comment: editingComment,
+      }),
+    });
+
+    const json = await res.json();
+
+    if (!res.ok || !json.success) {
+      await Swal.fire({
+        icon: "error",
+        title: "Update failed",
+        text: json.message || "Failed to update review.",
+        confirmButtonColor: "#f97316",
+      });
+      return;
+    }
+
+    await Swal.fire({
+      icon: "success",
+      title: "Review Updated",
+      confirmButtonColor: "#22c55e",
+    });
+
+    setEditingId(null);
+    await fetchHostReviews();
+  } catch (err) {
+    console.error(err);
+    await Swal.fire({
+      icon: "error",
+      title: "Something went wrong",
+      text: "Unable to update review.",
+      confirmButtonColor: "#f97316",
+    });
+  }
+}
 
   useEffect(() => {
     fetchPlanForParticipants();
@@ -93,7 +147,7 @@ export default function ClientPlanActions({ planId, hostId, planEndDate }: Props
   async function fetchHostReviews() {
     setLoadingReviews(true);
     try {
-      const res = await fetch(`${API_BASE}/api/users/${hostId}`, {
+      const res = await fetch(`${API_BASE}/api/reviews/user/${hostId}`, {
         credentials: "include",
       });
       const json = await res.json();
@@ -466,12 +520,7 @@ export default function ClientPlanActions({ planId, hostId, planEndDate }: Props
                 {
                   p.status === "PENDING" && (
                     <div className="flex gap-2">
-                  <button
-                    onClick={() => handleHostRespond(p.id, "ACCEPTED")}
-                    className="text-xs px-2 py-1 rounded border border-green-200 text-green-700 hover:bg-green-50"
-                  >
-                    Accept
-                  </button>
+                 
                  
                       <button
                     onClick={() => handleHostRespond(p.id, "ACCEPTED")}
@@ -524,7 +573,7 @@ export default function ClientPlanActions({ planId, hostId, planEndDate }: Props
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <Image
-                    src={r.author.profileImage || "/avatar.png"}
+                    src={r.author.profileImage || "https://i.ibb.co.com/jvLMWbX0/image.png"}
                     width={32}
                     height={32}
                     className="rounded-full object-cover"
@@ -547,21 +596,66 @@ export default function ClientPlanActions({ planId, hostId, planEndDate }: Props
                 <div className="mt-2 text-sm text-gray-700">{r.comment}</div>
               )}
               {userId === r.authorId && (
-                <div className="mt-2 flex gap-2">
-                  <button
-                    className="text-xs px-2 py-1 rounded border border-gray-200 hover:bg-gray-50"
-                    onClick={() => handleEditReview(r)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="text-xs px-2 py-1 rounded border border-red-200 text-red-600 hover:bg-red-50"
-                    onClick={() => handleDeleteReview(r.id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              )}
+  <div className="mt-2">
+    {editingId === r.id ? (
+      <form onSubmit={handleEditReviewSubmit} className="space-y-2 border-t border-gray-100 pt-2 mt-2">
+        <div className="flex items-center gap-2">
+          <label className="text-xs text-gray-600">Rating</label>
+          <select
+            value={editingRating}
+            onChange={(e) => setEditingRating(Number(e.target.value))}
+            className="border border-gray-200 rounded px-2 py-1 text-xs"
+          >
+            <option value={5}>5 - Excellent</option>
+            <option value={4}>4 - Very good</option>
+            <option value={3}>3 - Good</option>
+            <option value={2}>2 - Fair</option>
+            <option value={1}>1 - Poor</option>
+          </select>
+        </div>
+        <div>
+          <textarea
+            value={editingComment}
+            onChange={(e) => setEditingComment(e.target.value)}
+            className="w-full border border-gray-200 rounded px-2 py-1 text-xs"
+            rows={2}
+          />
+        </div>
+        <div className="flex gap-2">
+          <button
+            type="submit"
+            className="text-xs px-3 py-1 rounded-md bg-green-600 text-white hover:bg-green-700"
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            className="text-xs px-3 py-1 rounded-md border border-gray-200 text-gray-700 hover:bg-gray-50"
+            onClick={() => setEditingId(null)}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    ) : (
+      <div className="flex gap-2 mt-2">
+        <button
+          className="text-xs px-2 py-1 rounded border border-gray-200 hover:bg-gray-50"
+          onClick={() => startEditReview(r)}
+        >
+          Edit
+        </button>
+        <button
+          className="text-xs px-2 py-1 rounded border border-red-200 text-red-600 hover:bg-red-50"
+          onClick={() => handleDeleteReview(r.id)}
+        >
+          Delete
+        </button>
+      </div>
+    )}
+  </div>
+)}
+
             </div>
           ))}
 
@@ -573,7 +667,7 @@ export default function ClientPlanActions({ planId, hostId, planEndDate }: Props
         </div>
 
         {/* Review form: only ACCEPTED + trip complete + not host */}
-        {user && canReview && (
+        {user && canReview &&   (
           <div className="mt-6 border-t border-gray-100 pt-4">
             <div className="text-sm font-semibold text-gray-800 mb-2">
               Leave a Review
