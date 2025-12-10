@@ -2,10 +2,57 @@
 
 import Link from 'next/link';
 import useAuth from '@/hooks/useAuth';
+import { API_BASE } from '@/lib/baseApi';
+import { useEffect, useState } from 'react';
+import HomeMatchedTravelers from '@/components/modules/homePage/SuggestedBuddy/HomeMatchedTravelers';
 
 export default function HomePage() {
   const { user } = useAuth();
+  type Host = {
+  id: string;
+  fullName?: string;
+  profileImage?: string;
+  isVerifiedBadge?: boolean;
+};
 
+type TravelPlan = {
+  id: string;
+  title?: string;
+  destination: string;
+  startDate: string;
+  endDate: string;
+  host: Host;
+};
+   const [upcomingPlans, setUpcomingPlans] = useState<TravelPlan[]>([]);
+    const [matchesByPlan, setMatchesByPlan] = useState<Record<string, TravelPlan[]>>({});
+    const [loading, setLoading] = useState(true);
+useEffect(() => {
+    if (!user) {
+      setLoading(false);
+      return;
+    }
+    fetchMatches();
+    
+  }, [user]);
+
+  async function fetchMatches() {
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/dashboard/user`, {
+         credentials: "include",});
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        console.error(json.message);
+      } else {
+        setUpcomingPlans(json.upcomingPlans || []);
+        setMatchesByPlan(json.matchesByPlan || {});
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
   return (
     <div className="bg-linear-to-br from-gray-50 via-white to-gray-100">
       {/* ================= HERO SECTION ================= */}
@@ -78,30 +125,31 @@ export default function HomePage() {
 
       {/* ================= LOGGED-IN RECOMMENDATIONS ================= */}
       {user && (
-        <section className="py-16 bg-white border-t">
-          <div className="container mx-auto px-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Recommended Travel Buddies for You
-            </h2>
+        // <section className="py-16 bg-white border-t">
+        //   <div className="container mx-auto px-6">
+        //     <h2 className="text-2xl font-bold text-gray-900 mb-6">
+        //       Recommended Travel Buddies for You
+        //     </h2>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="p-5 rounded-xl border bg-gray-50 hover:shadow-md transition"
-                >
-                  <div className="h-10 w-10 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold">
-                    T
-                  </div>
-                  <h3 className="mt-3 font-semibold text-gray-800">Traveler {i}</h3>
-                  <p className="text-sm text-gray-500">
-                    Interested in mountains &amp; culture
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        //     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        //       {[1, 2, 3].map((i) => (
+        //         <div
+        //           key={i}
+        //           className="p-5 rounded-xl border bg-gray-50 hover:shadow-md transition"
+        //         >
+        //           <div className="h-10 w-10 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold">
+        //             T
+        //           </div>
+        //           <h3 className="mt-3 font-semibold text-gray-800">Traveler {i}</h3>
+        //           <p className="text-sm text-gray-500">
+        //             Interested in mountains &amp; culture
+        //           </p>
+        //         </div>
+        //       ))}
+        //     </div>
+        //   </div>
+        // </section>
+        <HomeMatchedTravelers/>
       )}
 
       {/* ================= HOW IT WORKS ================= */}
@@ -157,7 +205,7 @@ export default function HomePage() {
 
           {/* Content */}
           <div className="relative z-10 h-full p-5 flex flex-col justify-end">
-            <h3 className="text-orange-600 font-extrabold text-2xl">
+            <h3 className="text-orange-500 font-extrabold text-2xl">
               {place.name}
             </h3>
             <p className="text-sm text-orange-500 mt-1">

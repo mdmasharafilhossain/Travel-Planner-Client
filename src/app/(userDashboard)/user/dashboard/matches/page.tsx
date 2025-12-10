@@ -85,7 +85,7 @@ export default function MatchesPage() {
           </p>
         </div>
         <Link
-          href="/dashboard"
+          href="/user/dashboard"
           className="text-xs px-3 py-1 rounded-md bg-gray-100 border border-gray-200 hover:bg-gray-200"
         >
           ← Back to Dashboard
