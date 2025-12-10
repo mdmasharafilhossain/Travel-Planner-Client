@@ -16,7 +16,8 @@ import {
   LayoutDashboard,
   DollarSignIcon,
   SaveAll,
-  ScanEye
+  ScanEye,
+  History
 } from 'lucide-react';
 
 import Swal from 'sweetalert2';
@@ -46,6 +47,7 @@ export default function UserSidebar() {
     { name: 'Dashboard', href: '/user/dashboard', icon: LayoutDashboard },
     { name: 'Make Payment', href: '/user/payment', icon: DollarSignIcon },
     { name: 'My Posted Plan', href: '/user/my-posted-plan', icon: ScanEye },
+    { name: 'My Pyament History', href: '/user/my-payment-history', icon: History },
     { name: 'Home', href: '/', icon: Home },
   ];
 
