@@ -101,14 +101,14 @@ export default function Navbar() {
             {user ? (
               <>
                 <Link
-                  href={user.role === "ADMIN" ? "/admin/dashboard" : "/dashboard"}
+                  href={user.role === "ADMIN" ? "/user/dashboard" : "user/dashboard"}
                   className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Dashboard
                 </Link>
 
                 <Link
-                  href={`/profile/${user.id}`}
+                  href={`/profile`}
                   className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Profile
@@ -116,7 +116,7 @@ export default function Navbar() {
 
                 {user.role === "ADMIN" && (
                   <Link
-                    href="/admin/dashboard"
+                    href="/admin"
                     className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Admin
@@ -191,14 +191,14 @@ export default function Navbar() {
             {user ? (
               <>
                 <Link
-                  href={user.role === "ADMIN" ? "/admin/dashboard" : "/dashboard"}
+                  href={user.role === "ADMIN" ? "/user/dashboard" : "/user/dashboard"}
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600"
                 >
                   Dashboard
                 </Link>
 
                 <Link
-                  href={`/profile/${user.id}`}
+                  href={`/profile`}
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600"
                 >
                   Profile
@@ -206,7 +206,7 @@ export default function Navbar() {
 
                 {user.role === "ADMIN" && (
                   <Link
-                    href="/admin/dashboard"
+                    href="/admin"
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600"
                   >
                     Admin
