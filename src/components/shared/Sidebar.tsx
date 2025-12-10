@@ -115,17 +115,12 @@ export default function Sidebar() {
         <div className="p-5 border-b border-gray-100 dark:border-gray-800">
           <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
             {!isCollapsed && (
-              <Link href="/user/dashboard" className="flex items-center gap-3 group">
-                <div className="relative">
-                  <div className="absolute -inset-1 bg-linear-to-r from-orange-400 to-gray-700 rounded-lg blur opacity-20"></div>
-                  <div className="relative w-9 h-9 bg-linear-to-br from-orange-500 to-gray-700 rounded-lg flex items-center justify-center shadow-sm">
-                    
-                  </div>
-                </div>
-                <span className="text-xl font-extrabold bg-linear-to-r from-orange-500 to-gray-700 bg-clip-text text-transparent leading-tight">
-                  Dashboard
+             
+                
+                <span className="text-base font-extrabold bg-linear-to-r from-orange-500 to-gray-700 bg-clip-text text-transparent leading-tight">
+                  Admin Dashboard
                 </span>
-              </Link>
+             
             )}
 
             <button
