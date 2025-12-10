@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  Users,
+ 
   Layers,
   Activity,
   Home,
@@ -12,13 +12,18 @@ import {
   ChevronLeft,
   ChevronRight,
   Menu,
-  Sparkles
+  Sparkles,
+  LayoutDashboard,
+  DollarSignIcon,
+  SaveAll,
+  ScanEye,
+  History
 } from 'lucide-react';
 
 import Swal from 'sweetalert2';
 import useAuth from '@/hooks/useAuth';
 
-export default function Sidebar() {
+export default function UserSidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const pathname = usePathname();
@@ -39,15 +44,16 @@ export default function Sidebar() {
   }, []);
 
   const navigation = [
-    { name: 'Users', href: '/admin/user-management', icon: Users },
-    { name: 'Plans', href: '/admin/plan-management', icon: Layers },
-    { name: 'Activity', href: '/admin/about', icon: Activity },
+    { name: 'Dashboard', href: '/user/dashboard', icon: LayoutDashboard },
+    { name: 'Make Payment', href: '/user/payment', icon: DollarSignIcon },
+    { name: 'My Posted Plan', href: '/user/my-posted-plan', icon: ScanEye },
+    { name: 'My Pyament History', href: '/user/my-payment-history', icon: History },
     { name: 'Home', href: '/', icon: Home },
   ];
 
   const isActiveRoute = (href: string) => {
     if (href === '/') return pathname === '/';
-    if (href === '/admin') return pathname === '/admin';
+    if (href === '/user') return pathname === '/user';
     return pathname?.startsWith(href);
   };
 
@@ -57,7 +63,7 @@ export default function Sidebar() {
       text: 'Are you sure you want to logout?',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#EA580C', // orange-500
+      confirmButtonColor: '#EA580C', 
       cancelButtonColor: '#6B7280',
       confirmButtonText: 'Yes, logout!',
       cancelButtonText: 'Cancel',
