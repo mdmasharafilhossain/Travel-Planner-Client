@@ -101,7 +101,7 @@ export default function Navbar() {
             {user ? (
               <>
                 <Link
-                  href={user.role === "ADMIN" ? "/user/dashboard" : "user/dashboard"}
+                  href="/user/dashboard"
                   className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Dashboard
@@ -191,7 +191,7 @@ export default function Navbar() {
             {user ? (
               <>
                 <Link
-                  href={"/user/dashboard"}
+                  href="/user/dashboard"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600"
                 >
                   Dashboard

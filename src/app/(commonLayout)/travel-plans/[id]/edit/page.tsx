@@ -101,8 +101,9 @@ export default function EditPlanPage() {
       }
 
       await Swal.fire("Success", "Travel plan updated", "success");
-      router.push(`/travel-plans/${planId}`);
       router.refresh();
+      router.push(`/user/my-posted-plan`);
+      
     } catch (err) {
       console.error(err);
     }
