@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
+import { API_BASE } from "@/lib/baseApi";
 
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
+
 
 type MatchedPlan = {
   id: string;
@@ -93,7 +93,7 @@ export default function HomeMatchedTravelers() {
         ) : (
           /* ✅ MATCHES FOUND */
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {matches.map((plan) => (
+            {matches.slice(0, 3).map((plan) => (
               <div
                 key={plan.host.id}
                 className="p-5 rounded-xl border bg-gray-50 hover:shadow-md transition"
