@@ -63,7 +63,7 @@ export default function PaymentSuccessClient() {
 
   return (
     <div className="max-w-lg mx-auto mt-12 p-6 bg-white rounded shadow text-center">
-      <h2 className="text-xl font-semibold">
+      <h2 className="text-xl font-semibold text-green-600">
         {status ? "Payment Successful!" : "Processing Payment..."}
       </h2>
       <p className="mt-4">
