@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useAuth from "@/hooks/useAuth";
 import { API_BASE } from "@/lib/baseApi";
+import LoaderWrapper from "@/lib/LoaderWrapper";
 
 type Review = {
   id: string;
@@ -83,6 +84,7 @@ export default function AdminReviewPage() {
   }
 
   return (
+    <LoaderWrapper>
     <div className="max-w-6xl mx-auto px-4 py-10">
       {/* Header */}
       <div className="mb-6">
@@ -211,5 +213,6 @@ export default function AdminReviewPage() {
         </div>
       </div>
     </div>
+    </LoaderWrapper>
   );
 }

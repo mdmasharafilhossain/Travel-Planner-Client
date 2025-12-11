@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import { API_BASE } from "@/lib/baseApi";
+import LoaderWrapper from "@/lib/LoaderWrapper";
 
 
 
@@ -41,6 +42,7 @@ export default function AdminTransactionsPage() {
   }
 
   return (
+    <LoaderWrapper>
     <div className="max-w-6xl mx-auto px-4 py-10">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900">
@@ -168,5 +170,6 @@ export default function AdminTransactionsPage() {
         </div>
       </div>
     </div>
+    </LoaderWrapper>
   );
 }

@@ -5,6 +5,7 @@ import Sidebar from "@/components/shared/Sidebar";
 
 
 import AuthWrapper from "@/lib/AuthWrapper";
+import LoaderWrapper from "@/lib/LoaderWrapper";
 
 
 
@@ -17,6 +18,7 @@ export default function DashboardLayout({
   return (
     <AuthProvider>
     <AuthWrapper>
+      <LoaderWrapper>
       <div className="min-h-screen bg-linear-to-br from-gray-50 via-[#F8F5FF] to-gray-100 dark:from-gray-950 dark:via-[#1a1033] dark:to-gray-900">
         <div className="flex">
           <Sidebar />
@@ -29,6 +31,7 @@ export default function DashboardLayout({
           </main>
         </div>
       </div>
+      </LoaderWrapper>
   </AuthWrapper>
     </AuthProvider>
   );

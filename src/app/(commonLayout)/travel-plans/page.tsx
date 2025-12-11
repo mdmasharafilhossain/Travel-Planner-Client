@@ -3,6 +3,7 @@
 import PlanCard from "@/components/modules/plan/PlanCard";
 
 import { API_BASE } from "@/lib/baseApi";
+import LoaderWrapper from "@/lib/LoaderWrapper";
 import { ITravelPlan } from "@/types/travelPlan.interface";
 import Link from "next/link";
 
@@ -17,7 +18,7 @@ export default async function PlansPage() {
 
   return (
    
-
+<LoaderWrapper>
         <div className="min-h-screen px-4 md:px-8 py-6">
 
       
@@ -79,6 +80,6 @@ export default async function PlansPage() {
         </div>
       )}
     </div>
-    
+    </LoaderWrapper>
   );
 }

@@ -13,6 +13,7 @@ import {
 } from "@/zod/plan/plan.validator";
 import { API_BASE } from "@/lib/baseApi";
 import UserAuthWrapper from "@/lib/UserAuthWrapper";
+import LoaderWrapper from "@/lib/LoaderWrapper";
 
 
 
@@ -111,6 +112,7 @@ export default function EditPlanPage() {
 
   return (
     <UserAuthWrapper>
+      <LoaderWrapper>
     <div className="max-w-xl mx-auto px-4 py-10">
       <h1 className="text-xl font-bold mb-4">Edit Travel Plan</h1>
 
@@ -191,6 +193,7 @@ export default function EditPlanPage() {
         </button>
       </form>
     </div>
+    </LoaderWrapper>
     </UserAuthWrapper>
   );
 }

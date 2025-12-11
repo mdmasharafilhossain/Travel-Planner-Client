@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ITravelPlan } from "@/types/travelPlan.interface";
 import Image from "next/image";
 import ClientPlanActions from "@/components/modules/plan/ClientPlanActions";
+import LoaderWrapper from "@/lib/LoaderWrapper";
 
 type Props = { params: { id: string } };
 
@@ -60,6 +61,7 @@ export default async function PlanDetail({ params }: Props) {
     Upcoming: "bg-yellow-50 text-yellow-700 border-yellow-100",
   } as const;
   return (
+    <LoaderWrapper>
     <div className="max-w-4xl mx-auto py-10 px-4">
       <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
         {/* Hero */}
@@ -297,5 +299,6 @@ export default async function PlanDetail({ params }: Props) {
         </div>
       </div>
     </div>
+    </LoaderWrapper>
   );
 }
