@@ -93,13 +93,13 @@ export default function Navbar() {
               href="/travel-plans"
               className={`text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium ${highlightPlans}`}
             >
-              Plans
+              All Plans
             </Link>
 
             {user ? (
               <>
                 <Link
-                  href="/user/dashboard"
+                  href="/user"
                   className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Dashboard
@@ -183,13 +183,13 @@ export default function Navbar() {
               href="/travel-plans"
               className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600 ${highlightPlans}`}
             >
-              Plans
+              All Plans
             </Link>
 
             {user ? (
               <>
                 <Link
-                  href="/user/dashboard"
+                  href="/user"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600"
                 >
                   Dashboard
