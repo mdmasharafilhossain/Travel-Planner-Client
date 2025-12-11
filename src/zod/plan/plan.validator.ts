@@ -28,11 +28,17 @@ export const createPlanSchema = z
 
      budgetMin: z
     .string()
-    .refine((v) => !isNaN(Number(v)), "Minimum budget must be a valid number"),
+    .refine((v) => !isNaN(Number(v)), "Minimum budget must be a valid number")
+    .refine((v) => v === "" || Number(v) > 0, {
+    message: "Minimum budget must be greater than 0",
+  }),
 
   budgetMax: z
     .string()
-    .refine((v) => !isNaN(Number(v)), "Maximum budget must be a valid number"),
+    .refine((v) => !isNaN(Number(v)), "Maximum budget must be a valid number")
+    .refine((v) => v === "" || Number(v) > 0, {
+    message: "Maximum budget must be greater than 0",
+  }),
     
       
       
@@ -80,6 +86,7 @@ export const createPlanSchema = z
     message: "Minimum budget cannot be greater than maximum budget",
     path: ["budgetMin"],
   });
+ 
   export const updatePlanSchema = z
   .object({
     title: z
@@ -102,17 +109,19 @@ export const createPlanSchema = z
       message: "Invalid end date",
     }),
 
-    budgetMin: z
-      .string()
-      .refine((v) => v === "" || !isNaN(Number(v)), {
-        message: "Minimum budget must be a number",
-      }),
+     budgetMin: z
+    .string()
+    .refine((v) => !isNaN(Number(v)), "Minimum budget must be a valid number")
+    .refine((v) => v === "" || Number(v) > 0, {
+    message: "Minimum budget must be greater than 0",
+  }),
 
-    budgetMax: z
-      .string()
-      .refine((v) => v === "" || !isNaN(Number(v)), {
-        message: "Maximum budget must be a number",
-      }),
+  budgetMax: z
+    .string()
+    .refine((v) => !isNaN(Number(v)), "Maximum budget must be a valid number")
+    .refine((v) => v === "" || Number(v) > 0, {
+    message: "Maximum budget must be greater than 0",
+  }),
 
     travelType: z.enum(["SOLO", "FAMILY", "FRIENDS", "COUPLE", "GROUP"]),
 

@@ -32,7 +32,7 @@ export default function PlanCard({ plan }: { plan: ITravelPlan }) {
         <Link
           href={`/travel-plans/${plan.id}`}
           className="inline-block w-full text-center py-2 rounded-md 
-                     bg-gradient-to-r from-orange-500 to-orange-600 
+                     bg-linear-to-r from-orange-500 to-orange-600 
                      text-white text-sm font-medium
                      hover:from-orange-600 hover:to-orange-700 
                      transition-all"
