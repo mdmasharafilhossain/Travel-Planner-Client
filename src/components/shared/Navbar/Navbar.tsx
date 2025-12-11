@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Loader from "../Loader";
 
 type TourStep = 0 | 1 | 2;
 
@@ -57,10 +58,7 @@ export default function Navbar() {
 
   if (loading) {
     return (
-      <div className="w-full py-4 flex justify-center">
-        <div className="animate-spin h-6 w-6 border-4 border-orange-500 border-t-transparent rounded-full"></div>
-      </div>
-    );
+     <Loader/>);
   }
 
   // Helper classes to highlight nav items during specific tour steps
