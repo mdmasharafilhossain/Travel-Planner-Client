@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
 import { ITravelPlan } from "@/types/travelPlan.interface";
+import Loader from "@/components/shared/Loader";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
 
@@ -74,7 +75,11 @@ export default function ExplorePage() {
       setInitialLoaded(true);
     }
   }
-
+if(loading){
+  return (
+    <Loader/>
+  )
+}
   return (
     <div className="max-w-6xl mx-auto py-10 px-4 space-y-6">
       {/* Header */}

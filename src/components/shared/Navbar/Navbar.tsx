@@ -173,7 +173,8 @@ export default function Navbar() {
         <div className="md:hidden bg-white border-t border-gray-200">
           <div className="px-4 pt-4 pb-6 space-y-2">
             <Link
-              href="/explore"
+              href="/explore" 
+              onClick={() => setOpen(false)}
               className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600 ${highlightExplore}`}
             >
               Explore
@@ -181,6 +182,7 @@ export default function Navbar() {
 
             <Link
               href="/travel-plans"
+              onClick={() => setOpen(false)}
               className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600 ${highlightPlans}`}
             >
               All Plans
@@ -190,6 +192,7 @@ export default function Navbar() {
               <>
                 <Link
                   href="/user"
+                  onClick={() => setOpen(false)}
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600"
                 >
                   Dashboard
@@ -197,6 +200,7 @@ export default function Navbar() {
 
                 <Link
                   href={`/profile`}
+                  onClick={() => setOpen(false)}
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600"
                 >
                   Profile
@@ -205,6 +209,7 @@ export default function Navbar() {
                 {user.role === "ADMIN" && (
                   <Link
                     href="/admin"
+                    onClick={() => setOpen(false)}
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600"
                   >
                     Admin
@@ -222,6 +227,7 @@ export default function Navbar() {
               <>
                 <Link
                   href="/login"
+                  onClick={() => setOpen(false)}
                   className={`block px-3 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-md text-base font-medium ${highlightAuth}`}
                 >
                   Login
@@ -229,6 +235,7 @@ export default function Navbar() {
 
                 <Link
                   href="/register"
+                  onClick={() => setOpen(false)}
                   className={`block px-3 py-2 border border-gray-200 rounded-md text-base font-medium text-gray-700 hover:border-orange-500 hover:text-orange-600 ${highlightAuth}`}
                 >
                   Register
@@ -259,10 +266,10 @@ export default function Navbar() {
                 )}
                 {tourStep === 1 && (
                   <>
-                    <h3 className="mt-1 text-lg font-semibold text-gray-900">Create & Manage Your Plans</h3>
+                    <h3 className="mt-1 text-lg font-semibold text-gray-900">Create, Manage & join Your Plans</h3>
                     <p className="mt-1 text-sm text-gray-600">
                       The <span className="font-semibold">Plans</span> section lets you create and manage your own
-                      travel plans with dates, budget, and travel type.
+                      travel plans with dates, budget, and travel type.also join plans created by others.
                     </p>
                   </>
                 )}
