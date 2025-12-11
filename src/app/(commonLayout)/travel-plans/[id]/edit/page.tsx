@@ -11,8 +11,10 @@ import {
   updatePlanSchema,
   UpdatePlanFormType,
 } from "@/zod/plan/plan.validator";
+import { API_BASE } from "@/lib/baseApi";
+import UserAuthWrapper from "@/lib/UserAuthWrapper";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
+
 
 export default function EditPlanPage() {
   const router = useRouter();
@@ -107,6 +109,7 @@ export default function EditPlanPage() {
   };
 
   return (
+    <UserAuthWrapper>
     <div className="max-w-xl mx-auto px-4 py-10">
       <h1 className="text-xl font-bold mb-4">Edit Travel Plan</h1>
 
@@ -187,10 +190,11 @@ export default function EditPlanPage() {
         </button>
       </form>
     </div>
+    </UserAuthWrapper>
   );
 }
 
-/* ✅ Reusable Inputs */
+
 
 function Input({ label, error, ...props }: any) {
   return (
