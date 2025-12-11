@@ -4,6 +4,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
+import LoaderWrapper from "@/lib/LoaderWrapper";
+import Loader from "@/components/shared/Loader";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
 
@@ -75,11 +77,7 @@ export default function UserDashboardPage() {
 
   if (loading) {
     return (
-      <div className="max-w-4xl mx-auto py-10 px-4">
-        <div className="bg-white shadow rounded-xl p-6 text-center">
-          <p>Loading dashboard...</p>
-        </div>
-      </div>
+      <Loader/>
     );
   }
 
@@ -100,6 +98,7 @@ export default function UserDashboardPage() {
   const reviewableTrips: TravelPlan[] = data.reviewableTrips || [];
 
   return (
+   
     <div className="max-w-5xl mx-auto py-10 px-4 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between gap-3">
@@ -228,6 +227,7 @@ export default function UserDashboardPage() {
         )}
       </section>
     </div>
+    
   );
 }
 

@@ -3,6 +3,7 @@
 import { AuthProvider } from "@/components/modules/auth/AuthProvider/AuthProvider";
 
 import UserSidebar from "@/components/shared/UserSidebar";
+import LoaderWrapper from "@/lib/LoaderWrapper";
 import UserAuthWrapper from "@/lib/UserAuthWrapper";
 
 
@@ -19,6 +20,7 @@ export default function DashboardLayout({
   return (
     <AuthProvider>
   <UserAuthWrapper>
+    <LoaderWrapper>
       <div className="min-h-screen bg-linear-to-br from-gray-50 via-[#F8F5FF] to-gray-100 dark:from-gray-950 dark:via-[#1a1033] dark:to-gray-900">
         <div className="flex">
           <UserSidebar/>
@@ -31,6 +33,7 @@ export default function DashboardLayout({
           </main>
         </div>
       </div>
+      </LoaderWrapper>
  </UserAuthWrapper>
     </AuthProvider>
   );

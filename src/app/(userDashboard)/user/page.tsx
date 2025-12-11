@@ -1,8 +1,10 @@
+import LoaderWrapper from "@/lib/LoaderWrapper";
 
 
 
 const UserDashboardPage = () => {
   return (
+    <LoaderWrapper>
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
       <div className="bg-white max-w-lg w-full p-8 rounded-xl shadow-md border border-gray-200 text-center">
         
@@ -20,6 +22,7 @@ const UserDashboardPage = () => {
 
       </div>
     </div>
+    </LoaderWrapper>
   );
 };
 

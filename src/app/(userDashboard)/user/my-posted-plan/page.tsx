@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Swal from "sweetalert2";
+import Loader from "@/components/shared/Loader";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
 
@@ -68,7 +69,7 @@ const MyPostedPlan = () => {
   }
 
   if (loading) {
-    return <p className="text-sm text-gray-500">Loading plans...</p>;
+    return <Loader/>;
   }
 
   return (

@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
+import Loader from "@/components/shared/Loader";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
 
@@ -38,6 +39,11 @@ export default function UserPaymentsPage() {
     } finally {
       setLoading(false);
     }
+  }
+  if (loading) {
+    return (
+      <Loader/>
+    )
   }
 
   if (!user) {

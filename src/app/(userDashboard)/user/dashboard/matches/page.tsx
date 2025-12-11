@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import useAuth from "@/hooks/useAuth";
+import Loader from "@/components/shared/Loader";
+
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
 
@@ -60,6 +62,11 @@ export default function MatchesPage() {
       setLoading(false);
     }
   }
+  if(loading){
+    return (
+      <Loader/>
+    )
+}
 
   if (!user) {
     return (

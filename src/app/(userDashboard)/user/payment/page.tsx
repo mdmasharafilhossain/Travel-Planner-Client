@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
 import { API_BASE } from "@/lib/baseApi";
+import LoaderWrapper from "@/lib/LoaderWrapper";
 
 
 
@@ -36,6 +37,7 @@ const {user} = useAuth();
   }
 
   return (
+    <LoaderWrapper>
     <div className="max-w-md mx-auto p-6 bg-white rounded shadow">
       <h2 className="text-xl font-semibold mb-4">Choose subscription</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -53,6 +55,7 @@ const {user} = useAuth();
         <button type="submit" className="w-full py-2 bg-orange-500 text-white rounded">Proceed to Payment</button>
       </form>
     </div>
+    </LoaderWrapper>
   );
 
 }

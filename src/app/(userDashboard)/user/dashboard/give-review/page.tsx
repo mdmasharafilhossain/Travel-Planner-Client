@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { API_BASE } from "@/lib/baseApi";
 import useAuth from "@/hooks/useAuth";
+import Loader from "@/components/shared/Loader";
 
 
 
@@ -59,7 +60,11 @@ export default function GiveReviewPage() {
       setLoading(false);
     }
   }
-
+if(loading){
+    return (
+      <Loader/>
+    )
+}
   if (!user) {
     return (
       <div className="max-w-4xl mx-auto py-10 px-4">
