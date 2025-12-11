@@ -133,10 +133,13 @@ export default async function PlanDetail({ params }: Props) {
                 {/* Avatar */}
                 <div className="shrink-0">
                   {host.profileImage ? (
-                    // if you have a URL use next/image in client components; here just show img fallback
-                    <Image src={host.profileImage} alt={host.fullName || "Host"} className="h-20 w-20 rounded-full object-cover border border-gray-200" />
+                    
+                    <Image
+                    width={80}
+                    height={80}
+                    src={host?.profileImage || "https://i.ibb.co.com/jvLMWbX0/image.png"} alt={host.fullName || "Host"} className="h-20 w-20 rounded-full object-cover border border-gray-200" />
                   ) : (
-                    <div className="h-20 w-20 rounded-full bg-gradient-to-br from-orange-300 to-orange-500 flex items-center justify-center text-white text-lg font-semibold border border-orange-200">
+                    <div className="h-20 w-20 rounded-full bg-linear-to-br from-orange-300 to-orange-500 flex items-center justify-center text-white text-lg font-semibold border border-orange-200">
                       {host.fullName ? String(host.fullName).charAt(0).toUpperCase() : "H"}
                     </div>
                   )}
