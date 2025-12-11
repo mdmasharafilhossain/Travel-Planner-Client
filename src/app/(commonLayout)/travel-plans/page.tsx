@@ -23,7 +23,7 @@ export default async function PlansPage() {
       
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">Your Travel Plans</h2>
+          <h2 className="text-2xl font-bold text-gray-800">All Travel Plans</h2>
           <p className="text-gray-500 text-sm mt-1">
             Explore your saved trips and upcoming adventures.
           </p>
