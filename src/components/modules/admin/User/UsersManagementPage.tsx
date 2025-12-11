@@ -8,6 +8,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import Swal from "sweetalert2";
 
 import UsersTable from "./UsersTable";
+import Loader from "@/components/shared/Loader";
 
 
 const MySwal = (Swal);
@@ -102,9 +103,7 @@ export default function UserManagementPage() {
   );
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading user management...</div>
-      </div>
+      <Loader/>
     );
   }
 
