@@ -127,7 +127,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [planId, hostId, userId]);
 
-  // 🔹 plan + participants ফেচ
+
   async function fetchPlanForParticipants() {
     try {
       const res = await fetch(`${API_BASE}/api/travel-plans/${planId}`, {
@@ -151,7 +151,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
     }
   }
 
-  // 🔹 host reviews ফেচ
+ 
   async function fetchHostReviews() {
     setLoadingReviews(true);
     try {
@@ -171,7 +171,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
     }
   }
 
-  // 🔹 USER: request to join (Swal + dynamic status)
+ 
   async function handleJoinRequest() {
     if (!userId) {
       Swal.fire({
@@ -226,7 +226,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
     }
   }
 
-  // 🔹 HOST: respond (ACCEPT / REJECT / CANCEL)
+
   async function handleHostRespond(
     participantId: string,
     status: "ACCEPTED" | "REJECTED" | "CANCELLED"
@@ -393,11 +393,28 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
       });
     }
   }
+const normalize = (d: Date | null) => {
+    if (!d) return null;
+    const x = new Date(d);
+    x.setHours(0, 0, 0, 0);
+    return x;
+  };
 
+  const normToday = normalize(new Date()) !;
+  const normStart = planStartDate ? normalize(new Date(planStartDate)) : null;
+  const normEnd = planEndDate ? normalize(new Date(planEndDate)) : null;
+
+  // completed if end < today
+  const isCompletedTour = !!normEnd && normEnd < normToday;
+  // ongoing if start <= today <= end
+  const isOngoingTour = !!normStart && !!normEnd && normStart <= normToday && normEnd >= normToday;
  
   let joinLabel = "Request to Join";
   let joinDisabled = false;
-
+if (isCompletedTour || isOngoingTour) {
+    joinLabel = "Cannot join now";
+    joinDisabled = true;
+  } 
   if (!userId) {
     joinLabel = "Login to Join";
     joinDisabled = false;
