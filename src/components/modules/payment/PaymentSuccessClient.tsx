@@ -6,8 +6,9 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { API_BASE } from "@/lib/baseApi";
 
-const API = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
+
 
 export default function PaymentSuccessClient() {
   const search = useSearchParams();
@@ -21,7 +22,7 @@ export default function PaymentSuccessClient() {
     async function fetchStatus() {
       try {
         const res = await axios.get(
-          `${API}/api/payments/status/${transactionId}`,
+          `${API_BASE}/api/payments/status/${transactionId}`,
           { withCredentials: true }
         );
 
@@ -40,7 +41,7 @@ export default function PaymentSuccessClient() {
 
             setTimeout(() => {
               router.push("/user/dashboard");
-            }, 5000);
+            }, 2000);
           }
         }
       } catch (err) {

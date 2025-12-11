@@ -7,8 +7,9 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
+import { API_BASE } from "@/lib/baseApi";
 
-const API = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
+
 
 export default function PaymentInitPage() {
   const { register, handleSubmit } = useForm<{ plan: string; phone?: string }>();
@@ -16,9 +17,9 @@ export default function PaymentInitPage() {
 const {user} = useAuth();
   async function onSubmit(data: { plan: string; phone?: string }) {
     try {
-      const res = await axios.post(`${API}/api/payments/init-subscription`, data, { withCredentials: true });
+      const res = await axios.post(`${API_BASE}/api/payments/init-subscription`, data, { withCredentials: true });
       const { paymentUrl } = res.data.data;
-      // Redirect user to payment gateway
+      
       router.push(paymentUrl) ;
     } catch (err: any) {
       Swal.fire("Payment init failed", err?.response?.data?.message || err.message, "error");
@@ -49,7 +50,7 @@ const {user} = useAuth();
           <input {...register("phone")} className="w-full border p-2 rounded" placeholder="017xxxxxxxx" />
         </div>
 
-        <button type="submit" className="w-full py-2 bg-indigo-600 text-white rounded">Proceed to Payment</button>
+        <button type="submit" className="w-full py-2 bg-orange-500 text-white rounded">Proceed to Payment</button>
       </form>
     </div>
   );
