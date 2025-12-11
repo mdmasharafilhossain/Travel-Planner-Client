@@ -8,6 +8,8 @@ import Swal from "sweetalert2";
 import PlanForm from "../../plan/PlanForm";
 import PlanTable from "./PlanTable";
 import PlanFormAdmin from "./PlanFormAdmin";
+import Loader from "@/components/shared/Loader";
+
 
 
 export default function PlanManagementPage() {
@@ -128,7 +130,11 @@ export default function PlanManagementPage() {
     setPlans(prev => prev.map(p => (p.id === updated.id ? updated : p)));
     setEditingPlan(null);
   };
-
+if(loading){
+    return (
+      <Loader/>
+    );
+  }
   return (
     <div className="p-4 md:p-8">
       <div className="max-w-[1200px] mx-auto">

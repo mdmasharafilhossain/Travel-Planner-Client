@@ -1,12 +1,14 @@
 import AddPlan from "@/components/modules/plan/AddPlan";
-import AuthWrapper from "@/lib/AuthWrapper";
+
+import UserAuthWrapper from "@/lib/UserAuthWrapper";
 
 
 const AddPlanPage = () => {
     return (
         <div>
+            <UserAuthWrapper>
             <AddPlan/> 
-           
+           </UserAuthWrapper>
         </div>
     );
 };

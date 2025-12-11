@@ -141,6 +141,8 @@ export default function MatchesPage() {
                         className="border border-gray-100 rounded-lg p-3 bg-gray-50 flex gap-3 items-start"
                       >
                         <Image
+                        width={80}
+                        height={80}
                           src={m.host.profileImage || "https://i.ibb.co.com/jvLMWbX0/image.png"}
                           className="w-10 h-10 rounded-full object-cover"
                           alt={m.host.fullName || "Traveler"}

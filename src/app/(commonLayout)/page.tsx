@@ -100,7 +100,7 @@ useEffect(() => {
                   Surf, sunsets and new friends on a 7-day island trip.
                 </p>
                 <div className="flex items-center justify-between text-xs text-gray-500">
-                  <span>June · Budget: $600</span>
+                  <span>June · Budget: ৳600</span>
                   <span>Solo · Looking for 2</span>
                 </div>
               </div>

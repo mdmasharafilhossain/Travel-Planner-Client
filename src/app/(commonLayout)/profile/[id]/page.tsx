@@ -15,7 +15,8 @@ export default async function ProfilePage({ params }: Props) {
   return (
     <div className="bg-white p-6 rounded shadow">
       <div className="flex items-center gap-4">
-        <Image src={user.profileImage || "/avatar.png"} className="w-20 h-20 rounded-full object-cover" alt="avatar" />
+        <Image
+        width={80} height={80} src={user.profileImage || "https://i.ibb.co.com/jvLMWbX0/image.png"} className="w-20 h-20 rounded-full object-cover" alt="avatar" />
         <div>
           <h2 className="text-xl font-semibold">{user.fullName || user.email}</h2>
           <div className="text-sm text-gray-500">{user.bio}</div>

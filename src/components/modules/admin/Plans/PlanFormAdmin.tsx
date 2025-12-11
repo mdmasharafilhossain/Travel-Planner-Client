@@ -1,44 +1,56 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-
-import { useForm } from "react-hook-form";
+import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Swal from "sweetalert2";
+import Image from "next/image";
+
 import { PlansAPI } from "@/lib/api";
-import {TravelFormProps, TravelFormValues } from "@/types/travelPlan.interface";
-
-
-
+import { TravelFormProps } from "@/types/travelPlan.interface";
+import { UpdatePlanFormType, updatePlanSchema } from "@/zod/plan/plan.validator";
 
 export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormProps) {
-  const { register, handleSubmit, formState, reset } = useForm<TravelFormValues>({
-    defaultValues: {
-      title: plan.title || "",
-      destination: plan.destination,
-      startDate: plan.startDate.slice(0, 10),
-      endDate: plan.endDate.slice(0, 10),
-      budgetMin:
-        plan.budgetMin !== null && plan.budgetMin !== undefined
-          ? String(plan.budgetMin)
-          : "",
-      budgetMax:
-        plan.budgetMax !== null && plan.budgetMax !== undefined
-          ? String(plan.budgetMax)
-          : "",
-      travelType: plan.travelType,
-      description: plan.description || "",
-      visibility: plan.visibility,
-    },
+  // create a strongly typed defaultValues object
+  const defaultValues: UpdatePlanFormType = {
+    title: (plan.title ?? "") as UpdatePlanFormType["title"],
+    destination: (plan.destination ?? "") as UpdatePlanFormType["destination"],
+    startDate: plan.startDate ? plan.startDate.slice(0, 10) : "",
+    endDate: plan.endDate ? plan.endDate.slice(0, 10) : "",
+    // ensure budget fields are strings (schema expects string)
+    budgetMin:
+      plan.budgetMin !== null && plan.budgetMin !== undefined
+        ? String(plan.budgetMin)
+        : "",
+    budgetMax:
+      plan.budgetMax !== null && plan.budgetMax !== undefined
+        ? String(plan.budgetMax)
+        : "",
+    // cast travelType/visibility to the exact union type expected
+    travelType: (plan.travelType as UpdatePlanFormType["travelType"]) ?? "SOLO",
+    description: (plan.description ?? "") as UpdatePlanFormType["description"],
+    visibility: (plan.visibility as UpdatePlanFormType["visibility"]) ?? "PUBLIC",
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<UpdatePlanFormType>({
+    resolver: zodResolver(updatePlanSchema),
+    defaultValues,
   });
 
-  const onSubmit = async (values: TravelFormValues) => {
+  // type the handler properly
+  const onSubmit: SubmitHandler<UpdatePlanFormType> = async (values) => {
     try {
       const payload: any = {
         ...values,
-        budgetMin:
-          values.budgetMin === "" ? undefined : Number(values.budgetMin),
-        budgetMax:
-          values.budgetMax === "" ? undefined : Number(values.budgetMax),
+        // convert empty strings to undefined and numeric strings to numbers
+        budgetMin: values.budgetMin === "" ? undefined : Number(values.budgetMin),
+        budgetMax: values.budgetMax === "" ? undefined : Number(values.budgetMax),
       };
 
       const res = await PlansAPI.update(plan.id, payload);
@@ -88,8 +100,13 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
             <input
               type="text"
               {...register("title")}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
+                errors.title ? "border-red-300" : "border-gray-300"
+              }`}
             />
+            {errors.title && (
+              <p className="text-red-600 text-xs mt-1">{errors.title.message}</p>
+            )}
           </div>
 
           <div>
@@ -97,8 +114,13 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
             <input
               type="text"
               {...register("destination")}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
+                errors.destination ? "border-red-300" : "border-gray-300"
+              }`}
             />
+            {errors.destination && (
+              <p className="text-red-600 text-xs mt-1">{errors.destination.message}</p>
+            )}
           </div>
         </div>
 
@@ -108,8 +130,13 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
             <input
               type="date"
               {...register("startDate")}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
+                errors.startDate ? "border-red-300" : "border-gray-300"
+              }`}
             />
+            {errors.startDate && (
+              <p className="text-red-600 text-xs mt-1">{errors.startDate.message}</p>
+            )}
           </div>
 
           <div>
@@ -117,8 +144,13 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
             <input
               type="date"
               {...register("endDate")}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
+                errors.endDate ? "border-red-300" : "border-gray-300"
+              }`}
             />
+            {errors.endDate && (
+              <p className="text-red-600 text-xs mt-1">{errors.endDate.message}</p>
+            )}
           </div>
         </div>
 
@@ -128,8 +160,13 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
             <input
               type="number"
               {...register("budgetMin")}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
+                errors.budgetMin ? "border-red-300" : "border-gray-300"
+              }`}
             />
+            {errors.budgetMin && (
+              <p className="text-red-600 text-xs mt-1">{errors.budgetMin.message}</p>
+            )}
           </div>
 
           <div>
@@ -137,8 +174,13 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
             <input
               type="number"
               {...register("budgetMax")}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
+                errors.budgetMax ? "border-red-300" : "border-gray-300"
+              }`}
             />
+            {errors.budgetMax && (
+              <p className="text-red-600 text-xs mt-1">{errors.budgetMax.message}</p>
+            )}
           </div>
         </div>
 
@@ -147,7 +189,9 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
             <label className="block text-gray-700 mb-1">Travel Type</label>
             <select
               {...register("travelType")}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
+                errors.travelType ? "border-red-300" : "border-gray-300"
+              }`}
             >
               <option value="SOLO">Solo</option>
               <option value="FAMILY">Family</option>
@@ -155,17 +199,25 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
               <option value="COUPLE">Couple</option>
               <option value="GROUP">Group</option>
             </select>
+            {errors.travelType && (
+              <p className="text-red-600 text-xs mt-1">{errors.travelType.message}</p>
+            )}
           </div>
 
           <div>
             <label className="block text-gray-700 mb-1">Visibility</label>
             <select
               {...register("visibility")}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
+                errors.visibility ? "border-red-300" : "border-gray-300"
+              }`}
             >
               <option value="PUBLIC">Public</option>
               <option value="PRIVATE">Private</option>
             </select>
+            {errors.visibility && (
+              <p className="text-red-600 text-xs mt-1">{errors.visibility.message}</p>
+            )}
           </div>
         </div>
 
@@ -174,8 +226,13 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
           <textarea
             rows={3}
             {...register("description")}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+            className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
+              errors.description ? "border-red-300" : "border-gray-300"
+            }`}
           />
+          {errors.description && (
+            <p className="text-red-600 text-xs mt-1">{errors.description.message}</p>
+          )}
         </div>
 
         <div className="flex justify-end gap-2 mt-2">
@@ -188,10 +245,10 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
           </button>
           <button
             type="submit"
-            disabled={formState.isSubmitting}
-            className="px-4 py-2 text-xs md:text-sm bg-orange-400 hover:bg-orange-500 text-white rounded-md shadow"
+            disabled={isSubmitting}
+            className="px-4 py-2 text-xs md:text-sm bg-orange-400 hover:bg-orange-500 text-white rounded-md shadow disabled:opacity-60"
           >
-            {formState.isSubmitting ? "Saving..." : "Save Changes"}
+            {isSubmitting ? "Saving..." : "Save Changes"}
           </button>
         </div>
       </form>

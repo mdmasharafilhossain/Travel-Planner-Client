@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Loader from "../Loader";
 
 type TourStep = 0 | 1 | 2;
 
@@ -57,10 +58,7 @@ export default function Navbar() {
 
   if (loading) {
     return (
-      <div className="w-full py-4 flex justify-center">
-        <div className="animate-spin h-6 w-6 border-4 border-orange-500 border-t-transparent rounded-full"></div>
-      </div>
-    );
+     <Loader/>);
   }
 
   // Helper classes to highlight nav items during specific tour steps
@@ -95,13 +93,13 @@ export default function Navbar() {
               href="/travel-plans"
               className={`text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium ${highlightPlans}`}
             >
-              Plans
+              All Plans
             </Link>
 
             {user ? (
               <>
                 <Link
-                  href={user.role === "ADMIN" ? "/user/dashboard" : "user/dashboard"}
+                  href="/user"
                   className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Dashboard
@@ -185,13 +183,13 @@ export default function Navbar() {
               href="/travel-plans"
               className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600 ${highlightPlans}`}
             >
-              Plans
+              All Plans
             </Link>
 
             {user ? (
               <>
                 <Link
-                  href={user.role === "ADMIN" ? "/user/dashboard" : "/user/dashboard"}
+                  href="/user"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600"
                 >
                   Dashboard

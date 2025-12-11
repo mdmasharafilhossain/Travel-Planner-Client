@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
+import { API_BASE } from "@/lib/baseApi";
 
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
+
 
 type MatchedPlan = {
   id: string;
@@ -44,7 +44,7 @@ export default function HomeMatchedTravelers() {
 
       const matchesByPlan: MatchesByPlan = json.matchesByPlan || {};
 
-      // ✅ flatten + unique by host.id
+     
       const uniqueMap = new Map<string, MatchedPlan>();
 
       Object.values(matchesByPlan).forEach((plans) => {
@@ -63,10 +63,10 @@ export default function HomeMatchedTravelers() {
     }
   }
 
-  // 🚫 Not logged in
+
   if (!user) return null;
 
-  // ⏳ Loading
+
   if (loading) return null;
 
   return (
@@ -76,7 +76,7 @@ export default function HomeMatchedTravelers() {
           Recommended Travel Buddies for You
         </h2>
 
-        {/* ✅ NO MATCH FOUND */}
+      
         {matches.length === 0 ? (
           <div className="flex flex-col items-center justify-center text-center py-12 border rounded-xl bg-gray-50">
             <p className="text-gray-600 text-sm mb-4">
@@ -91,9 +91,9 @@ export default function HomeMatchedTravelers() {
             </Link>
           </div>
         ) : (
-          /* ✅ MATCHES FOUND */
+          
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {matches.map((plan) => (
+            {matches.slice(0, 3).map((plan) => (
               <div
                 key={plan.host.id}
                 className="p-5 rounded-xl border bg-gray-50 hover:shadow-md transition"
