@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // app/travel-plans/[id]/page.tsx
 import { notFound } from "next/navigation";
@@ -30,6 +31,34 @@ export default async function PlanDetail({ params }: Props) {
 
   const host = (plan as any).host;
 
+
+  // --- ADD THESE LINES TO COMPUTE STATUS ---
+  const normalize = (d: Date | null) => {
+    if (!d) return null;
+    const x = new Date(d);
+    x.setHours(0, 0, 0, 0);
+    return x;
+  };
+
+  const today = normalize(new Date()) || new Date();
+
+  const normStart = normalize(startDate);
+  const normEnd = normalize(endDate);
+
+  let planStatus = "Active";
+  if (normEnd && normEnd < today) {
+    planStatus = "Completed";
+  } else if (normStart && normStart <= today) {
+    planStatus = "Ongoing";
+  } else {
+    planStatus = "Active";
+  }
+
+  const statusBadge = {
+    Completed: "bg-gray-100 text-gray-700 border-gray-200",
+    Ongoing: "bg-green-50 text-green-700 border-green-100",
+    Upcoming: "bg-yellow-50 text-yellow-700 border-yellow-100",
+  } as const;
   return (
     <div className="max-w-4xl mx-auto py-10 px-4">
       <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
@@ -74,9 +103,9 @@ export default async function PlanDetail({ params }: Props) {
               </div>
 
               <div className="text-right">
-                <div className="text-sm text-gray-500">Status</div>
-                <div className="mt-1 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-green-700 text-sm font-semibold border border-green-100">
-                  Active
+                <div className="text-xs text-gray-500 mr-2">Status</div>
+                <div className="mt-1 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-green-700 text-xs font-semibold border border-green-100">
+                  {planStatus}
                 </div>
               </div>
             </div>
@@ -175,9 +204,9 @@ export default async function PlanDetail({ params }: Props) {
                         )}
 
                         <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border ${
-                          host.isVerifiedBadge ? "bg-blue-50 text-blue-700 border-blue-100" : "bg-gray-50 text-gray-600 border-gray-100"
+                          host.isPremium ? "bg-blue-50 text-blue-700 border-blue-100" : "bg-gray-50 text-gray-600 border-gray-100"
                         }`}>
-                          {host.isVerifiedBadge ? "Verified" : "Not verified"}
+                          {host.isPremium ? "Verified" : "Not verified"}
                         </span>
                       </div>
                     </div>
@@ -262,6 +291,7 @@ export default async function PlanDetail({ params }: Props) {
               planId={plan.id}
               hostId={host.id}
               planEndDate={endDate.toISOString()}
+              planStartDate={startDate ?startDate.toISOString() : null}
             />
           )}
         </div>

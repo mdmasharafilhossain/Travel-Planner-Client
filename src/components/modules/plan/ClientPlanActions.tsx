@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import { useAuthContext } from "../auth/AuthProvider/AuthProvider";
-import { Router } from "next/router";
+
 
 type Participant = {
   id: string;
@@ -34,12 +34,13 @@ type Review = {
 type Props = {
   planId: string;
   hostId: string;
-  planEndDate: string; // ISO
+  planEndDate: string;
+   planStartDate: string | null// ISO
 };
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
 
-export default function ClientPlanActions({ planId, hostId, planEndDate }: Props) {
+export default function ClientPlanActions({ planId, hostId, planEndDate,planStartDate }: Props) {
   const { user } = useAuthContext();
 
   const [participants, setParticipants] = useState<Participant[]>([]);
@@ -401,7 +402,10 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
     joinLabel = "Login to Join";
     joinDisabled = false;
     
-  } else if (userId === hostId) {
+  } 
+  
+  
+  else if (userId === hostId) {
     joinLabel = "You are the host";
     joinDisabled = true;
   } else if (myStatus === "PENDING") {
