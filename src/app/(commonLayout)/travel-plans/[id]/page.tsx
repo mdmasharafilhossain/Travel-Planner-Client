@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// app/travel-plans/[id]/page.tsx
+
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ITravelPlan } from "@/types/travelPlan.interface";
@@ -25,7 +25,7 @@ export default async function PlanDetail({ params }: Props) {
 
   const plan: ITravelPlan = j.plan || j.data || j.plans || null;
 
-  if (!plan) return notFound(); // prevent crash
+  if (!plan) return notFound(); 
 
   const startDate = plan.startDate ? new Date(plan.startDate) : null;
   const endDate = plan.endDate ? new Date(plan.endDate) : null;
@@ -33,7 +33,7 @@ export default async function PlanDetail({ params }: Props) {
   const host = (plan as any).host;
 
 
-  // --- ADD THESE LINES TO COMPUTE STATUS ---
+
   const normalize = (d: Date | null) => {
     if (!d) return null;
     const x = new Date(d);
