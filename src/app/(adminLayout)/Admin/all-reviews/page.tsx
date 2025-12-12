@@ -6,25 +6,13 @@ import Swal from "sweetalert2";
 import useAuth from "@/hooks/useAuth";
 import { API_BASE } from "@/lib/baseApi";
 import LoaderWrapper from "@/lib/LoaderWrapper";
+import { ReviewPage } from "@/types/review.interface";
 
-type Review = {
-  id: string;
-  rating: number;
-  comment?: string;
-  createdAt: string;
-  author: {
-    fullName?: string;
-    email?: string;
-  };
-  target: {
-    fullName?: string;
-    email?: string;
-  };
-};
+
 
 export default function AdminReviewPage() {
   const { user } = useAuth();
-  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviews, setReviews] = useState<ReviewPage[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -86,7 +74,7 @@ export default function AdminReviewPage() {
   return (
     <LoaderWrapper>
     <div className="max-w-6xl mx-auto px-4 py-10">
-      {/* Header */}
+      
       <div className="mb-6">
         <h1 className="text-3xl font-extrabold text-gray-900">
           Review Management
@@ -97,7 +85,7 @@ export default function AdminReviewPage() {
       </div>
 
       <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
-        {/* ================= DESKTOP TABLE ================= */}
+        
         <div className="hidden md:block overflow-x-auto">
           <table className="min-w-full text-sm">
             <thead className="bg-gray-100 text-gray-700 uppercase text-xs">
@@ -162,7 +150,7 @@ export default function AdminReviewPage() {
           </table>
         </div>
 
-        {/* ================= MOBILE CARDS ================= */}
+       
         <div className="md:hidden p-4 space-y-4">
           {loading ? (
             <div className="text-center py-6">

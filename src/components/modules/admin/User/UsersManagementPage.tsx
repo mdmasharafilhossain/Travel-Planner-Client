@@ -54,7 +54,7 @@ export default function UserManagementPage() {
 
       try {
         setActionLoading(userId);
-        // optimistic update
+        
         const prev = users;
         setUsers(prevUsers => prevUsers.filter(u => u.id !== userId));
 
@@ -63,7 +63,7 @@ export default function UserManagementPage() {
       } catch (err: any) {
         console.error("delete error", err);
         await MySwal.fire({ title: "Failed", text: err?.response?.data?.message || err?.message || "Delete failed", icon: "error", confirmButtonColor: "#fb923c" });
-        fetchUsers(); // rollback via refetch
+        fetchUsers(); 
       } finally {
         setActionLoading(null);
       }
@@ -87,7 +87,7 @@ export default function UserManagementPage() {
 
       try {
         setActionLoading(userId);
-        // optimistic update
+        
         setUsers(prev => prev.map(u => (u.id === userId ? { ...u, role: newRole } : u)));
         const res = await UserAPI.changeRole(userId, newRole as "USER" | "ADMIN");
         await MySwal.fire({ title: "Updated", text: res.data?.message ?? "Role updated", icon: "success", confirmButtonColor: "#fb923c" });

@@ -5,7 +5,7 @@ import { PlansAPI } from "@/lib/api";
 import { ITravelPlan } from "@/types/travelPlan.interface";
 import React, { useEffect, useState, useCallback } from "react";
 import Swal from "sweetalert2";
-import PlanForm from "../../plan/PlanForm";
+
 import PlanTable from "./PlanTable";
 import PlanFormAdmin from "./PlanFormAdmin";
 import Loader from "@/components/shared/Loader";
@@ -57,7 +57,7 @@ export default function PlanManagementPage() {
 
       try {
         setActionLoadingId(plan.id);
-        // optimistic update
+        
         setPlans(prev => prev.filter(p => p.id !== plan.id));
         const res = await PlansAPI.remove(plan.id);
 
@@ -78,7 +78,7 @@ export default function PlanManagementPage() {
             "Failed to delete plan",
           confirmButtonColor: "#fb923c",
         });
-        fetchPlans(); // rollback via re-fetch
+        fetchPlans(); 
       } finally {
         setActionLoadingId(null);
       }
@@ -155,7 +155,7 @@ if(loading){
           </button>
         </header>
 
-        {/* Edit form card (only when editing) */}
+        {/* Edit form card */}
         {editingPlan && (
           <div className="mb-6">
             <PlanFormAdmin
