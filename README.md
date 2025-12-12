@@ -22,7 +22,7 @@ The Travel Planner Frontend enables:
 
 
 
-## 👤 User Features
+## User Features
 
 - Authentication (Login / Register)
 - Create Travel Plans
@@ -89,16 +89,7 @@ The Travel Planner Frontend enables:
 
 ## Setup Instructions
 
-### **1️⃣ Clone the Repository**
-```bash
-git clone https://github.com/mdmasharafilhossain/Travel-Planner-Client
-cd Travel-Planning-Client
-```
-### **1️⃣ Clone the Repository**
-```bash
-git clone https://github.com/mdmasharafilhossain/Travel-Planner-Client
-cd Travel-Planning-Client
-```
+
 ### **1️⃣ Clone the Repository**
 ```bash
 git clone https://github.com/mdmasharafilhossain/Travel-Planner-Client

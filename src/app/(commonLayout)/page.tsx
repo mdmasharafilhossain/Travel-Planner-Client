@@ -244,21 +244,46 @@ useEffect(() => {
 
       {/* ================= TESTIMONIALS ================= */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-gray-900">Success Stories</h2>
+  <div className="container mx-auto px-6 text-center">
+    <h2 className="text-3xl font-bold text-gray-900">Success Stories</h2>
 
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
-            {['Anna', 'Rahim', 'Sofia'].map((name) => (
-              <div key={name} className="bg-gray-50 p-6 rounded-xl">
-                <p className="text-gray-600 italic">
-                  “I found my perfect travel buddy here — unforgettable experience!”
-                </p>
-                <div className="mt-4 font-semibold">{name}</div>
-              </div>
-            ))}
-          </div>
+    <div className="mt-12 grid md:grid-cols-3 gap-6">
+      {[
+        {
+          name: "Aisha",
+          story:
+            "“Met an amazing group of travelers , our Cox’s Bazar trip became unforgettable!”",
+        },
+        {
+          name: "David",
+          story:
+            "“Planned a Europe backpacking trip with buddies I met here. Best decision ever!”",
+        },
+        {
+          name: "Mehnaz",
+          story:
+            "“Found a safe and friendly travel partner for my first solo trip. Highly recommended!”",
+        },
+        {
+          name: "Liam",
+          story:
+            "“Joined a group tour through this platform — made friends for life!”",
+        },
+        {
+          name: "Sara",
+          story:
+            "“The matching feature helped me find someone with the same travel style. Perfect trip!”",
+        },
+      ].map((item) => (
+        <div key={item.name} className="bg-gray-50 p-6 rounded-xl">
+          <p className="text-gray-600 italic">{item.story}</p>
+          <div className="mt-4 font-semibold">{item.name}</div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* ================= FINAL CTA ================= */}
       <section className="py-24 bg-orange-500 text-white text-center">
