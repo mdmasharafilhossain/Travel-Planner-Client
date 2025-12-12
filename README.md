@@ -14,7 +14,7 @@ The Travel Planner Frontend enables:
 ## Public Features
 
 - Landing Page with Top Destinations  
-- "Find Travel Buddies" CTA  
+- Find Travel Buddies CTA  
 - How It Works (3-step guide)  
 - Testimonials section  
 - Explore All Trips  
@@ -31,7 +31,7 @@ The Travel Planner Frontend enables:
 - Accept / Cancel Join Requests
 - View Matched Travel Buddies
 - Give Reviews after trip completion
-- Subscription Payment via **SSLCommerz**
+- Subscription Payment via SSLCommerz
 - Real-time Payment Status Page
 - Comprehensive User Dashboard
   
