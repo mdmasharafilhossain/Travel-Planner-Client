@@ -1,4 +1,4 @@
-# Travel Planning Client
+# Travel Planner Client
 
 A modern, responsive, and feature-rich **Travel Planning Platform** built with **Next.js 16, TypeScript, and Tailwind CSS**.  
 Users can create travel plans, find travel buddies, request to join trips, chat, make premium payments via **SSLCommerz**, and manage everything through a beautiful dashboard.
