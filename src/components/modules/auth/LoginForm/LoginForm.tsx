@@ -79,7 +79,7 @@ export default function LoginForm() {
               `}
               aria-busy={isSubmitting}
             >
-              {/* spinner when submitting */}
+              
               {isSubmitting && (
                 <svg className="h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <circle cx="12" cy="12" r="10" strokeWidth="3" strokeLinecap="round" className="opacity-20"></circle>

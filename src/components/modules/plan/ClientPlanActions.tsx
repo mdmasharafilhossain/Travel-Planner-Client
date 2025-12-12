@@ -5,40 +5,13 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import { useAuthContext } from "../auth/AuthProvider/AuthProvider";
+import { API_BASE } from "@/lib/baseApi";
+import { Participant, Props, Review } from "@/types/travelPlan.interface";
 
 
-type Participant = {
-  id: string;
-  status: string;
-  user: {
-    id: string;
-    fullName?: string;
-    profileImage?: string;
-  };
-};
 
-type Review = {
-  id: string;
-  rating: number;
-  comment?: string;
-  createdAt: string;
-  authorId: string;
-  targetId: string;
-  author: {
-    id: string;
-    fullName?: string;
-    profileImage?: string;
-  };
-};
 
-type Props = {
-  planId: string;
-  hostId: string;
-  planEndDate: string;
-   planStartDate: string | null// ISO
-};
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
 
 export default function ClientPlanActions({ planId, hostId, planEndDate,planStartDate }: Props) {
   const { user } = useAuthContext();

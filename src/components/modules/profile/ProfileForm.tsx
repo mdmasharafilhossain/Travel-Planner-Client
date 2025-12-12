@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { UserAPI } from "@/lib/api";
 import { PhotoUpload } from "@/components/shared/PhotoUpload/PhotoUpload";
 import { updateUserSchema, UpdateUserType } from "@/zod/profile/profile.validator";
-import { z } from "zod";
+
 
 type Props = {
   defaultValues?: any;
@@ -16,12 +16,7 @@ type Props = {
 };
 
 export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Props) {
-  /**
-   * NOTE: we intentionally do NOT use zodResolver here because we need to:
-   *  - accept a FileList input (profileImageFile) from <input type="file" />
-   *  - accept comma-separated strings for travelInterests & visitedCountries
-   * We convert those into the shapes required by the schema and then call updateUserSchema.parse().
-   */
+  
 
   const {
     register,
@@ -32,11 +27,10 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
     defaultValues: {
       fullName: defaultValues?.fullName ?? "",
       bio: defaultValues?.bio ?? "",
-      // NOTE: the actual schema expects `profileImage` as string (URL).
-      // We use profileImageFile for the <input type="file"> and convert before validation.
+      
       profileImageFile: undefined,
       profileImage: defaultValues?.profileImage ?? "",
-      // We'll use text inputs for arrays (comma separated) to keep UX simple:
+      
       travelInterests:
         Array.isArray(defaultValues?.travelInterests) && defaultValues.travelInterests.length > 0
           ? defaultValues.travelInterests.join(", ")
@@ -55,19 +49,14 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
       return;
     }
 
-    // Clone raw form data so we can mutate safely
     const data: any = { ...raw };
-
-    // ----- 1) Handle file upload (profileImageFile) -----
-    // Use existing profileImage by default (so if user didn't choose a file we keep existing URL)
     let profileImageUrl = defaultValues?.profileImage ?? "";
 
-    // If browser FileList present, upload and use returned URL
+   
     try {
       if (raw.profileImageFile && raw.profileImageFile.length > 0) {
         const file = raw.profileImageFile[0] as File;
         const resp = await PhotoUpload(file);
-        // PhotoUpload should return an object with data.display_url / data.url depending on provider.
         profileImageUrl = resp?.data?.display_url || resp?.data?.url || resp?.display_url || resp?.url || profileImageUrl;
       }
     } catch (err: any) {
@@ -76,11 +65,11 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
       return;
     }
 
-    // Replace profileImageFile with profileImage url (string)
+    
     data.profileImage = profileImageUrl;
     delete data.profileImageFile;
 
-    // ----- 2) Convert comma-separated strings into arrays for schema -----
+    
     if (typeof data.travelInterests === "string") {
       data.travelInterests = data.travelInterests
         .split(",")
@@ -95,28 +84,28 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
         .filter(Boolean);
     }
 
-    // ----- 3) Validate converted payload with Zod (schema unchanged) -----
+    
     const parsed = updateUserSchema.safeParse(data);
 
     if (!parsed.success) {
-      // Clear any previous errors by setting new ones from zod
+     
       const zodError = parsed.error;
-      // Map Zod issues to RHF setError for field-level display
+     
       zodError.issues.forEach((issue) => {
-        // issue.path is an array like ['travelInterests', 0] or ['profileImage']
+        
         const field = (issue.path && issue.path.length > 0 ? String(issue.path[0]) : "_error") as string;
-        // setError expects name, so map to that. Provide a friendly message.
+        
         setError(field, { type: "manual", message: issue.message });
       });
 
-      // show a general toast as well
+      
       Swal.fire("Validation error", "Please correct the highlighted fields.", "error");
       return;
     }
 
     const payload: UpdateUserType = parsed.data as UpdateUserType;
 
-    // ----- 4) Submit to API -----
+   
     try {
       const res = await UserAPI.updateProfile(defaultValues.id, payload);
       const updated = res.data?.data || res.data?.user || res.data || payload;
@@ -159,7 +148,7 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
 
         <div>
           <label className="block text-sm text-gray-600 mb-1">Upload Profile image</label>
-          {/* register under profileImageFile (not in zod schema) to avoid FileList vs string mismatch */}
+         
           <input
             type="file"
             accept="image/*"

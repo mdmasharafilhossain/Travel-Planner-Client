@@ -132,12 +132,7 @@ export default async function PlanDetail({ params }: Props) {
             </div>
 
             <div className="mt-6 flex items-center gap-3">
-              {/* <Link
-                href={`/travel-plans/${plan.id}/edit`}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-medium hover:from-orange-600 hover:to-orange-700 transition"
-              >
-                Edit Plan
-              </Link> */}
+              
 
               <Link href="/travel-plans" className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white border border-gray-200 text-sm text-gray-700 hover:shadow-sm transition">
                 ← Back to plans
@@ -146,14 +141,14 @@ export default async function PlanDetail({ params }: Props) {
           </div>
         </div>
 
-        {/* Extra details / full description */}
+      
         <div className="p-6 border-t border-gray-100 bg-white">
           <h3 className="text-lg font-semibold text-gray-800 mb-2">Overview</h3>
           <p className="text-sm text-gray-600 leading-relaxed">
             {plan.description || "No further details available for this plan."}
           </p>
 
-          {/* Host card inserted here */}
+          
           <div className="mt-6 p-6 rounded-lg border border-gray-100 bg-gray-50">
             <h4 className="text-md font-semibold text-gray-800 mb-3">Host Information</h4>
 
@@ -161,7 +156,7 @@ export default async function PlanDetail({ params }: Props) {
               <div className="text-sm text-gray-500">No host information available.</div>
             ) : (
               <div className="sm:flex sm:items-start sm:gap-6">
-                {/* Avatar */}
+                
                 <div className="shrink-0">
                   {host.profileImage ? (
                     

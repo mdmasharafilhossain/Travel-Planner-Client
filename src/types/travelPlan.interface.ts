@@ -46,3 +46,33 @@ export type TravelFormValues = {
   description: string;
   visibility: ITravelPlan["visibility"];
 };
+export type Participant = {
+  id: string;
+  status: string;
+  user: {
+    id: string;
+    fullName?: string;
+    profileImage?: string;
+  };
+};
+
+export type Review = {
+  id: string;
+  rating: number;
+  comment?: string;
+  createdAt: string;
+  authorId: string;
+  targetId: string;
+  author: {
+    id: string;
+    fullName?: string;
+    profileImage?: string;
+  };
+};
+
+export type Props = {
+  planId: string;
+  hostId: string;
+  planEndDate: string;
+   planStartDate: string | null
+};

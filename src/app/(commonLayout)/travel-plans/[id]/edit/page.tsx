@@ -42,7 +42,7 @@ export default function EditPlanPage() {
     },
   });
 
-  // ✅ Load plan
+
   useEffect(() => {
     if (!planId) return;
 
@@ -75,7 +75,7 @@ export default function EditPlanPage() {
     })();
   }, [planId, setValue]);
 
-  // ✅ Submit
+
   const onSubmit = async (data: UpdatePlanFormType) => {
     try {
       const payload = {

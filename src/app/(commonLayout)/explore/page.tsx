@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* app/explore/page.tsx */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
@@ -5,20 +6,14 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
-import { ITravelPlan } from "@/types/travelPlan.interface";
+
 import Loader from "@/components/shared/Loader";
+import { API_BASE } from "@/lib/baseApi";
+import { MatchPlanCommon } from "@/types/explore.interface";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
 
-type MatchPlan = ITravelPlan & {
-  host: {
-    id: string;
-    fullName?: string;
-    profileImage?: string;
-    isVerifiedBadge?: boolean;
-    currentLocation?: string | null;
-  };
-};
+
+
 
 export default function ExplorePage() {
   const { user } = useAuth();
@@ -29,13 +24,12 @@ export default function ExplorePage() {
   const [travelType, setTravelType] = useState("");
 
   const [loading, setLoading] = useState(false);
-  const [matches, setMatches] = useState<MatchPlan[]>([]);
+  const [matches, setMatches] = useState<MatchPlanCommon[]>([]);
   const [initialLoaded, setInitialLoaded] = useState(false);
 
-  // প্রথমবার page load এ সব PUBLIC plan লোড করতে চাইলে:
+ 
   useEffect(() => {
-    fetchMatches(); // কোনো filter ছাড়া → সব public দেখাবে
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchMatches(); 
   }, []);
 
   async function fetchMatches(e?: React.FormEvent) {
@@ -56,7 +50,7 @@ export default function ExplorePage() {
       }`;
 
       const res = await fetch(url, {
-        credentials: "include", // auth দরকার না, কিন্তু cookie থাকলে চলে যাবে
+        credentials: "include", 
       });
 
       const json = await res.json();
@@ -213,7 +207,7 @@ if(loading){
   );
 }
 
-function MatchCard({ plan }: { plan: MatchPlan }) {
+function MatchCard({ plan }: { plan: MatchPlanCommon }) {
   const start = plan.startDate
     ? new Date(plan.startDate).toLocaleDateString()
     : "—";
@@ -252,7 +246,7 @@ function MatchCard({ plan }: { plan: MatchPlan }) {
       <div className="mt-3 flex items-center justify-between gap-3 border-t border-gray-200 pt-3">
         <div className="flex items-center gap-2">
           <div className="h-8 w-8 rounded-full bg-gray-200 overflow-hidden">
-            {/* img/simple fallback; Next Image চাইলে use করতে পারো */}
+            
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={plan.host.profileImage || "https://i.ibb.co.com/jvLMWbX0/image.png"}
