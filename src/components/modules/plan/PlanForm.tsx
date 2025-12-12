@@ -156,7 +156,7 @@ export default function PlanForm({
               errors.budgetMin ? "border-red-300" : "border-gray-200"
             }`}
             placeholder="0"
-            required
+          
           />
           {errors.budgetMin && (
             <p className="text-xs text-red-500 mt-1">{errors.budgetMin?.message as any}</p>
@@ -172,7 +172,7 @@ export default function PlanForm({
               errors.budgetMax ? "border-red-300" : "border-gray-200"
             }`}
             placeholder="0"
-            required
+          
           />
           {errors.budgetMax && (
             <p className="text-xs text-red-500 mt-1">{errors.budgetMax?.message as any}</p>
