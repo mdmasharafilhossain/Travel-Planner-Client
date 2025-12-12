@@ -5,10 +5,10 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
-      {/* Top */}
+      
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid gap-10 md:grid-cols-3">
-          {/* Brand / About */}
+  
           <div>
             <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">
               Travel<span className="text-orange-600">Planner</span>
@@ -20,7 +20,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Explore */}
+    
           <div>
             <h3 className="text-sm font-semibold text-gray-900 mb-4">
               Explore
@@ -61,7 +61,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Travel Highlights (new design instead of Company / Newsletter) */}
+    
           <div>
             <h3 className="text-sm font-semibold text-gray-900 mb-4">
               Travel Highlights
@@ -96,7 +96,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom bar */}
+  
       <div className="border-t border-gray-200 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-gray-500">
           <p>© {new Date().getFullYear()} TravelPlanner. All rights reserved.</p>

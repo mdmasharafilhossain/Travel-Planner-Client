@@ -5,8 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
  
-  Layers,
-  Activity,
+  
   Home,
   LogOut,
   ChevronLeft,

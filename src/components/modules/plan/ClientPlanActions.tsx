@@ -176,7 +176,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
         return;
       }
 
-      // ✅ Optimistic status update
+    
       setMyStatus("PENDING");
 
       await Swal.fire({
@@ -186,7 +186,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
         confirmButtonColor: "#f97316",
       });
 
-      // চাইলে fresh data আনতে পারো
+   
       await fetchPlanForParticipants();
     } catch (err) {
       console.error(err);
@@ -248,7 +248,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
     }
   }
 
-  // 🔹 Review create
+ 
   async function handleCreateReview(e: React.FormEvent) {
     e.preventDefault();
     if (!userId) {
@@ -318,7 +318,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
  
  
 
-  // 🔹 Review delete
+ 
   async function handleDeleteReview(reviewId: string) {
     if (!userId) return;
 
@@ -377,9 +377,9 @@ const normalize = (d: Date | null) => {
   const normStart = planStartDate ? normalize(new Date(planStartDate)) : null;
   const normEnd = planEndDate ? normalize(new Date(planEndDate)) : null;
 
-  // completed if end < today
+
   const isCompletedTour = !!normEnd && normEnd < normToday;
-  // ongoing if start <= today <= end
+
   const isOngoingTour = !!normStart && !!normEnd && normStart <= normToday && normEnd >= normToday;
  
   let joinLabel = "Request to Join";

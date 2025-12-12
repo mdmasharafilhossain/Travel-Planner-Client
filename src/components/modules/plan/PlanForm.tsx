@@ -27,7 +27,7 @@ export default function PlanForm({
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-6 bg-white rounded-2xl shadow-lg border border-gray-100 p-6"
     >
-      {/* Header */}
+      
       
 <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
   <div>
@@ -43,7 +43,7 @@ export default function PlanForm({
 </div>
 
 
-      {/* Basic fields */}
+  
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ShareInput
           label="Title"
@@ -57,7 +57,7 @@ export default function PlanForm({
         />
       </div>
 
-      {/* Dates */}
+    
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm text-gray-600 mb-2">Start Date</label>
@@ -88,12 +88,12 @@ export default function PlanForm({
         </div>
       </div>
 
-      {/* Travel type & description */}
+     
       <div className="grid grid-cols-1 gap-4">
-        {/* Travel Type */}
+     
         
 
-        {/* Description */}
+        
         <div>
           <label className="block text-sm text-gray-600 mb-2">Description (Optional)</label>
           <textarea
@@ -128,7 +128,6 @@ export default function PlanForm({
           )}
         </div>
 
-        {/* NEW FIELD → Visibility */}
         <div>
           <label className="block text-sm text-gray-600 mb-2">Visibility (Optional)</label>
 
@@ -145,7 +144,7 @@ export default function PlanForm({
           )}
         </div>
         </div>
-      {/* Budget */}
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm text-gray-600 mb-2">Budget Min (BDT)</label>

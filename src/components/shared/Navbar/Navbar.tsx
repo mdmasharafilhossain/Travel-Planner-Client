@@ -14,14 +14,14 @@ export default function Navbar() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
-  // --- 🔸 Onboarding Tour State ---
+ 
   const [showTour, setShowTour] = useState(false);
   const [tourStep, setTourStep] = useState<TourStep>(0);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Only show tour if not seen before
+    
     const seen = window.localStorage.getItem("travelplanner_nav_tour_seen");
     if (!seen) {
       setShowTour(true);
@@ -39,7 +39,7 @@ export default function Navbar() {
   const nextStep = () => {
     setTourStep((prev) => {
       if (prev === 2) {
-        // last step → close
+       
         closeTour();
         return prev;
       }
@@ -61,7 +61,7 @@ export default function Navbar() {
      <Loader/>);
   }
 
-  // Helper classes to highlight nav items during specific tour steps
+
   const highlightExplore = showTour && tourStep === 0 ? "ring-2 ring-orange-400 ring-offset-2" : "";
   const highlightPlans = showTour && tourStep === 1 ? "ring-2 ring-orange-400 ring-offset-2" : "";
   const highlightAuth = showTour && tourStep === 2 ? "ring-2 ring-orange-400 ring-offset-2" : "";

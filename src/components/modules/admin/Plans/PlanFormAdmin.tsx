@@ -12,13 +12,13 @@ import { TravelFormProps } from "@/types/travelPlan.interface";
 import { UpdatePlanFormType, updatePlanSchema } from "@/zod/plan/plan.validator";
 
 export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormProps) {
-  // create a strongly typed defaultValues object
+ 
   const defaultValues: UpdatePlanFormType = {
     title: (plan.title ?? "") as UpdatePlanFormType["title"],
     destination: (plan.destination ?? "") as UpdatePlanFormType["destination"],
     startDate: plan.startDate ? plan.startDate.slice(0, 10) : "",
     endDate: plan.endDate ? plan.endDate.slice(0, 10) : "",
-    // ensure budget fields are strings (schema expects string)
+    
     budgetMin:
       plan.budgetMin !== null && plan.budgetMin !== undefined
         ? String(plan.budgetMin)
@@ -27,7 +27,7 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
       plan.budgetMax !== null && plan.budgetMax !== undefined
         ? String(plan.budgetMax)
         : "",
-    // cast travelType/visibility to the exact union type expected
+    
     travelType: (plan.travelType as UpdatePlanFormType["travelType"]) ?? "SOLO",
     description: (plan.description ?? "") as UpdatePlanFormType["description"],
     visibility: (plan.visibility as UpdatePlanFormType["visibility"]) ?? "PUBLIC",
@@ -43,12 +43,12 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
     defaultValues,
   });
 
-  // type the handler properly
+
   const onSubmit: SubmitHandler<UpdatePlanFormType> = async (values) => {
     try {
       const payload: any = {
         ...values,
-        // convert empty strings to undefined and numeric strings to numbers
+        
         budgetMin: values.budgetMin === "" ? undefined : Number(values.budgetMin),
         budgetMax: values.budgetMax === "" ? undefined : Number(values.budgetMax),
       };

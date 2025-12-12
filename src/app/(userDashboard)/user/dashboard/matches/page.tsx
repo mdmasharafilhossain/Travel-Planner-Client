@@ -6,31 +6,19 @@ import Link from "next/link";
 import Image from "next/image";
 import useAuth from "@/hooks/useAuth";
 import Loader from "@/components/shared/Loader";
+import { API_BASE } from "@/lib/baseApi";
+import { MatchesTravelPlan } from "@/types/matches.interface";
 
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
 
-type Host = {
-  id: string;
-  fullName?: string;
-  profileImage?: string;
-  isVerifiedBadge?: boolean;
-};
 
-type TravelPlan = {
-  id: string;
-  title?: string;
-  destination: string;
-  startDate: string;
-  endDate: string;
-  host: Host;
-};
+
 
 export default function MatchesPage() {
     const { user } = useAuth();
   
-  const [upcomingPlans, setUpcomingPlans] = useState<TravelPlan[]>([]);
-  const [matchesByPlan, setMatchesByPlan] = useState<Record<string, TravelPlan[]>>({});
+  const [upcomingPlans, setUpcomingPlans] = useState<MatchesTravelPlan[]>([]);
+  const [matchesByPlan, setMatchesByPlan] = useState<Record<string, MatchesTravelPlan[]>>({});
   const [loading, setLoading] = useState(true);
 
   
@@ -112,7 +100,7 @@ export default function MatchesPage() {
       ) : (
         <div className="space-y-5">
           {upcomingPlans.map((plan) => {
-            const matches: TravelPlan[] = (matchesByPlan[plan.id] || []) as any;
+            const matches: MatchesTravelPlan[] = (matchesByPlan[plan.id] || []) as any;
             return (
               <div
                 key={plan.id}

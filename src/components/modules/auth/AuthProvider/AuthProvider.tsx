@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
@@ -24,7 +25,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const fetchMe = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await AuthAPI.me(); // ensure AuthAPI uses axios withCredentials
+      const res = await AuthAPI.me(); 
       setUser(res.data?.data || res.data?.user || null);
     } catch (err) {
       setUser(null);
@@ -77,7 +78,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       await AuthAPI.logout();
     } catch (err) {
-      // ignore
+     
     }
     setUser(null);
     await Swal.fire({

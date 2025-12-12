@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import Link from 'next/link';
@@ -5,24 +6,11 @@ import useAuth from '@/hooks/useAuth';
 import { API_BASE } from '@/lib/baseApi';
 import { useEffect, useState } from 'react';
 import HomeMatchedTravelers from '@/components/modules/homePage/SuggestedBuddy/HomeMatchedTravelers';
+import { TravelPlan } from '@/types/homePage.interface';
 
 export default function HomePage() {
   const { user } = useAuth();
-  type Host = {
-  id: string;
-  fullName?: string;
-  profileImage?: string;
-  isVerifiedBadge?: boolean;
-};
-
-type TravelPlan = {
-  id: string;
-  title?: string;
-  destination: string;
-  startDate: string;
-  endDate: string;
-  host: Host;
-};
+  
    const [upcomingPlans, setUpcomingPlans] = useState<TravelPlan[]>([]);
     const [matchesByPlan, setMatchesByPlan] = useState<Record<string, TravelPlan[]>>({});
     const [loading, setLoading] = useState(true);
@@ -123,36 +111,13 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* ================= LOGGED-IN RECOMMENDATIONS ================= */}
+      
       {user && (
-        // <section className="py-16 bg-white border-t">
-        //   <div className="container mx-auto px-6">
-        //     <h2 className="text-2xl font-bold text-gray-900 mb-6">
-        //       Recommended Travel Buddies for You
-        //     </h2>
-
-        //     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        //       {[1, 2, 3].map((i) => (
-        //         <div
-        //           key={i}
-        //           className="p-5 rounded-xl border bg-gray-50 hover:shadow-md transition"
-        //         >
-        //           <div className="h-10 w-10 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold">
-        //             T
-        //           </div>
-        //           <h3 className="mt-3 font-semibold text-gray-800">Traveler {i}</h3>
-        //           <p className="text-sm text-gray-500">
-        //             Interested in mountains &amp; culture
-        //           </p>
-        //         </div>
-        //       ))}
-        //     </div>
-        //   </div>
-        // </section>
+        
         <HomeMatchedTravelers/>
       )}
 
-      {/* ================= HOW IT WORKS ================= */}
+      
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-gray-900">How It Works</h2>
@@ -174,7 +139,7 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* ================= POPULAR DESTINATIONS ================= */}
+      
      <section className="py-20 bg-white">
   <div className="container mx-auto px-6">
     <div className="flex items-center justify-between mb-10">
@@ -224,7 +189,7 @@ useEffect(() => {
 
 
 
-      {/* ================= WHY CHOOSE US ================= */}
+    
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-gray-900 mb-10">Why Choose Us</h2>
@@ -242,7 +207,7 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* ================= TESTIMONIALS ================= */}
+      
       <section className="py-20 bg-white">
   <div className="container mx-auto px-6 text-center">
     <h2 className="text-3xl font-bold text-gray-900">Success Stories</h2>

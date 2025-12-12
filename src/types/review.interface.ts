@@ -12,3 +12,19 @@ export type ReviewPage = {
     email?: string;
   };
 };
+
+
+type ReviewHost = {
+  id: string;
+  fullName?: string;
+  profileImage?: string;
+};
+
+export type ReviewTravelPlan = {
+  id: string;
+  title?: string;
+  destination: string;
+  startDate: string;
+  endDate: string;
+  host: ReviewHost;
+};

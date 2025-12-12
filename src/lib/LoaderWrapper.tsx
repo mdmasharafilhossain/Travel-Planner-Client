@@ -8,7 +8,7 @@ export default function LoaderWrapper({ children }: { children: React.ReactNode 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 500); // smooth UX
+    const t = setTimeout(() => setLoading(false), 500); 
     return () => clearTimeout(t);
   }, []);
 

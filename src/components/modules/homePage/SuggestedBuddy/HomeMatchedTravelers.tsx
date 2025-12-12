@@ -6,23 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
 import { API_BASE } from "@/lib/baseApi";
+import { MatchedPlan, MatchesByPlan } from "@/types/matches.interface";
 
 
 
 
-type MatchedPlan = {
-  id: string;
-  destination: string;
-  travelType: string;
-  host: {
-    id: string;
-    fullName?: string;
-    profileImage?: string;
-    isVerifiedBadge?: boolean;
-  };
-};
 
-type MatchesByPlan = Record<string, MatchedPlan[]>;
 
 export default function HomeMatchedTravelers() {
   const { user } = useAuth();

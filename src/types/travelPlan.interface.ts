@@ -76,3 +76,11 @@ export type Props = {
   planEndDate: string;
    planStartDate: string | null
 };
+
+export type UserTravelPlan = {
+  id: string;
+  title?: string;
+  destination: string;
+  startDate: string;
+  endDate: string;
+};

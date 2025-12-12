@@ -4,19 +4,15 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import Loader from "@/components/shared/Loader";
+import { API_BASE } from "@/lib/baseApi";
+import { UserTravelPlan } from "@/types/travelPlan.interface";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
 
-type TravelPlan = {
-  id: string;
-  title?: string;
-  destination: string;
-  startDate: string;
-  endDate: string;
-};
+
+
 
 const MyPostedPlan = () => {
-  const [plans, setPlans] = useState<TravelPlan[]>([]);
+  const [plans, setPlans] = useState<UserTravelPlan[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

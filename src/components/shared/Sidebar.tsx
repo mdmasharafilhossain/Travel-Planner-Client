@@ -93,7 +93,7 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile menu button */}
+   
       <button
         onClick={() => setIsMobileOpen(!isMobileOpen)}
         className="md:hidden fixed top-4 left-4 z-50 bg-white dark:bg-gray-900 p-2 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700"
@@ -102,7 +102,7 @@ export default function Sidebar() {
         <Menu size={20} className="text-orange-500" />
       </button>
 
-      {/* Sidebar container */}
+   
       <aside
         className={`bg-white dark:bg-gray-900/95 backdrop-blur-sm border-r border-gray-200 dark:border-gray-800 shadow-2xl transition-all duration-300 flex flex-col
           ${isCollapsed ? 'w-20' : 'w-64'}
@@ -111,7 +111,7 @@ export default function Sidebar() {
           transform`}
         aria-label="Main sidebar"
       >
-        {/* Header */}
+    
         <div className="p-5 border-b border-gray-100 dark:border-gray-800">
           <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
             {!isCollapsed && (
@@ -133,7 +133,7 @@ export default function Sidebar() {
           </div>
         </div>
 
-        {/* Navigation */}
+     
         <nav className="flex-1 p-4 overflow-y-auto">
           <ul className="space-y-2">
             {navigation.map((item) => {
@@ -164,7 +164,7 @@ export default function Sidebar() {
           </ul>
         </nav>
 
-        {/* Footer / user */}
+       
         <div className="p-4 border-t border-gray-100 dark:border-gray-800">
           <div className={`flex items-center gap-3 p-3 rounded-xl ${isCollapsed ? 'justify-center' : ''} bg-gray-50 dark:bg-gray-800/50 mb-4`}>
             <div className="w-9 h-9 rounded-full bg-linear-to-br from-orange-500 to-gray-700 flex items-center justify-center">

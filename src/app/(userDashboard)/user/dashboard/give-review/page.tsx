@@ -5,28 +5,16 @@ import Link from "next/link";
 import { API_BASE } from "@/lib/baseApi";
 import useAuth from "@/hooks/useAuth";
 import Loader from "@/components/shared/Loader";
+import { ReviewTravelPlan } from "@/types/review.interface";
 
 
 
-type Host = {
-  id: string;
-  fullName?: string;
-  profileImage?: string;
-};
 
-type TravelPlan = {
-  id: string;
-  title?: string;
-  destination: string;
-  startDate: string;
-  endDate: string;
-  host: Host;
-};
 
 export default function GiveReviewPage() {
   const { user } = useAuth();
   
-  const [trips, setTrips] = useState<TravelPlan[]>([]);
+  const [trips, setTrips] = useState<ReviewTravelPlan[]>([]);
   const [loading, setLoading] = useState(true);
 
   

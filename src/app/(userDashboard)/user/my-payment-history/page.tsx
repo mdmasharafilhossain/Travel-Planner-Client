@@ -4,19 +4,12 @@
 import { useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import Loader from "@/components/shared/Loader";
+import { API_BASE } from "@/lib/baseApi";
+import { Payment } from "@/types/payment.interface";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
 
-type Payment = {
-  id: string;
-  transactionId: string;
-  amount: number;
-  currency: string;
-  status: string;
-  description?: string;
-  paymentGateway: string;
-  createdAt: string;
-};
+
+
 
 export default function UserPaymentsPage() {
   const { user } = useAuth();

@@ -5,7 +5,7 @@ export default function PlanCard({ plan }: { plan: ITravelPlan }) {
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all overflow-hidden">
       
-      {/* Top Section: Title & Description */}
+  
       <div className="p-5">
         <h3 className="text-lg font-semibold text-gray-800 line-clamp-1">
           {plan.title || plan.destination}
@@ -15,7 +15,7 @@ export default function PlanCard({ plan }: { plan: ITravelPlan }) {
           {plan.description}
         </p>
 
-        {/* Dates */}
+        
         <div className="mt-3 text-xs font-medium text-gray-500 flex items-center gap-2">
           <span className="bg-orange-50 px-2 py-1 rounded text-orange-600 border border-orange-200">
             {new Date(plan.startDate).toLocaleDateString()}
@@ -27,7 +27,7 @@ export default function PlanCard({ plan }: { plan: ITravelPlan }) {
         </div>
       </div>
 
-      {/* Bottom Section: CTA Button */}
+     
       <div className="p-4 bg-gray-50 border-t border-gray-200">
         <Link
           href={`/travel-plans/${plan.id}`}
