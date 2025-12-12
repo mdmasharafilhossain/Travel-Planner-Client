@@ -158,7 +158,7 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
         </div>
 
         <div>
-          <label className="block text-sm text-gray-600 mb-1">Profile image</label>
+          <label className="block text-sm text-gray-600 mb-1">Upload Profile image</label>
           {/* register under profileImageFile (not in zod schema) to avoid FileList vs string mismatch */}
           <input
             type="file"
