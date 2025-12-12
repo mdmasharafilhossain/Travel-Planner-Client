@@ -32,11 +32,11 @@ export default async function PlansPage() {
 
         <Link
           href="/travel-plans/add"
-          className="px-4 py-2 rounded-md bg-linear-to-r from-orange-500 to-orange-600 
+          className="px-2 md:px-4 lg:px-4 py-1 md:py-2 lg:py-2  text-sm md:text-base lg:text-base rounded-md bg-linear-to-r from-orange-500 to-orange-600 
                      text-white font-medium hover:from-orange-600 hover:to-orange-700 
                      transition"
         >
-          + Add New Plan
+          + Add Plan
         </Link>
       </div>
 
