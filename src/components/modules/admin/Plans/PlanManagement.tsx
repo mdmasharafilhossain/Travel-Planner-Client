@@ -192,7 +192,7 @@ export default function PlanManagementPage() {
 
   return (
     <div className="p-4 md:p-8">
-      <div className="max-w-[1200px] mx-auto">
+      <div className="container mx-auto">
         <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
           <div>
             <h1 className="text-2xl font-semibold text-gray-800">
