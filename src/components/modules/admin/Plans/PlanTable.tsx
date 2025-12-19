@@ -38,91 +38,107 @@ export default function PlanTable({
   return (
     <>
       {/* Desktop table */}
-      <div className="hidden md:block rounded-lg overflow-hidden border border-gray-200 shadow-sm bg-white">
-        <table className="min-w-full text-sm">
-          <thead className="bg-gray-50 text-gray-600">
-            <tr>
-              <th className="px-4 py-3 text-left">Title</th>
-              <th className="px-4 py-3 text-left">Destination</th>
-              <th className="px-4 py-3 text-left">Dates</th>
-              <th className="px-4 py-3 text-left">Budget</th>
-              <th className="px-4 py-3 text-left">Host</th>
-              <th className="px-4 py-3 text-left">Visibility</th>
-              <th className="px-4 py-3 text-left">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {plans.map(plan => {
-              const busy = actionLoadingId === plan.id;
-              return (
-                <tr
-                  key={plan.id}
-                  className="border-t last:border-b hover:bg-gray-50"
+      <div className="hidden md:block rounded-xl overflow-hidden border border-gray-200 bg-white shadow">
+  <table className="min-w-full text-sm">
+    <thead className="bg-orange-200 text-gray-700 uppercase text-xs tracking-wide">
+      <tr>
+        <th className="px-5 py-4 text-left">Plan</th>
+        <th className="px-5 py-4 text-left">Destination</th>
+        <th className="px-5 py-4 text-left">Dates</th>
+        <th className="px-5 py-4 text-left">Budget</th>
+        <th className="px-5 py-4 text-left">Host</th>
+        <th className="px-5 py-4 text-left">Status</th>
+        <th className="px-5 py-4 text-right">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody className="divide-y divide-gray-100">
+      {plans.map(plan => {
+        const busy = actionLoadingId === plan.id;
+        return (
+          <tr
+            key={plan.id}
+            className="hover:bg-orange-50/40 transition"
+          >
+            {/* Title */}
+            <td className="px-5 py-4">
+              <div className="font-semibold text-gray-800">
+                {plan.title || "-"}
+              </div>
+              <div className="text-xs text-gray-500">
+                ID: {plan.id.slice(0, 8)}...
+              </div>
+            </td>
+
+            {/* Destination */}
+            <td className="px-5 py-4 text-gray-700">
+              {plan.destination}
+            </td>
+
+            {/* Dates */}
+            <td className="px-5 py-4 text-gray-600">
+              {formatDate(plan.startDate)} → {formatDate(plan.endDate)}
+            </td>
+
+            {/* Budget */}
+            <td className="px-5 py-4 text-gray-600">
+              {plan.budgetMin ?? "-"} – {plan.budgetMax ?? "-"}
+            </td>
+
+            {/* Host */}
+            <td className="px-5 py-4">
+              <div className="text-gray-800">
+                {plan.host?.fullName || "-"}
+              </div>
+              <div className="text-xs text-gray-500">
+                {plan.host?.email || ""}
+              </div>
+            </td>
+
+            {/* Visibility */}
+            <td className="px-5 py-4">
+              <span
+                className={`px-3 py-1 rounded-full text-xs font-medium ${
+                  plan.visibility === "PUBLIC"
+                    ? "bg-orange-100 text-orange-700"
+                    : "bg-gray-100 text-gray-600"
+                }`}
+              >
+                {plan.visibility}
+              </span>
+            </td>
+
+            {/* Actions */}
+            <td className="px-5 py-4 text-right">
+              <div className="inline-flex gap-2">
+                <button
+                  onClick={() => onView(plan)}
+                  className="px-3 py-1.5 text-xs rounded-md border hover:bg-gray-100"
                 >
-                  <td className="px-4 py-3">
-                    <div className="font-medium text-gray-800">
-                      {plan.title || "-"}
-                    </div>
-                    <div className="text-xs text-gray-500">
-                      ID: {plan.id.slice(0, 8)}...
-                    </div>
-                  </td>
-                  <td className="px-4 py-3 text-gray-700">
-                    {plan.destination}
-                  </td>
-                  <td className="px-4 py-3 text-gray-700">
-                    {formatDate(plan.startDate)} - {formatDate(plan.endDate)}
-                  </td>
-                  <td className="px-4 py-3 text-gray-700">
-                    {plan.budgetMin != null ? plan.budgetMin : "-"} –{" "}
-                    {plan.budgetMax != null ? plan.budgetMax : "-"}
-                  </td>
-                  <td className="px-4 py-3 text-gray-700">
-                    <div>{plan.host?.fullName || "-"}</div>
-                    <div className="text-xs text-gray-500">
-                      {plan.host?.email || ""}
-                    </div>
-                  </td>
-                  <td className="px-4 py-3">
-                    <span
-                      className={`inline-flex items-center px-2 py-1 text-xs font-medium rounded ${
-                        plan.visibility === "PUBLIC"
-                          ? "bg-orange-100 text-orange-800"
-                          : "bg-gray-100 text-gray-700"
-                      }`}
-                    >
-                      {plan.visibility}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="flex flex-wrap gap-2">
-                      <button
-                        onClick={() => onView(plan)}
-                        className="px-3 py-1 rounded-md text-xs border border-gray-200 hover:bg-gray-50"
-                      >
-                        View
-                      </button>
-                      <button
-                        onClick={() => onEdit(plan)}
-                        className="px-3 py-1 rounded-md text-xs bg-orange-50 text-orange-700 border border-orange-100 hover:bg-orange-100"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        disabled={busy}
-                        onClick={() => onDelete(plan)}
-                        className="px-3 py-1 rounded-md text-xs bg-red-50 text-red-600 border border-red-100 hover:bg-red-100"
-                      >
-                        {busy ? "..." : "Delete"}
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+                  View
+                </button>
+                <button
+                  onClick={() => onEdit(plan)}
+                  className="px-3 py-1.5 text-xs rounded-md bg-orange-500 text-white hover:bg-orange-600"
+                >
+                  Edit
+                </button>
+                <button
+                  disabled={busy}
+                  onClick={() => onDelete(plan)}
+                  className="px-3 py-1.5 text-xs rounded-md bg-red-500 text-white hover:bg-red-600 disabled:opacity-50"
+                >
+                  {busy ? "..." : "Delete"}
+                </button>
+              </div>
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>
+
 
       {/* Mobile list */}
       <div className="md:hidden space-y-3">
