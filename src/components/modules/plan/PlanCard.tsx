@@ -3,42 +3,51 @@ import Link from "next/link";
 
 export default function PlanCard({ plan }: { plan: ITravelPlan }) {
   return (
-    <div className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all overflow-hidden">
-      
-  
-      <div className="p-5">
+    <div className="
+      h-full flex flex-col
+      bg-white rounded-2xl
+      border border-gray-200
+      shadow-sm hover:shadow-lg
+      transition-all duration-300
+      overflow-hidden
+    ">
+      {/* Content */}
+      <div className="p-5 flex-1 flex flex-col">
         <h3 className="text-lg font-semibold text-gray-800 line-clamp-1">
-          {plan.title || plan.destination}
+          {plan.title || 'Title Unavailable'}
         </h3>
 
-        <p className="text-sm text-gray-600 mt-1 line-clamp-2">
-          {plan.description}
+        <p className="text-sm text-gray-600 mt-2 line-clamp-3">
+          {plan.description || "No description provided for this travel plan."}
         </p>
 
-        
-        <div className="mt-3 text-xs font-medium text-gray-500 flex items-center gap-2">
-          <span className="bg-orange-50 px-2 py-1 rounded text-orange-600 border border-orange-200">
+        {/* Dates */}
+        <div className="mt-4 flex items-center gap-2 text-xs font-medium">
+          <span className="px-2 py-1 rounded-full bg-orange-50 text-orange-600 border border-orange-200">
             {new Date(plan.startDate).toLocaleDateString()}
           </span>
           <span className="text-gray-400">→</span>
-          <span className="bg-orange-50 px-2 py-1 rounded text-orange-600 border border-orange-200">
+          <span className="px-2 py-1 rounded-full bg-orange-50 text-orange-600 border border-orange-200">
             {new Date(plan.endDate).toLocaleDateString()}
           </span>
         </div>
-      </div>
 
-     
-      <div className="p-4 bg-gray-50 border-t border-gray-200">
-        <Link
-          href={`/travel-plans/${plan.id}`}
-          className="inline-block w-full text-center py-2 rounded-md 
-                     bg-linear-to-r from-orange-500 to-orange-600 
-                     text-white text-sm font-medium
-                     hover:from-orange-600 hover:to-orange-700 
-                     transition-all"
-        >
-          View Details
-        </Link>
+        {/* Push button to bottom */}
+        <div className="mt-auto pt-5">
+          <Link
+            href={`/travel-plans/${plan.id}`}
+            className="
+              block w-full text-center
+              py-2.5 rounded-lg
+              bg-gradient-to-r from-orange-500 to-orange-600
+              text-white text-sm font-medium
+              hover:from-orange-600 hover:to-orange-700
+              transition-all duration-200
+            "
+          >
+            View Details →
+          </Link>
+        </div>
       </div>
     </div>
   );

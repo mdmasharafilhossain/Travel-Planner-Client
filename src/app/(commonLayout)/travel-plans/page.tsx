@@ -167,17 +167,17 @@ export default async function PlansPage({ searchParams }: PageProps) {
           </p>
         )}
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
           {plans.map((plan) => (
             <PlanCard key={plan.id} plan={plan} />
           ))}
         </div>
 
-        {/* PAGINATION */}
+     
         {meta?.totalPages > 1 && (
   <div className="flex items-center justify-center gap-4 mt-10">
     
-    {/* Previous Button */}
+  
     <Link
       href={`?page=${page - 1}`}
       aria-disabled={page === 1}
