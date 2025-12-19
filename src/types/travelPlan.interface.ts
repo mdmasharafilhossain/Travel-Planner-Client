@@ -84,3 +84,10 @@ export type UserTravelPlan = {
   startDate: string;
   endDate: string;
 };
+export type PlanPageProps = {
+  searchParams: Promise<{
+    page?: string;
+    destination?: string;
+    travelType?: string;
+  }>;
+};
