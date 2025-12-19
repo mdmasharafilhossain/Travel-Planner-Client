@@ -96,40 +96,88 @@ export default function PlanManagementPage() {
   );
 
   const handleViewDetails = useCallback(async (plan: ITravelPlan) => {
-    const formatDate = (iso: string) =>
-      new Date(iso).toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      });
-
-    const html = `
-      <div class="text-left text-sm text-gray-700">
-        <p><strong>Title:</strong> ${plan.title || "-"}</p>
-        <p><strong>Destination:</strong> ${plan.destination}</p>
-        <p><strong>Travel Type:</strong> ${plan.travelType}</p>
-        <p><strong>Visibility:</strong> ${plan.visibility}</p>
-        <p><strong>Dates:</strong> ${formatDate(
-          plan.startDate
-        )} - ${formatDate(plan.endDate)}</p>
-        <p><strong>Budget:</strong> ${
-          plan.budgetMin != null ? plan.budgetMin : "-"
-        } - ${plan.budgetMax != null ? plan.budgetMax : "-"}</p>
-        <p><strong>Host:</strong> ${plan.host?.fullName || "-"} (${
-      plan.host?.email || "-"
-    })</p>
-        <p class="mt-2"><strong>Description:</strong></p>
-        <p>${plan.description || "-"}</p>
-      </div>
-    `;
-
-    await Swal.fire({
-      title: "Plan Details",
-      html,
-      width: 600,
-      confirmButtonColor: "#fb923c",
+  const formatDate = (iso: string) =>
+    new Date(iso).toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
-  }, []);
+
+  const html = `
+    <div class="text-left text-sm text-gray-700 space-y-4">
+
+      <!-- Header -->
+      <div class="pb-3 border-b">
+        <h3 class="text-lg font-semibold text-gray-800">
+          ${plan.title || plan.destination}
+        </h3>
+        <p class="text-xs text-gray-500">
+          ${formatDate(plan.startDate)} → ${formatDate(plan.endDate)}
+        </p>
+      </div>
+
+      <!-- Info Grid -->
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <p class="text-xs text-gray-500">Destination</p>
+          <p class="font-medium">${plan.destination}</p>
+        </div>
+
+        <div>
+          <p class="text-xs text-gray-500">Travel Type</p>
+          <p class="font-medium">${plan.travelType}</p>
+        </div>
+
+        <div>
+          <p class="text-xs text-gray-500">Visibility</p>
+          <span class="inline-block px-2 py-1 rounded-full text-xs font-medium ${
+            plan.visibility === "PUBLIC"
+              ? "bg-orange-100 text-orange-700"
+              : "bg-gray-100 text-gray-700"
+          }">
+            ${plan.visibility}
+          </span>
+        </div>
+
+        <div>
+          <p class="text-xs text-gray-500">Budget</p>
+          <p class="font-medium">
+            ${plan.budgetMin ?? "-"} – ${plan.budgetMax ?? "-"}
+          </p>
+        </div>
+      </div>
+
+      <!-- Host -->
+      <div class="pt-3 border-t">
+        <p class="text-xs text-gray-500">Host</p>
+        <p class="font-medium">
+          ${plan.host?.fullName || "-"}
+        </p>
+        <p class="text-xs text-gray-500">
+          ${plan.host?.email || "-"}
+        </p>
+      </div>
+
+      <!-- Description -->
+      <div class="pt-3 border-t">
+        <p class="text-xs text-gray-500 mb-1">Description</p>
+        <p class="leading-relaxed">
+          ${plan.description || "-"}
+        </p>
+      </div>
+
+    </div>
+  `;
+
+  await Swal.fire({
+    title: "Plan Details",
+    html,
+    width: 640,
+    confirmButtonColor: "#fb923c",
+    confirmButtonText: "Close",
+  });
+}, []);
+
 
   const handleEditClick = useCallback((plan: ITravelPlan) => {
     setEditingPlan(plan);
