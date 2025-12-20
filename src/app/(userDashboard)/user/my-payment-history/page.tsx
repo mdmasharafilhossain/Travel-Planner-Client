@@ -66,7 +66,7 @@ export default function UserPaymentsPage() {
         {/* DESKTOP TABLE */}
         <div className="hidden md:block overflow-x-auto">
           <table className="min-w-full text-sm">
-            <thead className="bg-gray-100 text-gray-700 uppercase text-xs">
+            <thead className="bg-orange-300 text-gray-700 uppercase text-xs">
               <tr>
                 <th className="px-6 py-3 text-left">Transaction ID</th>
                 <th className="px-6 py-3 text-left">Amount</th>
