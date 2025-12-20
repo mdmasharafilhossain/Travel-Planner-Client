@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -17,19 +18,25 @@ export default function AdminTransactionsPage() {
   const [loading, setLoading] = useState(true);
 
   const [page, setPage] = useState(1);
-  const limit = 10;
+  const limit = 13;
 
   useEffect(() => {
     if (user?.role === "ADMIN") fetchTransactions();
-  }, [user]);
+  }, [user,page]);
 
   async function fetchTransactions() {
+    setLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/api/payments/admin/transactions`, {
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${API_BASE}/api/payments/admin/transactions?page=${page}&limit=${limit}`,
+        { credentials: "include" }
+      );
       const json = await res.json();
-      if (json.ok) setData(json.data);
+
+      if (json.ok) {
+        setData(json.data);
+        setMeta(json.meta);
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -46,6 +53,8 @@ export default function AdminTransactionsPage() {
       </div>
     );
   }
+const totalPages = meta?.totalPages ?? 0;
+const currentPage = meta?.page ?? page;
 
   return (
     <LoaderWrapper>
@@ -174,7 +183,61 @@ export default function AdminTransactionsPage() {
             ))
           )}
         </div>
+        {/* ✅ PAGINATION UI */}
+{/* ✅ PAGINATION UI */}
+
+
+
       </div>
+      {totalPages > 1 && (
+  <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+
+    {/* Previous */}
+    <button
+      disabled={page <= 1}
+      onClick={() => setPage(p => p - 1)}
+      className={`
+        inline-flex items-center gap-2
+        px-4 py-2 rounded-lg
+        border font-medium text-sm
+        transition-all duration-200
+        ${
+          page <= 1
+            ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+            : "bg-orange-500 text-white border-orange-500 hover:bg-orange-600 active:scale-95"
+        }
+      `}
+    >
+      ← Previous
+    </button>
+
+    {/* Page Info */}
+    <span className="text-sm font-medium text-gray-600">
+      Page <span className="font-semibold">{currentPage}</span> of{" "}
+      <span className="font-semibold">{totalPages}</span>
+    </span>
+
+    {/* Next */}
+    <button
+      disabled={page >= totalPages}
+      onClick={() => setPage(p => p + 1)}
+      className={`
+        inline-flex items-center gap-2
+        px-4 py-2 rounded-lg
+        border font-medium text-sm
+        transition-all duration-200
+        ${
+          page >= totalPages
+            ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+            : "bg-orange-500 text-white border-orange-500 hover:bg-orange-600 active:scale-95"
+        }
+      `}
+    >
+      Next →
+    </button>
+
+  </div>
+)}
     </div>
     </LoaderWrapper>
   );
