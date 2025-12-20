@@ -121,7 +121,7 @@ export default function Navbar() {
                   href="/user"
                   className="text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Dashboard
+                  User Dashboard
                 </Link>
 
                 <Link
@@ -235,7 +235,7 @@ export default function Navbar() {
                   onClick={() => setOpen(false)}
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600"
                 >
-                  Dashboard
+                  User Dashboard
                 </Link>
 
                 <Link
