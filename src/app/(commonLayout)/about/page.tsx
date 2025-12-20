@@ -3,7 +3,7 @@ import React from "react";
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-100 px-4 md:px-8  py-10">
+    <div className="min-h-screen bg-gray-100 px-4 md:px-8 lg:px-52 py-10">
       <div className="container mx-auto  bg-white rounded-xl shadow-md border border-gray-200 p-6 md:p-10">
         
         {/* Header */}
