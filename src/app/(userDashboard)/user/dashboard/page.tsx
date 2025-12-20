@@ -99,7 +99,7 @@ export default function UserDashboardPage() {
 
   return (
    
-    <div className="max-w-5xl mx-auto py-10 px-4 space-y-6">
+    <div className="container mx-auto py-10 px-4 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between gap-3">
         <div>
