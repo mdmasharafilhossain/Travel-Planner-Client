@@ -5,13 +5,19 @@ import { useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import { API_BASE } from "@/lib/baseApi";
 import LoaderWrapper from "@/lib/LoaderWrapper";
+import { Meta } from "@/types/pagination.interface";
 
 
 
 export default function AdminTransactionsPage() {
   const { user } = useAuth();
+
   const [data, setData] = useState<any[]>([]);
+  const [meta, setMeta] = useState<Meta | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const [page, setPage] = useState(1);
+  const limit = 10;
 
   useEffect(() => {
     if (user?.role === "ADMIN") fetchTransactions();
