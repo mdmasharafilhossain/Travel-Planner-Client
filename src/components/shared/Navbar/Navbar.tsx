@@ -88,17 +88,18 @@ export default function Navbar() {
             >
               Home
             </Link>
-            <Link
-              href="/faq"
-              className={`text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium ${highlightExplore}`}
-            >
-              FAQ
-            </Link>
+           
             <Link
               href="/about"
               className={`text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium ${highlightExplore}`}
             >
               About
+            </Link>
+             <Link
+              href="/faq"
+              className={`text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium ${highlightExplore}`}
+            >
+              FAQ
             </Link>
             <Link
               href="/explore"
