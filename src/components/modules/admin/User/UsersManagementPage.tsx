@@ -18,21 +18,30 @@ export default function UserManagementPage() {
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
+const [limit] = useState(5);
+const [meta, setMeta] = useState<any>(null);
 
-  const fetchUsers = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await UserAPI.listUsers();
-      const data = res.data?.users ?? res.data;
-      setUsers(Array.isArray(data) ? data : []);
-    } catch (err: any) {
-      console.error("fetchUsers:", err);
-      setError(err?.response?.data?.message || err?.message || "Failed to fetch users");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+ const fetchUsers = useCallback(async () => {
+  setLoading(true);
+  setError(null);
+  try {
+    const res = await UserAPI.listUsers({ page, limit });
+
+    setUsers(res.data?.users ?? []);
+    setMeta(res.data?.meta ?? null);
+  } catch (err: any) {
+    console.error("fetchUsers:", err);
+    setError(
+      err?.response?.data?.message ||
+        err?.message ||
+        "Failed to fetch users"
+    );
+  } finally {
+    setLoading(false);
+  }
+}, [page, limit]);
+
 
   useEffect(() => {
     fetchUsers();
@@ -128,6 +137,57 @@ export default function UserManagementPage() {
           onChangeRole={handleChangeRole}
           actionLoading={actionLoading}
         />
+       {meta?.totalPages > 1 && (
+  <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+    
+    {/* Previous */}
+    <button
+      disabled={page <= 1}
+      onClick={() => setPage(p => p - 1)}
+      className={`
+        inline-flex items-center gap-2
+        px-4 py-2 rounded-lg
+        border text-sm font-medium
+        transition-all duration-200
+        ${
+          page <= 1
+            ? "cursor-not-allowed bg-gray-100 text-gray-400 border-gray-200"
+            : "bg-white text-gray-700 border-gray-300 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600"
+        }
+      `}
+    >
+      ← Previous
+    </button>
+
+    {/* Page Info */}
+    <span className="text-sm font-medium text-gray-600">
+      Page <span className="font-semibold">{meta.page}</span> of{" "}
+      <span className="font-semibold">{meta.totalPages}</span>
+    </span>
+
+    {/* Next */}
+    <button
+      disabled={page >= meta.totalPages}
+      onClick={() => setPage(p => p + 1)}
+      className={`
+        inline-flex items-center gap-2
+        px-4 py-2 rounded-lg
+        border text-sm font-medium
+        transition-all duration-200
+        ${
+          page >= meta.totalPages
+            ? "cursor-not-allowed bg-gray-100 text-gray-400 border-gray-200"
+            : "bg-white text-gray-700 border-gray-300 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600"
+        }
+      `}
+    >
+      Next →
+    </button>
+
+  </div>
+)}
+
+
       </div>
     </div>
   );
