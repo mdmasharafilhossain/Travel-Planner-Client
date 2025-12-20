@@ -1,4 +1,4 @@
-import React from "react";
+
 import Image from "next/image";
 import UserCard from "./UserCard";
 import ActionButtons from "./ActionButtons";
@@ -21,7 +21,7 @@ export default function UsersTable({
     }
   };
 
-  /* ---------- States ---------- */
+ 
   if (loading)
     return (
       <div className="rounded-xl border border-gray-200 bg-white p-10 text-center text-gray-500 shadow">
