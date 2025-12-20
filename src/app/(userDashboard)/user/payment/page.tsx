@@ -27,14 +27,14 @@ const {user} = useAuth();
     }
   }
 
-  // if(user?.premiumExpiresAt && new Date(user.premiumExpiresAt) > new Date()){
-  //   return (
-  //     <div className="max-w-md mx-auto p-6 bg-white rounded shadow text-center">
-  //       <h2 className="text-xl font-semibold mb-4">You are already a premium user!</h2>
-  //       <p>Your premium subscription is valid until <strong>{new Date(user.premiumExpiresAt).toLocaleDateString()}</strong>.</p>
-  //     </div>
-  //   );
-  // }
+  if(user?.premiumExpiresAt && new Date(user.premiumExpiresAt) > new Date()){
+    return (
+      <div className="max-w-md mx-auto p-6 bg-white rounded shadow text-center">
+        <h2 className="text-xl font-semibold mb-4">You are already a <span className="font-bold text-orange-500">premium user!</span></h2>
+        <p>Your premium subscription is valid until <strong>{new Date(user.premiumExpiresAt).toLocaleDateString()}</strong>.</p>
+      </div>
+    );
+  }
 
   return (
     <LoaderWrapper>
