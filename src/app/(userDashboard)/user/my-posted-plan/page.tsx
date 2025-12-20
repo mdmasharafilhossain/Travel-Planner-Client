@@ -69,7 +69,7 @@ const MyPostedPlan = () => {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="container mx-auto space-y-4">
       <h1 className="text-xl font-bold text-gray-900">My Posted Plans</h1>
 
       {plans.length === 0 ? (

@@ -69,7 +69,7 @@ export default function MatchesPage() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto py-10 px-4 space-y-4">
+    <div className="container mx-auto py-10 px-4 space-y-4">
       <div className="flex items-center justify-between mb-4">
         <div>
           <h1 className="text-xl font-bold text-gray-900">
