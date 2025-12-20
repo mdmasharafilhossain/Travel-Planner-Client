@@ -19,7 +19,7 @@ export default function UserManagementPage() {
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
-const [limit] = useState(5);
+const [limit] = useState(8);
 const [meta, setMeta] = useState<any>(null);
 
  const fetchUsers = useCallback(async () => {
@@ -152,7 +152,7 @@ const [meta, setMeta] = useState<any>(null);
         ${
           page <= 1
             ? "cursor-not-allowed bg-gray-100 text-gray-400 border-gray-200"
-            : "bg-orange-300 text-gray-700 border-gray-300 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600"
+            : "bg-orange-500 text-white border-gray-300 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600"
         }
       `}
     >
@@ -177,7 +177,7 @@ const [meta, setMeta] = useState<any>(null);
         ${
           page >= meta.totalPages
             ? "cursor-not-allowed bg-gray-100 text-gray-400 border-gray-200"
-            : "bg-orange-300 text-gray-700 border-gray-300 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600"
+            : "bg-orange-500 text-white border-gray-300 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600"
         }
       `}
     >

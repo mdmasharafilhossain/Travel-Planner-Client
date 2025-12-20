@@ -20,7 +20,7 @@ export default function PlanManagementPage() {
 
  
   const [page, setPage] = useState(1);
-  const [limit] = useState(10);
+  const [limit] = useState(8);
   const [meta, setMeta] = useState<any>(null);
 
   const fetchPlans = useCallback(async () => {
