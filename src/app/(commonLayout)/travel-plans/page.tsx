@@ -12,7 +12,7 @@ export default async function PlansPage({ searchParams }: PlanPageProps) {
   const params = await searchParams;
 
   const page = Number(params.page || 1);
-  const limit = 9;
+  const limit = 8;
 
   const query = new URLSearchParams({
     page: String(page),
