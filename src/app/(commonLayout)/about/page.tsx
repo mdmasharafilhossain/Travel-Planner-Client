@@ -3,8 +3,8 @@ import React from "react";
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-100 px-4 md:px-8 py-10">
-      <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md border border-gray-200 p-6 md:p-10">
+    <div className="min-h-screen bg-gray-100 px-4 md:px-8  py-10">
+      <div className="container mx-auto  bg-white rounded-xl shadow-md border border-gray-200 p-6 md:p-10">
         
         {/* Header */}
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 text-center">
@@ -73,7 +73,7 @@ const AboutPage: React.FC = () => {
           </p>
 
           <p className="mt-4 text-orange-500 font-semibold">
-            Let’s plan your next adventure 🚀
+            Let’s plan your next adventure 
           </p>
         </section>
 

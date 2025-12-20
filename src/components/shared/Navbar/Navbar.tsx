@@ -83,6 +83,12 @@ export default function Navbar() {
           {/* Desktop Links */}
           <div className="hidden md:flex md:items-center md:space-x-4">
             <Link
+              href="/about"
+              className={`text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium ${highlightExplore}`}
+            >
+              About
+            </Link>
+            <Link
               href="/explore"
               className={`text-gray-700 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium ${highlightExplore}`}
             >
@@ -172,6 +178,13 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-white border-t border-gray-200">
           <div className="px-4 pt-4 pb-6 space-y-2">
+            <Link
+              href="/about" 
+              onClick={() => setOpen(false)}
+              className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-orange-600 ${highlightExplore}`}
+            >
+              About
+            </Link>
             <Link
               href="/explore" 
               onClick={() => setOpen(false)}
