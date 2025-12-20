@@ -18,21 +18,62 @@ const faqs: FAQItem[] = [
       "You can explore public travel plans for free. Some advanced features such as premium matching and private meetups may require a subscription.",
   },
   {
+    question: "How do I create a travel plan?",
+    answer:
+      "After logging in, go to your dashboard and click on 'Create Plan'. Fill in your destination, travel dates, budget, and travel type to publish your plan.",
+  },
+  {
     question: "How do I find a travel buddy?",
     answer:
-      "Create a travel plan with your destination, dates, and preferences. The platform will suggest travelers with similar plans so you can connect and plan together.",
+      "Create a travel plan and browse similar trips. You can view other travelers’ profiles and send requests to connect and plan together.",
+  },
+  {
+    question: "Can I join someone else’s travel plan?",
+    answer:
+      "Yes. You can request to join public travel plans shared by other users. The plan owner can accept or decline your request.",
   },
   {
     question: "Is my personal information safe?",
     answer:
-      "Yes. We take user privacy seriously and use secure authentication and data protection measures to keep your information safe.",
+      "Yes. We use secure authentication, encrypted data storage, and strict access control to protect your personal information.",
   },
   {
-    question: "Can I create and manage multiple travel plans?",
+    question: "Can I edit or delete my travel plans?",
     answer:
-      "Absolutely. You can create, edit, and manage multiple travel plans from your dashboard at any time.",
+      "Absolutely. You can edit or delete your travel plans anytime from your dashboard.",
+  },
+  {
+    question: "Can I create multiple travel plans?",
+    answer:
+      "Yes. There is no limit to the number of travel plans you can create, manage, or update.",
+  },
+  {
+    question: "How does matching work?",
+    answer:
+      "Matching is based on destination, travel dates, budget range, and travel type to help you find compatible travel buddies.",
+  },
+  {
+    question: "What happens if a trip is cancelled?",
+    answer:
+      "You can update or cancel your travel plan anytime. Connected travelers will be notified about the changes.",
+  },
+  {
+    question: "Do I need to verify my account?",
+    answer:
+      "Account verification helps build trust in the community. Some features may require a verified account.",
+  },
+  {
+    question: "Can I use Travel Planner on mobile devices?",
+    answer:
+      "Yes. Travel Planner is fully responsive and works smoothly on mobile phones, tablets, and desktops.",
+  },
+  {
+    question: "How do I contact support?",
+    answer:
+      "If you need help, you can reach out through the Contact page or email our support team for assistance.",
   },
 ];
+
 
 const FAQPage: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
