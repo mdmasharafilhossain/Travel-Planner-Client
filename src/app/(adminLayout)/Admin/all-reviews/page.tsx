@@ -73,7 +73,7 @@ export default function AdminReviewPage() {
 
   return (
     <LoaderWrapper>
-    <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className="container mx-auto px-4 py-10">
       
       <div className="mb-6">
         <h1 className="text-3xl font-extrabold text-gray-900">
@@ -88,7 +88,7 @@ export default function AdminReviewPage() {
         
         <div className="hidden md:block overflow-x-auto">
           <table className="min-w-full text-sm">
-            <thead className="bg-gray-100 text-gray-700 uppercase text-xs">
+            <thead className="bg-orange-300 text-gray-700 uppercase text-xs">
               <tr>
                 <th className="px-6 py-3 text-left">Author</th>
                 <th className="px-6 py-3 text-left">Target</th>
