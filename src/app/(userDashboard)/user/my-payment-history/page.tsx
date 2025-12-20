@@ -21,18 +21,25 @@ export default function UserPaymentsPage() {
   }, [user]);
 
   async function fetchPayments() {
-    try {
-      const res = await fetch(`${API_BASE}/api/payments/my-transactions`, {
-        credentials: "include",
-      });
-      const json = await res.json();
-      if (json.ok) setData(json.data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
+  try {
+    const res = await fetch(`${API_BASE}/api/payments/my-transactions`, {
+      credentials: "include",
+    });
+
+    const json = await res.json();
+
+    if (json.ok) {
+      setData(json.data);
+    } else {
+      console.error("Failed to load payments:", json.message);
     }
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
   }
+}
+
   if (loading) {
     return (
       <Loader/>

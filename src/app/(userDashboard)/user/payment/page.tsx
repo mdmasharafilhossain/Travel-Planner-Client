@@ -13,10 +13,10 @@ import LoaderWrapper from "@/lib/LoaderWrapper";
 
 
 export default function PaymentInitPage() {
-  const { register, handleSubmit } = useForm<{ plan: string; phone?: string }>();
+  const { register, handleSubmit } = useForm<{ plan: string; phone?: string;coupon?: string; }>();
   const router = useRouter();
 const {user} = useAuth();
-  async function onSubmit(data: { plan: string; phone?: string }) {
+  async function onSubmit(data: { plan: string; phone?: string;coupon?: string }) {
     try {
       const res = await axios.post(`${API_BASE}/api/payments/init-subscription`, data, { withCredentials: true });
       const { paymentUrl } = res.data.data;
@@ -27,14 +27,14 @@ const {user} = useAuth();
     }
   }
 
-  if(user?.premiumExpiresAt && new Date(user.premiumExpiresAt) > new Date()){
-    return (
-      <div className="max-w-md mx-auto p-6 bg-white rounded shadow text-center">
-        <h2 className="text-xl font-semibold mb-4">You are already a premium user!</h2>
-        <p>Your premium subscription is valid until <strong>{new Date(user.premiumExpiresAt).toLocaleDateString()}</strong>.</p>
-      </div>
-    );
-  }
+  // if(user?.premiumExpiresAt && new Date(user.premiumExpiresAt) > new Date()){
+  //   return (
+  //     <div className="max-w-md mx-auto p-6 bg-white rounded shadow text-center">
+  //       <h2 className="text-xl font-semibold mb-4">You are already a premium user!</h2>
+  //       <p>Your premium subscription is valid until <strong>{new Date(user.premiumExpiresAt).toLocaleDateString()}</strong>.</p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <LoaderWrapper>
@@ -51,10 +51,24 @@ const {user} = useAuth();
           <label className="block text-sm">Phone (required for SSLCommerz)</label>
           <input {...register("phone")} className="w-full border p-2 rounded" placeholder="017xxxxxxxx" />
         </div>
-
+<div>
+    <label className="block text-sm font-medium">
+      Coupon Code <span className="text-gray-400">(optional)</span>
+    </label>
+    <input
+      {...register("coupon")}
+      className="w-full border p-2 rounded"
+      placeholder="TRAVEL10"
+    />
+    <p className="text-xs text-gray-500 mt-1">
+      Use <strong>TRAVEL10</strong> to get 10% discount
+    </p>
+  </div>
         <button type="submit" className="w-full py-2 bg-orange-500 text-white rounded">Proceed to Payment</button>
       </form>
     </div>
+    
+
     </LoaderWrapper>
   );
 
