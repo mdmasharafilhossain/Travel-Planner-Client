@@ -32,7 +32,7 @@ export default function PlanForm({
 <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
   <div>
     <h3 className="text-xl font-bold bg-linear-to-r from-orange-500 to-orange-700 text-transparent bg-clip-text">
-      Create / Edit Plan
+      Create Plan
     </h3>
     <p className="text-sm text-gray-500 mt-1">
       Add plan details and configure dates, budget and visibility.
