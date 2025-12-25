@@ -97,19 +97,30 @@ export default function UserSidebar() {
   return (
     <>
       {/* Mobile menu button */}
-      <button
-        onClick={() => setIsMobileOpen(!isMobileOpen)}
-        className="md:hidden fixed top-4 left-4 z-50 bg-white dark:bg-gray-900 p-2 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700"
-        aria-label="Open menu"
-      >
-        <Menu size={20} className="text-orange-500" />
-      </button>
+      {/* Mobile Top Navbar */}
+<div className="md:hidden fixed top-0 left-0 right-0 h-14 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-4 shadow">
+  {/* Left: App name */}
+  <span className="text-lg font-extrabold bg-linear-to-r from-orange-500 to-gray-700 bg-clip-text text-transparent">
+    TravelPlanner
+  </span>
+
+  {/* Right: Menu icon */}
+  <button
+    onClick={() => setIsMobileOpen(true)}
+    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+    aria-label="Open menu"
+  >
+    <Menu size={22} className="text-orange-500" />
+  </button>
+</div>
+
 
       {/* Sidebar container */}
       <aside
         className={`bg-white dark:bg-gray-900/95 backdrop-blur-sm border-r border-gray-200 dark:border-gray-800 shadow-2xl transition-all duration-300 flex flex-col
           ${isCollapsed ? 'w-20' : 'w-64'}
-          fixed md:sticky top-0 left-0 h-screen z-40
+          fixed md:sticky top-14 md:top-0 left-0 h-[calc(100vh-3.5rem)] md:h-screen z-40
+
           ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
           transform`}
         aria-label="Main sidebar"
