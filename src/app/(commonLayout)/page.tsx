@@ -331,7 +331,7 @@ useEffect(() => {
 <section className="py-24 bg-gray-50">
   <div className="container mx-auto px-6 text-center">
 
-    <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
       Travel With Confidence
     </h2>
     <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
@@ -366,8 +366,107 @@ useEffect(() => {
 
   </div>
 </section>
+{/* Coummunity Stats */}
+<section className="py-24 bg-linear-to-b from-gray-50 to-white">
+  <div className="container mx-auto px-6">
+ 
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+      {[
+        { value: '2K+', label: 'Active Travelers' },
+        { value: '150+', label: 'Destinations' },
+        { value: '5K+', label: 'Matches Made' },
+        { value: '4.9★', label: 'Average Rating' },
+      ].map((stat, i) => (
+        <div
+          key={stat.label}
+          className="group bg-white p-8 rounded-2xl shadow-md 
+                     hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+        >
+          <h3 className="text-4xl font-extrabold text-orange-500">
+            {stat.value}
+          </h3>
+          <p className="mt-3 text-sm text-gray-600 group-hover:text-gray-800 transition">
+            {stat.label}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
 
 
+{/*Find Travelers  */}
+
+<section className="py-24 bg-white">
+  <div className="container mx-auto px-6 text-center">
+
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+      Find Travelers Like You
+    </h2>
+    <p className="mt-4 text-gray-600">
+      No matter your travel style, there’s a buddy waiting.
+    </p>
+
+    <div className="mt-16 grid md:grid-cols-5 gap-8">
+      {[
+        'Backpackers',
+        'Luxury Travelers',
+        'Adventure Seekers',
+        'Food Explorers',
+        'Digital Nomads',
+      ].map((style) => (
+        <div
+          key={style}
+          className="group bg-gray-50 p-8 rounded-2xl shadow-sm 
+                     hover:bg-orange-50 hover:-translate-y-1 
+                     hover:shadow-lg transition-all duration-300"
+        >
+          <div className="mx-auto mb-4 w-12 h-12 rounded-full 
+                          bg-orange-100 text-orange-600 
+                          flex items-center justify-center text-xl">
+            ✈️
+          </div>
+          <p className="font-semibold text-gray-800 group-hover:text-orange-600 transition">
+            {style}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+{/* Community */}
+<section className="py-28 bg-linear-to-b from-gray-50 to-white text-center">
+  <div className="container mx-auto px-6">
+
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+      Be Part of a Growing Travel Community
+    </h2>
+    <p className="mt-5 text-gray-600 max-w-2xl mx-auto">
+      Create trips, meet new people, and turn solo journeys into shared memories.
+    </p>
+
+    <div className="mt-14 flex justify-center gap-6 flex-wrap">
+      {[
+        '🌍 Global Travelers',
+        '🤝 Trusted Community',
+        '✈️ Real Trips',
+      ].map((item) => (
+        <span
+          key={item}
+          className="px-6 py-3 bg-white rounded-full shadow-md 
+                     text-sm font-medium text-gray-700 
+                     hover:scale-105 hover:shadow-lg transition-all duration-300"
+        >
+          {item}
+        </span>
+      ))}
+    </div>
+
+  </div>
+</section>
 
 <section className="py-24 bg-linear-to-b from-white to-gray-50">
   <div className="container mx-auto px-6">
