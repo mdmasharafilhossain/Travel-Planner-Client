@@ -12,7 +12,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Menu,
-  Sparkles,
+  
   ActivitySquare
 } from 'lucide-react';
 
