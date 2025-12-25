@@ -62,6 +62,7 @@ const fillAdminLogin = () => {
             <ShareInput
               label="Email"
               register={register("email")}
+              placeholder="Enter your email"
               error={errors.email?.message as any}
             />
 
@@ -69,6 +70,7 @@ const fillAdminLogin = () => {
               label="Password"
               register={register("password")}
               type="password"
+              placeholder="Enter your password"
               error={errors.password?.message as any}
             />
 
