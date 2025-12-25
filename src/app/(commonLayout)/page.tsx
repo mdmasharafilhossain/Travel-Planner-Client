@@ -205,47 +205,89 @@ useEffect(() => {
         </div>
       </section>
 
-      
-      <section className="py-20 bg-white">
-  <div className="container mx-auto px-6 text-center">
-    <h2 className="text-3xl font-bold text-gray-900">Success Stories</h2>
+      {/*Success Story  */}
+      <section className="py-24 bg-linear-to-b from-white to-gray-50">
+  <div className="container mx-auto px-6">
 
-    <div className="mt-12 grid md:grid-cols-3 gap-6">
+    {/* Heading */}
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+        Success Stories
+      </h2>
+      <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+        Real travelers. Real connections. Real unforgettable journeys.
+      </p>
+    </div>
+
+    {/* Stories */}
+    <div className="grid md:grid-cols-3 gap-8">
       {[
         {
           name: "Aisha",
           story:
-            "“Met an amazing group of travelers , our Cox’s Bazar trip became unforgettable!”",
+            "Met an amazing group of travelers — our Cox’s Bazar trip became unforgettable!",
         },
         {
           name: "David",
           story:
-            "“Planned a Europe backpacking trip with buddies I met here. Best decision ever!”",
+            "Planned a Europe backpacking trip with buddies I met here. Best decision ever!",
         },
         {
           name: "Mehnaz",
           story:
-            "“Found a safe and friendly travel partner for my first solo trip. Highly recommended!”",
+            "Found a safe and friendly travel partner for my first solo trip. Highly recommended!",
         },
         {
           name: "Liam",
           story:
-            "“Joined a group tour through this platform — made friends for life!”",
+            "Joined a group tour through this platform — made friends for life!",
         },
         {
           name: "Sara",
           story:
-            "“The matching feature helped me find someone with the same travel style. Perfect trip!”",
+            "The matching feature helped me find someone with the same travel style. Perfect trip!",
         },
-      ].map((item) => (
-        <div key={item.name} className="bg-gray-50 p-6 rounded-xl">
-          <p className="text-gray-600 italic">{item.story}</p>
-          <div className="mt-4 font-semibold">{item.name}</div>
+      ].map((item, i) => (
+        <div
+          key={item.name}
+          className="group relative bg-white p-8 rounded-2xl shadow-md 
+                     hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
+        >
+          {/* Quote Icon */}
+          <div className="absolute -top-6 left-6 w-12 h-12 rounded-full 
+                          bg-orange-500 text-white flex items-center 
+                          justify-center text-2xl shadow-lg">
+            “
+          </div>
+
+          {/* Story */}
+          <p className="mt-8 text-gray-600 italic leading-relaxed">
+            {item.story}
+          </p>
+
+          {/* User Info */}
+          <div className="mt-6 flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-orange-100 
+                            text-orange-600 flex items-center 
+                            justify-center font-bold">
+              {item.name.charAt(0)}
+            </div>
+            <div>
+              <p className="font-semibold text-gray-900">{item.name}</p>
+              <p className="text-sm text-gray-500">Verified Traveler</p>
+            </div>
+          </div>
         </div>
       ))}
     </div>
+
+   
+
   </div>
 </section>
+
+
+      {/*Safety Section  */}
 <section className="py-20 bg-gray-50">
   <div className="container mx-auto px-6 text-center">
     <h2 className="text-3xl font-bold text-gray-900">Travel With Confidence</h2>
