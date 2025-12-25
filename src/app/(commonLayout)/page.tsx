@@ -43,10 +43,10 @@ useEffect(() => {
   }
   return (
     <div className="bg-linear-to-br from-gray-50 via-white to-gray-100">
-      {/* ================= HERO SECTION ================= */}
+      {/*  HERO SECTION  */}
       <section className="relative overflow-hidden">
         <div className="container mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
-          {/* Left: Text + CTA */}
+         
           <div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
               Travel is better <span className="text-orange-500">together</span>
@@ -264,7 +264,7 @@ useEffect(() => {
     </div>
 
     {/* Stories */}
-    <div className="grid md:grid-cols-3 gap-8">
+    <div className="grid md:grid-cols-3 gap-10">
       {[
         {
           name: "Aisha",
@@ -491,7 +491,7 @@ useEffect(() => {
         Smart Matching, Real Connections
       </h2>
       <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-        We connect travelers who truly belong together — based on plans, preferences,
+        We connect travelers who truly belong together based on plans, preferences,
         and purpose.
       </p>
     </div>
