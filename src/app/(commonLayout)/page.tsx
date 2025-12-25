@@ -118,7 +118,7 @@ useEffect(() => {
       )}
 {/* How It Works */}
       
-      <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-24 bg-linear-to-b from-gray-50 to-white">
   <div className="container mx-auto px-6 text-center">
 
     <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -162,9 +162,9 @@ useEffect(() => {
 
       {/* Popular Destination */}
      <section className="py-20 bg-white">
-  <div className="container mx-auto px-6 text-center">
-    <div className="flex items-center  mb-10 text-center">
-      <h2 className="text-3xl font-bold text-gray-900">
+  <div className="container mx-auto px-6">
+    <div className="flex items-center  mb-10">
+      <h2 className="text-3xl font-bold text-gray-900 text-center">
         Popular Destinations
       </h2>
       
@@ -209,22 +209,41 @@ useEffect(() => {
 
 
     {/* Why Choose us */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-10 ">Why Choose Us</h2>
+      <section className="py-24 bg-linear-to-b from-gray-50 to-white">
+  <div className="container mx-auto px-6 text-center">
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {['Verified Travelers', 'Secure Messaging', 'Smart Matching Algorithm'].map((text) => (
-              <div key={text} className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="font-semibold text-lg">{text}</h3>
-                <p className="mt-2 text-sm text-gray-600">
-                  Safe, reliable and designed for real travelers.
-                </p>
-              </div>
-            ))}
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-14">
+      Why Choose Us
+    </h2>
+
+    <div className="grid md:grid-cols-3 gap-10">
+      {[
+        'Verified Travelers',
+        'Secure Messaging',
+        'Smart Matching Algorithm',
+      ].map((text) => (
+        <div
+          key={text}
+          className="group bg-white p-10 rounded-2xl shadow-md 
+                     hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+        >
+          <div className="mx-auto mb-6 w-14 h-14 rounded-full bg-orange-100 
+                          text-orange-600 flex items-center justify-center text-xl">
+            ✓
           </div>
+          <h3 className="font-semibold text-lg text-gray-900">
+            {text}
+          </h3>
+          <p className="mt-3 text-sm text-gray-600">
+            Safe, reliable and designed for real travelers.
+          </p>
         </div>
-      </section>
+      ))}
+    </div>
+
+  </div>
+</section>
+
 
       {/*Success Story  */}
       <section className="py-24 bg-linear-to-b from-white to-gray-50">
