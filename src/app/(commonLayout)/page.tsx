@@ -141,14 +141,12 @@ useEffect(() => {
 
       
      <section className="py-20 bg-white">
-  <div className="container mx-auto px-6">
-    <div className="flex items-center justify-between mb-10">
+  <div className="container mx-auto px-6 text-center">
+    <div className="flex items-center  mb-10 text-center">
       <h2 className="text-3xl font-bold text-gray-900">
         Popular Destinations
       </h2>
-      <span className="text-sm text-gray-500">
-        Loved by travelers worldwide
-      </span>
+      
     </div>
 
     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -191,8 +189,8 @@ useEffect(() => {
 
     
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-gray-900 mb-10">Why Choose Us</h2>
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 ">Why Choose Us</h2>
 
           <div className="grid md:grid-cols-3 gap-8">
             {['Verified Travelers', 'Secure Messaging', 'Smart Matching Algorithm'].map((text) => (
@@ -248,9 +246,33 @@ useEffect(() => {
     </div>
   </div>
 </section>
+<section className="py-20 bg-gray-50">
+  <div className="container mx-auto px-6 text-center">
+    <h2 className="text-3xl font-bold text-gray-900">Travel With Confidence</h2>
+    <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
+      Your safety and trust are our top priorities.
+    </p>
+
+    <div className="mt-12 grid md:grid-cols-3 gap-8">
+      {[
+        'Profile Verification',
+        'Report & Block System',
+        
+        'Community Guidelines',
+      ].map((item) => (
+        <div key={item} className="bg-white p-6 rounded-xl shadow-sm">
+          <h3 className="font-semibold text-lg">{item}</h3>
+          <p className="mt-2 text-sm text-gray-600">
+            Built to ensure a safe and respectful travel experience.
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
 
-      {/* ================= FINAL CTA ================= */}
+      {/*FINAL CTA  */}
       <section className="py-24 bg-orange-500 text-white text-center">
         <h2 className="text-3xl font-extrabold">Ready to start your journey?</h2>
         <p className="mt-3 text-orange-100">
@@ -263,6 +285,7 @@ useEffect(() => {
           Get Started Now
         </Link>
       </section>
+
     </div>
   );
 }
