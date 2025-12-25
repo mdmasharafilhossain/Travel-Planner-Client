@@ -163,13 +163,18 @@ useEffect(() => {
       {/* Popular Destination */}
      <section className="py-20 bg-white">
   <div className="container mx-auto px-6">
-    <div className="flex items-center  mb-10">
-      <h2 className="text-3xl font-bold text-gray-900 text-center">
+
+    {/* Title */}
+    <div className="text-center mb-14">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
         Popular Destinations
       </h2>
-      
+      <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
+        Discover trips loved by travelers from around the world
+      </p>
     </div>
 
+    {/* Destination Cards */}
     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {[
         { name: 'Paris', tag: 'City of Love' },
@@ -183,9 +188,6 @@ useEffect(() => {
         >
           {/* Background */}
           <div className="absolute inset-0 bg-gray-100" />
-
-          {/* Dark overlay */}
-          
 
           {/* Content */}
           <div className="relative z-10 h-full p-5 flex flex-col justify-end">
@@ -203,8 +205,10 @@ useEffect(() => {
         </div>
       ))}
     </div>
+
   </div>
 </section>
+
 
 
 
@@ -368,15 +372,24 @@ useEffect(() => {
 </section>
 {/* Coummunity Stats */}
 <section className="py-24 bg-linear-to-b from-gray-50 to-white">
-  <div className="container mx-auto px-6">
- 
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+  <div className="container mx-auto px-6 text-center">
+
+    {/* Section Title */}
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+      Our Growing Community
+    </h2>
+    <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+      Trusted by thousands of travelers exploring the world together.
+    </p>
+
+    {/* Stats */}
+    <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-10">
       {[
         { value: '2K+', label: 'Active Travelers' },
         { value: '150+', label: 'Destinations' },
         { value: '5K+', label: 'Matches Made' },
         { value: '4.9★', label: 'Average Rating' },
-      ].map((stat, i) => (
+      ].map((stat) => (
         <div
           key={stat.label}
           className="group bg-white p-8 rounded-2xl shadow-md 
@@ -394,6 +407,7 @@ useEffect(() => {
 
   </div>
 </section>
+
 
 
 {/*Find Travelers  */}
