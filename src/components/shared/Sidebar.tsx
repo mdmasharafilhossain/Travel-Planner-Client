@@ -12,8 +12,9 @@ import {
   ChevronLeft,
   ChevronRight,
   Menu,
-  Sparkles,
-  ActivitySquare
+  
+  ActivitySquare,
+  X
 } from 'lucide-react';
 
 import Swal from 'sweetalert2';
@@ -94,19 +95,35 @@ export default function Sidebar() {
   return (
     <>
    
-      <button
-        onClick={() => setIsMobileOpen(!isMobileOpen)}
-        className="md:hidden fixed top-4 left-4 z-50 bg-white dark:bg-gray-900 p-2 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700"
-        aria-label="Open menu"
-      >
-        <Menu size={20} className="text-orange-500" />
-      </button>
+      {/* Mobile Top Navbar */}
+<div className="md:hidden fixed top-0 left-0 right-0 h-14 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-4 shadow">
+ 
+  <span className="text-base font-extrabold bg-linear-to-r from-orange-500 to-gray-700 bg-clip-text text-transparent">
+    Admin Dashboard
+  </span>
+
+ 
+  <button
+    onClick={() => setIsMobileOpen(!isMobileOpen)}
+    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+    aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
+  >
+    {isMobileOpen ? (
+      <X size={22} className="text-orange-500" />
+    ) : (
+      <Menu size={22} className="text-orange-500" />
+    )}
+  </button>
+</div>
+
 
    
       <aside
         className={`bg-white dark:bg-gray-900/95 backdrop-blur-sm border-r border-gray-200 dark:border-gray-800 shadow-2xl transition-all duration-300 flex flex-col
-          ${isCollapsed ? 'w-20' : 'w-64'}
-          fixed md:sticky top-0 left-0 h-screen z-40
+          ${isMobileOpen ? 'w-64' : isCollapsed ? 'w-20' : 'w-64'}
+
+          fixed md:sticky top-14 md:top-0 left-0 h-[calc(100vh-3.5rem)] md:h-screen z-40
+
           ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
           transform`}
         aria-label="Main sidebar"
@@ -114,7 +131,7 @@ export default function Sidebar() {
     
         <div className="p-5 border-b border-gray-100 dark:border-gray-800">
           <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
-            {!isCollapsed && (
+            {(!isCollapsed || isMobileOpen) && (
              
                 
                 <span className="text-base font-extrabold bg-linear-to-r from-orange-500 to-gray-700 bg-clip-text text-transparent leading-tight">
@@ -156,7 +173,7 @@ export default function Sidebar() {
                       size={20}
                       className={isActive ? 'text-orange-600' : 'text-gray-400 group-hover:text-orange-600'}
                     />
-                    {!isCollapsed && <span className="font-semibold text-sm">{item.name}</span>}
+                    {(!isCollapsed || isMobileOpen) && <span className="font-semibold text-sm">{item.name}</span>}
                   </Link>
                 </li>
               );
@@ -173,7 +190,7 @@ export default function Sidebar() {
               </span>
             </div>
 
-            {!isCollapsed && (
+            {(!isCollapsed || isMobileOpen) && (
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">
                   {user?.fullName || 'User'}
@@ -191,7 +208,7 @@ export default function Sidebar() {
               className={`flex items-center gap-3 w-full p-3 rounded-xl text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200 ${isCollapsed ? 'justify-center' : ''}`}
             >
               <LogOut size={18} className="text-red-600" />
-              {!isCollapsed && <span className="font-medium">Logout</span>}
+              {(!isCollapsed || isMobileOpen) && <span className="font-medium">Logout</span>}
             </button>
           </div>
         </div>
