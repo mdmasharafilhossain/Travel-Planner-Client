@@ -16,7 +16,8 @@ import {
   DollarSignIcon,
   
   ScanEye,
-  History
+  History,
+  X
 } from 'lucide-react';
 
 import Swal from 'sweetalert2';
@@ -98,21 +99,27 @@ export default function UserSidebar() {
     <>
       {/* Mobile menu button */}
      
+{/* Mobile Top Navbar */}
 <div className="md:hidden fixed top-0 left-0 right-0 h-14 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-4 shadow">
   {/* Left: App name */}
   <span className="text-lg font-extrabold bg-linear-to-r from-orange-500 to-gray-700 bg-clip-text text-transparent">
     TravelPlanner
   </span>
 
-  {/* Right: Menu icon */}
+  {/* Right: Toggle icon */}
   <button
-    onClick={() => setIsMobileOpen(true)}
-    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
-    aria-label="Open menu"
+    onClick={() => setIsMobileOpen(!isMobileOpen)}
+    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+    aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
   >
-    <Menu size={22} className="text-orange-500" />
+    {isMobileOpen ? (
+      <X size={22} className="text-orange-500" />
+    ) : (
+      <Menu size={22} className="text-orange-500" />
+    )}
   </button>
 </div>
+
 
 
       {/* Sidebar container */}
