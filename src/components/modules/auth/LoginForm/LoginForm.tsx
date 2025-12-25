@@ -14,7 +14,7 @@ export default function LoginForm() {
   const router = useRouter();
   const { login } = useAuth();
 
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<LoginType>({
+  const { register, handleSubmit,setValue, formState: { errors, isSubmitting } } = useForm<LoginType>({
     resolver: zodResolver(loginSchema),
   });
 
@@ -26,6 +26,15 @@ export default function LoginForm() {
       Swal.fire("Error", err?.response?.data?.message || err.message, "error");
     }
   }
+const fillUserLogin = () => {
+  setValue("email", "test2100@gmail.com");
+  setValue("password", "Mahi@2221");
+};
+
+const fillAdminLogin = () => {
+  setValue("email", "admin@gmail.com");
+  setValue("password", "Mahi@2221");
+};
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4 py-12">
@@ -70,6 +79,28 @@ export default function LoginForm() {
               </label>
               
             </div>
+{/* Quick Login Buttons */}
+<div className="grid grid-cols-2 gap-3 mb-6">
+  <button
+    type="button"
+    onClick={fillUserLogin}
+    className="py-2 rounded-md text-sm font-medium border 
+               border-orange-200 text-orange-600 
+               hover:bg-orange-50 transition"
+  >
+    User Login
+  </button>
+
+  <button
+    type="button"
+    onClick={fillAdminLogin}
+    className="py-2 rounded-md text-sm font-medium border 
+               border-gray-300 text-gray-700 
+               hover:bg-gray-50 transition"
+  >
+     Admin Login
+  </button>
+</div>
 
             <button
               type="submit"
