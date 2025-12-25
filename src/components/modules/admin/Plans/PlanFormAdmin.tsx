@@ -5,7 +5,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Swal from "sweetalert2";
-import Image from "next/image";
+
 
 import { PlansAPI } from "@/lib/api";
 import { TravelFormProps } from "@/types/travelPlan.interface";
