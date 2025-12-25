@@ -56,18 +56,21 @@ export default function RegisterForm() {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <ShareInput
               label="Full name"
+               placeholder="Enter your full name"
               register={register("fullName")}
               error={errors.fullName?.message as any}
             />
 
             <ShareInput
               label="Email"
+              placeholder="Enter your email"
               register={register("email")}
               error={errors.email?.message as any}
             />
 
             <ShareInput
               label="Password"
+              placeholder="Create a strong password"
               register={register("password")}
               type="password"
               error={errors.password?.message as any}
