@@ -14,7 +14,7 @@ import {
   Sparkles,
   LayoutDashboard,
   DollarSignIcon,
-  SaveAll,
+  
   ScanEye,
   History
 } from 'lucide-react';
