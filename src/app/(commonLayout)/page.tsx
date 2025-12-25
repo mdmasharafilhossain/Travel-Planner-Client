@@ -328,30 +328,45 @@ useEffect(() => {
 
 
       {/*Safety Section  */}
-<section className="py-20 bg-gray-50">
+<section className="py-24 bg-gray-50">
   <div className="container mx-auto px-6 text-center">
-    <h2 className="text-3xl font-bold text-gray-900">Travel With Confidence</h2>
-    <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
+
+    <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+      Travel With Confidence
+    </h2>
+    <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
       Your safety and trust are our top priorities.
     </p>
 
-    <div className="mt-12 grid md:grid-cols-3 gap-8">
+    <div className="mt-16 grid md:grid-cols-3 gap-10">
       {[
         'Profile Verification',
         'Report & Block System',
-        
         'Community Guidelines',
       ].map((item) => (
-        <div key={item} className="bg-white p-6 rounded-xl shadow-sm">
-          <h3 className="font-semibold text-lg">{item}</h3>
-          <p className="mt-2 text-sm text-gray-600">
+        <div
+          key={item}
+          className="group bg-white p-10 rounded-2xl shadow-md 
+                     hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+        >
+          <div className="mx-auto mb-6 w-14 h-14 rounded-full 
+                          bg-green-100 text-green-600 
+                          flex items-center justify-center text-xl">
+            🛡️
+          </div>
+          <h3 className="font-semibold text-lg text-gray-900">
+            {item}
+          </h3>
+          <p className="mt-3 text-sm text-gray-600">
             Built to ensure a safe and respectful travel experience.
           </p>
         </div>
       ))}
     </div>
+
   </div>
 </section>
+
 
 
 <section className="py-24 bg-linear-to-b from-white to-gray-50">
@@ -401,7 +416,7 @@ useEffect(() => {
       {/* Right: Testimonial Card */}
       <div className="relative">
         {/* Glow */}
-        <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-yellow-300 rounded-2xl blur opacity-20" />
+        <div className="absolute -inset-1 bg-linear-to-r from-orange-400 to-yellow-300 rounded-2xl blur opacity-20" />
 
         <div className="relative bg-white p-10 rounded-2xl shadow-xl">
           <p className="text-gray-600 italic text-lg leading-relaxed">
@@ -423,10 +438,7 @@ useEffect(() => {
 
     </div>
 
-    {/* Bottom Highlight */}
-    <div className="mt-20 text-center text-orange-500 font-semibold animate-pulse">
-      Trusted by thousands of real travelers worldwide
-    </div>
+    
 
   </div>
 </section>
