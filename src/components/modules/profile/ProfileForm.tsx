@@ -164,7 +164,7 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
           <label className="block text-sm text-gray-600 mb-1">Current location</label>
           <input
             {...register("currentLocation")}
-            placeholder=""
+            placeholder="Dhaka, Bangladesh"
             className="w-full rounded-lg border p-3 focus:outline-none focus:ring-2 focus:ring-orange-300"
           />
           {errors.currentLocation && (
@@ -177,6 +177,7 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
           <textarea
             {...register("bio")}
             rows={4}
+            placeholder="Tell others a bit about yourself and your travel style..."
             className="w-full rounded-lg border p-3 focus:outline-none focus:ring-2 focus:ring-orange-300"
           />
           {errors.bio && <p className="text-xs text-red-500 mt-1">{String(errors.bio.message)}</p>}
@@ -192,7 +193,7 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
             }
             {...register("travelInterests" as any)}
             className="w-full rounded-lg border p-3 focus:outline-none focus:ring-2 focus:ring-orange-300"
-            placeholder="hiking, photography"
+            placeholder="hiking, photography, food, culture"
           />
           {errors.travelInterests && (
             <p className="text-xs text-red-500 mt-1">{String(errors.travelInterests.message)}</p>
@@ -209,7 +210,7 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
             }
             {...register("visitedCountries" as any)}
             className="w-full rounded-lg border p-3 focus:outline-none focus:ring-2 focus:ring-orange-300"
-            placeholder="Bangladesh, India"
+            placeholder="Bangladesh, Nepal, Thailand"
           />
           {errors.visitedCountries && (
             <p className="text-xs text-red-500 mt-1">{String(errors.visitedCountries.message)}</p>
