@@ -272,6 +272,85 @@ useEffect(() => {
 </section>
 
 
+<section className="py-24 bg-linear-to-b from-white to-gray-50">
+  <div className="container mx-auto px-6">
+
+    {/* Centered Title */}
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+        Smart Matching, Real Connections
+      </h2>
+      <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+        We connect travelers who truly belong together — based on plans, preferences,
+        and purpose.
+      </p>
+    </div>
+
+    {/* Content */}
+    <div className="grid md:grid-cols-2 gap-12 items-center">
+
+      {/* Left: Features */}
+      <div className="space-y-6">
+        <p className="text-gray-600 text-lg">
+          Our intelligent matching system helps you find travel buddies who share
+          the same destination, budget, and travel mindset.
+        </p>
+
+        <ul className="space-y-4">
+          {[
+            'Match by destination & travel date',
+            'Budget compatibility',
+            'Travel style preferences',
+            'Verified traveler profiles',
+          ].map((item) => (
+            <li
+              key={item}
+              className="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition"
+            >
+              <span className="flex items-center justify-center w-8 h-8 rounded-full bg-orange-100 text-orange-600 font-bold">
+                ✓
+              </span>
+              <span className="text-gray-700 font-medium">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Right: Testimonial Card */}
+      <div className="relative">
+        {/* Glow */}
+        <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-yellow-300 rounded-2xl blur opacity-20" />
+
+        <div className="relative bg-white p-10 rounded-2xl shadow-xl">
+          <p className="text-gray-600 italic text-lg leading-relaxed">
+            “I instantly matched with travelers planning the same route.
+            The experience felt natural, safe, and exciting.”
+          </p>
+
+          <div className="mt-6 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold">
+              👤
+            </div>
+            <div>
+              <p className="font-semibold text-gray-900">Community Member</p>
+              <p className="text-sm text-gray-500">Verified Traveler</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    {/* Bottom Highlight */}
+    <div className="mt-20 text-center text-orange-500 font-semibold animate-pulse">
+      Trusted by thousands of real travelers worldwide
+    </div>
+
+  </div>
+</section>
+
+
+
       {/*FINAL CTA  */}
       <section className="py-24 bg-orange-500 text-white text-center">
         <h2 className="text-3xl font-extrabold">Ready to start your journey?</h2>
