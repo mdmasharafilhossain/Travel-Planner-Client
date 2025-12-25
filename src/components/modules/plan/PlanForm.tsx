@@ -47,11 +47,13 @@ export default function PlanForm({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ShareInput
           label="Title"
+          placeholder="Trip to Cox’s Bazar"
           register={register("title")}
           error={errors.title?.message as any}
         />
         <ShareInput
           label="Destination"
+          placeholder="Cox’s Bazar, Bangladesh"
           register={register("destination")}
           error={errors.destination?.message as any}
         />
@@ -98,11 +100,12 @@ export default function PlanForm({
           <label className="block text-sm text-gray-600 mb-2">Description (Optional)</label>
           <textarea
             {...register("description")}
+            
             rows={4}
             className={`w-full rounded-lg border p-3 resize-none placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-300 ${
               errors.description ? "border-red-300" : "border-gray-200"
             }`}
-            placeholder="Short description about this plan..."
+            placeholder="Briefly describe your trip, activities, or expectations..."
           />
           {errors.description && (
             <p className="text-xs text-red-500 mt-1">{errors.description?.message as any}</p>
@@ -149,12 +152,13 @@ export default function PlanForm({
         <div>
           <label className="block text-sm text-gray-600 mb-2">Budget Min (BDT)</label>
           <input
+          
             {...register("budgetMin")}
             type="number"
             className={`w-full rounded-lg border p-2 focus:outline-none focus:ring-2 focus:ring-orange-300 ${
               errors.budgetMin ? "border-red-300" : "border-gray-200"
             }`}
-            placeholder="0"
+            placeholder="Minimum budget (e.g. 5000)"
           
           />
           {errors.budgetMin && (
@@ -170,7 +174,7 @@ export default function PlanForm({
             className={`w-full rounded-lg border p-2 focus:outline-none focus:ring-2 focus:ring-orange-300 ${
               errors.budgetMax ? "border-red-300" : "border-gray-200"
             }`}
-            placeholder="0"
+            placeholder="Maximum budget (e.g. 15000)"
           
           />
           {errors.budgetMax && (

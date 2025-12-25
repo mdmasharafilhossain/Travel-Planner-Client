@@ -141,6 +141,7 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
           <label className="block text-sm text-gray-600 mb-1">Full name</label>
           <input
             {...register("fullName")}
+            placeholder="Enter your full name"
             className="w-full rounded-lg border p-3 focus:outline-none focus:ring-2 focus:ring-orange-300"
           />
           {errors.fullName && <p className="text-xs text-red-500 mt-1">{String(errors.fullName.message)}</p>}
@@ -163,6 +164,7 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
           <label className="block text-sm text-gray-600 mb-1">Current location</label>
           <input
             {...register("currentLocation")}
+            placeholder=""
             className="w-full rounded-lg border p-3 focus:outline-none focus:ring-2 focus:ring-orange-300"
           />
           {errors.currentLocation && (
