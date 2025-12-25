@@ -43,10 +43,10 @@ useEffect(() => {
   }
   return (
     <div className="bg-linear-to-br from-gray-50 via-white to-gray-100">
-      {/* ================= HERO SECTION ================= */}
+      {/*  HERO SECTION  */}
       <section className="relative overflow-hidden">
         <div className="container mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
-          {/* Left: Text + CTA */}
+         
           <div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
               Travel is better <span className="text-orange-500">together</span>
@@ -116,41 +116,65 @@ useEffect(() => {
         
         <HomeMatchedTravelers/>
       )}
-
+{/* How It Works */}
       
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-gray-900">How It Works</h2>
-          <p className="mt-3 text-gray-600">Start your journey in just 3 simple steps</p>
+      <section className="py-24 bg-linear-to-b from-gray-50 to-white">
+  <div className="container mx-auto px-6 text-center">
 
-          <div className="mt-12 grid md:grid-cols-3 gap-8">
-            {[
-              { step: '01', title: 'Sign Up', desc: 'Create your profile and share your travel interests.' },
-              { step: '02', title: 'Create Plan', desc: 'Add destination, budget, and travel date.' },
-              { step: '03', title: 'Find Buddy', desc: 'Match with travelers going the same way.' },
-            ].map((item) => (
-              <div key={item.step} className="bg-white p-6 rounded-xl shadow-sm">
-                <div className="text-orange-500 font-extrabold text-4xl">{item.step}</div>
-                <h3 className="mt-3 font-semibold text-lg">{item.title}</h3>
-                <p className="mt-2 text-sm text-gray-600">{item.desc}</p>
-              </div>
-            ))}
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+      How It Works
+    </h2>
+    <p className="mt-4 text-gray-600">
+      Start your journey in just 3 simple steps
+    </p>
+
+    <div className="mt-16 grid md:grid-cols-3 gap-10 relative">
+
+      {[
+        { step: '01', title: 'Sign Up', desc: 'Create your profile and share your travel interests.' },
+        { step: '02', title: 'Create Plan', desc: 'Add destination, budget, and travel date.' },
+        { step: '03', title: 'Find Buddy', desc: 'Match with travelers going the same way.' },
+      ].map((item) => (
+        <div
+          key={item.step}
+          className="group bg-white p-10 rounded-2xl shadow-md 
+                     hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+        >
+          <div className="mx-auto mb-6 w-14 h-14 rounded-full bg-orange-100 
+                          text-orange-600 flex items-center justify-center 
+                          text-xl font-extrabold">
+            {item.step}
           </div>
-        </div>
-      </section>
 
-      
+          <h3 className="text-xl font-semibold text-gray-900">
+            {item.title}
+          </h3>
+          <p className="mt-3 text-sm text-gray-600">
+            {item.desc}
+          </p>
+        </div>
+      ))}
+
+    </div>
+  </div>
+</section>
+
+
+      {/* Popular Destination */}
      <section className="py-20 bg-white">
   <div className="container mx-auto px-6">
-    <div className="flex items-center justify-between mb-10">
-      <h2 className="text-3xl font-bold text-gray-900">
+
+    {/* Title */}
+    <div className="text-center mb-14">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
         Popular Destinations
       </h2>
-      <span className="text-sm text-gray-500">
-        Loved by travelers worldwide
-      </span>
+      <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
+        Discover trips loved by travelers from around the world
+      </p>
     </div>
 
+    {/* Destination Cards */}
     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {[
         { name: 'Paris', tag: 'City of Love' },
@@ -164,9 +188,6 @@ useEffect(() => {
         >
           {/* Background */}
           <div className="absolute inset-0 bg-gray-100" />
-
-          {/* Dark overlay */}
-          
 
           {/* Content */}
           <div className="relative z-10 h-full p-5 flex flex-col justify-end">
@@ -184,73 +205,360 @@ useEffect(() => {
         </div>
       ))}
     </div>
+
   </div>
 </section>
 
 
 
-    
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-gray-900 mb-10">Why Choose Us</h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {['Verified Travelers', 'Secure Messaging', 'Smart Matching Algorithm'].map((text) => (
-              <div key={text} className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="font-semibold text-lg">{text}</h3>
-                <p className="mt-2 text-sm text-gray-600">
-                  Safe, reliable and designed for real travelers.
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      
-      <section className="py-20 bg-white">
+    {/* Why Choose us */}
+      <section className="py-24 bg-linear-to-b from-gray-50 to-white">
   <div className="container mx-auto px-6 text-center">
-    <h2 className="text-3xl font-bold text-gray-900">Success Stories</h2>
 
-    <div className="mt-12 grid md:grid-cols-3 gap-6">
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-14">
+      Why Choose Us
+    </h2>
+
+    <div className="grid md:grid-cols-3 gap-10">
+      {[
+        'Verified Travelers',
+        'Secure Messaging',
+        'Smart Matching Algorithm',
+      ].map((text) => (
+        <div
+          key={text}
+          className="group bg-white p-10 rounded-2xl shadow-md 
+                     hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+        >
+          <div className="mx-auto mb-6 w-14 h-14 rounded-full bg-orange-100 
+                          text-orange-600 flex items-center justify-center text-xl">
+            ✓
+          </div>
+          <h3 className="font-semibold text-lg text-gray-900">
+            {text}
+          </h3>
+          <p className="mt-3 text-sm text-gray-600">
+            Safe, reliable and designed for real travelers.
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+
+      {/*Success Story  */}
+      <section className="py-24 bg-linear-to-b from-white to-gray-50">
+  <div className="container mx-auto px-6">
+
+    {/* Heading */}
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+        Success Stories
+      </h2>
+      <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+        Real travelers. Real connections. Real unforgettable journeys.
+      </p>
+    </div>
+
+    {/* Stories */}
+    <div className="grid md:grid-cols-3 gap-10">
       {[
         {
           name: "Aisha",
           story:
-            "“Met an amazing group of travelers , our Cox’s Bazar trip became unforgettable!”",
+            "Met an amazing group of travelers — our Cox’s Bazar trip became unforgettable!",
         },
         {
           name: "David",
           story:
-            "“Planned a Europe backpacking trip with buddies I met here. Best decision ever!”",
+            "Planned a Europe backpacking trip with buddies I met here. Best decision ever!",
         },
         {
           name: "Mehnaz",
           story:
-            "“Found a safe and friendly travel partner for my first solo trip. Highly recommended!”",
+            "Found a safe and friendly travel partner for my first solo trip. Highly recommended!",
         },
         {
           name: "Liam",
           story:
-            "“Joined a group tour through this platform — made friends for life!”",
+            "Joined a group tour through this platform — made friends for life!",
         },
         {
           name: "Sara",
           story:
-            "“The matching feature helped me find someone with the same travel style. Perfect trip!”",
+            "The matching feature helped me find someone with the same travel style. Perfect trip!",
         },
-      ].map((item) => (
-        <div key={item.name} className="bg-gray-50 p-6 rounded-xl">
-          <p className="text-gray-600 italic">{item.story}</p>
-          <div className="mt-4 font-semibold">{item.name}</div>
+      ].map((item, i) => (
+        <div
+          key={item.name}
+          className="group relative bg-white p-8 rounded-2xl shadow-md 
+                     hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
+        >
+          {/* Quote Icon */}
+          <div className="absolute -top-6 left-6 w-12 h-12 rounded-full 
+                          bg-orange-500 text-white flex items-center 
+                          justify-center text-2xl shadow-lg">
+            “
+          </div>
+
+          {/* Story */}
+          <p className="mt-8 text-gray-600 italic leading-relaxed">
+            {item.story}
+          </p>
+
+          {/* User Info */}
+          <div className="mt-6 flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-orange-100 
+                            text-orange-600 flex items-center 
+                            justify-center font-bold">
+              {item.name.charAt(0)}
+            </div>
+            <div>
+              <p className="font-semibold text-gray-900">{item.name}</p>
+              <p className="text-sm text-gray-500">Verified Traveler</p>
+            </div>
+          </div>
         </div>
       ))}
     </div>
+
+   
+
   </div>
 </section>
 
 
-      {/* ================= FINAL CTA ================= */}
+      {/*Safety Section  */}
+<section className="py-24 bg-gray-50">
+  <div className="container mx-auto px-6 text-center">
+
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+      Travel With Confidence
+    </h2>
+    <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+      Your safety and trust are our top priorities.
+    </p>
+
+    <div className="mt-16 grid md:grid-cols-3 gap-10">
+      {[
+        'Profile Verification',
+        'Report & Block System',
+        'Community Guidelines',
+      ].map((item) => (
+        <div
+          key={item}
+          className="group bg-white p-10 rounded-2xl shadow-md 
+                     hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+        >
+          <div className="mx-auto mb-6 w-14 h-14 rounded-full 
+                          bg-green-100 text-green-600 
+                          flex items-center justify-center text-xl">
+            🛡️
+          </div>
+          <h3 className="font-semibold text-lg text-gray-900">
+            {item}
+          </h3>
+          <p className="mt-3 text-sm text-gray-600">
+            Built to ensure a safe and respectful travel experience.
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+{/* Coummunity Stats */}
+<section className="py-24 bg-linear-to-b from-gray-50 to-white">
+  <div className="container mx-auto px-6 text-center">
+
+    {/* Section Title */}
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+      Our Growing Community
+    </h2>
+    <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+      Trusted by thousands of travelers exploring the world together.
+    </p>
+
+    {/* Stats */}
+    <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-10">
+      {[
+        { value: '2K+', label: 'Active Travelers' },
+        { value: '150+', label: 'Destinations' },
+        { value: '5K+', label: 'Matches Made' },
+        { value: '4.9★', label: 'Average Rating' },
+      ].map((stat) => (
+        <div
+          key={stat.label}
+          className="group bg-white p-8 rounded-2xl shadow-md 
+                     hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+        >
+          <h3 className="text-4xl font-extrabold text-orange-500">
+            {stat.value}
+          </h3>
+          <p className="mt-3 text-sm text-gray-600 group-hover:text-gray-800 transition">
+            {stat.label}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+
+
+{/*Find Travelers  */}
+
+<section className="py-24 bg-white">
+  <div className="container mx-auto px-6 text-center">
+
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+      Find Travelers Like You
+    </h2>
+    <p className="mt-4 text-gray-600">
+      No matter your travel style, there’s a buddy waiting.
+    </p>
+
+    <div className="mt-16 grid md:grid-cols-5 gap-8">
+      {[
+        'Backpackers',
+        'Luxury Travelers',
+        'Adventure Seekers',
+        'Food Explorers',
+        'Digital Nomads',
+      ].map((style) => (
+        <div
+          key={style}
+          className="group bg-gray-50 p-8 rounded-2xl shadow-sm 
+                     hover:bg-orange-50 hover:-translate-y-1 
+                     hover:shadow-lg transition-all duration-300"
+        >
+          <div className="mx-auto mb-4 w-12 h-12 rounded-full 
+                          bg-orange-100 text-orange-600 
+                          flex items-center justify-center text-xl">
+            ✈️
+          </div>
+          <p className="font-semibold text-gray-800 group-hover:text-orange-600 transition">
+            {style}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+{/* Community */}
+<section className="py-28 bg-linear-to-b from-gray-50 to-white text-center">
+  <div className="container mx-auto px-6">
+
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+      Be Part of a Growing Travel Community
+    </h2>
+    <p className="mt-5 text-gray-600 max-w-2xl mx-auto">
+      Create trips, meet new people, and turn solo journeys into shared memories.
+    </p>
+
+    <div className="mt-14 flex justify-center gap-6 flex-wrap">
+      {[
+        '🌍 Global Travelers',
+        '🤝 Trusted Community',
+        '✈️ Real Trips',
+      ].map((item) => (
+        <span
+          key={item}
+          className="px-6 py-3 bg-white rounded-full shadow-md 
+                     text-sm font-medium text-gray-700 
+                     hover:scale-105 hover:shadow-lg transition-all duration-300"
+        >
+          {item}
+        </span>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<section className="py-24 bg-linear-to-b from-white to-gray-50">
+  <div className="container mx-auto px-6">
+
+    {/* Centered Title */}
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+        Smart Matching, Real Connections
+      </h2>
+      <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+        We connect travelers who truly belong together based on plans, preferences,
+        and purpose.
+      </p>
+    </div>
+
+    {/* Content */}
+    <div className="grid md:grid-cols-2 gap-12 items-center">
+
+      {/* Left: Features */}
+      <div className="space-y-6">
+        <p className="text-gray-600 text-lg">
+          Our intelligent matching system helps you find travel buddies who share
+          the same destination, budget, and travel mindset.
+        </p>
+
+        <ul className="space-y-4">
+          {[
+            'Match by destination & travel date',
+            'Budget compatibility',
+            'Travel style preferences',
+            'Verified traveler profiles',
+          ].map((item) => (
+            <li
+              key={item}
+              className="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition"
+            >
+              <span className="flex items-center justify-center w-8 h-8 rounded-full bg-orange-100 text-orange-600 font-bold">
+                ✓
+              </span>
+              <span className="text-gray-700 font-medium">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Right: Testimonial Card */}
+      <div className="relative">
+        {/* Glow */}
+        <div className="absolute -inset-1 bg-linear-to-r from-orange-400 to-yellow-300 rounded-2xl blur opacity-20" />
+
+        <div className="relative bg-white p-10 rounded-2xl shadow-xl">
+          <p className="text-gray-600 italic text-lg leading-relaxed">
+            “I instantly matched with travelers planning the same route.
+            The experience felt natural, safe, and exciting.”
+          </p>
+
+          <div className="mt-6 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold">
+              👤
+            </div>
+            <div>
+              <p className="font-semibold text-gray-900">Community Member</p>
+              <p className="text-sm text-gray-500">Verified Traveler</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    
+
+  </div>
+</section>
+
+
+
+      {/*FINAL CTA  */}
       <section className="py-24 bg-orange-500 text-white text-center">
         <h2 className="text-3xl font-extrabold">Ready to start your journey?</h2>
         <p className="mt-3 text-orange-100">
@@ -263,6 +571,7 @@ useEffect(() => {
           Get Started Now
         </Link>
       </section>
+
     </div>
   );
 }

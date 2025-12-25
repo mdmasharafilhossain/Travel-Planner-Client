@@ -118,11 +118,12 @@ export default function EditPlanPage() {
 
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         {/* Title */}
-        <Input label="Title" {...register("title")} error={errors.title?.message} />
+        <Input placeholder="Trip to Cox’s Bazar" label="Title" {...register("title")} error={errors.title?.message} />
 
         {/* Destination */}
         <Input
           label="Destination"
+          placeholder="Cox’s Bazar, Bangladesh"
           {...register("destination")}
           error={errors.destination?.message}
         />
@@ -148,6 +149,7 @@ export default function EditPlanPage() {
           <label className="text-sm">Description</label>
           <textarea
             {...register("description")}
+            placeholder="Short description about your travel plan, activities, or expectations..."
             rows={3}
             className="w-full border rounded px-2 py-2"
           />
@@ -161,12 +163,14 @@ export default function EditPlanPage() {
           <Input
             label="Min Budget"
             type="number"
+            placeholder="e.g. 5000"
             {...register("budgetMin")}
             error={errors.budgetMin?.message}
           />
           <Input
             label="Max Budget"
             type="number"
+            placeholder="e.g. 15000"
             {...register("budgetMax")}
             error={errors.budgetMax?.message}
           />

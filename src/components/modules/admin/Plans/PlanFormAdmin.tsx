@@ -5,7 +5,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Swal from "sweetalert2";
-import Image from "next/image";
+
 
 import { PlansAPI } from "@/lib/api";
 import { TravelFormProps } from "@/types/travelPlan.interface";
@@ -99,6 +99,7 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
             <label className="block text-gray-700 mb-1">Title</label>
             <input
               type="text"
+              placeholder="Trip to Cox’s Bazar"
               {...register("title")}
               className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
                 errors.title ? "border-red-300" : "border-gray-300"
@@ -114,6 +115,7 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
             <input
               type="text"
               {...register("destination")}
+               placeholder="Cox’s Bazar, Bangladesh"
               className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
                 errors.destination ? "border-red-300" : "border-gray-300"
               }`}
@@ -159,6 +161,7 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
             <label className="block text-gray-700 mb-1">Minimum Budget</label>
             <input
               type="number"
+              placeholder="e.g. 5000"
               {...register("budgetMin")}
               className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
                 errors.budgetMin ? "border-red-300" : "border-gray-300"
@@ -174,6 +177,7 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
             <input
               type="number"
               {...register("budgetMax")}
+              placeholder="e.g. 15000"
               className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
                 errors.budgetMax ? "border-red-300" : "border-gray-300"
               }`}
@@ -226,6 +230,7 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
           <textarea
             rows={3}
             {...register("description")}
+            placeholder="Short description about your travel plan, activities, or expectations..."
             className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
               errors.description ? "border-red-300" : "border-gray-300"
             }`}
