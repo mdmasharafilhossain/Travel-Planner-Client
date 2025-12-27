@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -29,7 +30,7 @@ const MyPostedPlan = () => {
         setPlans(json.plans);
       }
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     } finally {
       setLoading(false);
     }
@@ -60,7 +61,7 @@ const MyPostedPlan = () => {
         setPlans((prev) => prev.filter((p) => p.id !== planId));
       }
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   }
 

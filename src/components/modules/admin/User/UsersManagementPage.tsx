@@ -31,7 +31,7 @@ const [meta, setMeta] = useState<any>(null);
     setUsers(res.data?.users ?? []);
     setMeta(res.data?.meta ?? null);
   } catch (err: any) {
-    console.error("fetchUsers:", err);
+    // console.error("fetchUsers:", err);
     setError(
       err?.response?.data?.message ||
         err?.message ||
@@ -70,7 +70,7 @@ const [meta, setMeta] = useState<any>(null);
         const res = await UserAPI.deleteUser(userId);
         await MySwal.fire({ title: "Deleted", text: res.data?.message ?? "User deleted", icon: "success", confirmButtonColor: "#fb923c" });
       } catch (err: any) {
-        console.error("delete error", err);
+        // console.error("delete error", err);
         await MySwal.fire({ title: "Failed", text: err?.response?.data?.message || err?.message || "Delete failed", icon: "error", confirmButtonColor: "#fb923c" });
         fetchUsers(); 
       } finally {
@@ -101,7 +101,7 @@ const [meta, setMeta] = useState<any>(null);
         const res = await UserAPI.changeRole(userId, newRole as "USER" | "ADMIN");
         await MySwal.fire({ title: "Updated", text: res.data?.message ?? "Role updated", icon: "success", confirmButtonColor: "#fb923c" });
       } catch (err: any) {
-        console.error("changeRole", err);
+        // console.error("changeRole", err);
         await MySwal.fire({ title: "Failed", text: err?.response?.data?.message || err?.message || "Change role failed", icon: "error", confirmButtonColor: "#fb923c" });
         fetchUsers();
       } finally {

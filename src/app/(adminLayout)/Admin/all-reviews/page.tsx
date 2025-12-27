@@ -27,7 +27,7 @@ export default function AdminReviewPage() {
       const json = await res.json();
       if (json.success) setReviews(json.reviews);
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     } finally {
       setLoading(false);
     }
@@ -57,7 +57,7 @@ export default function AdminReviewPage() {
         setReviews((prev) => prev.filter((r) => r.id !== id));
       }
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   }
 

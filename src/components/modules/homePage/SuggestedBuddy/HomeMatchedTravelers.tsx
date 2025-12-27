@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -46,7 +47,7 @@ export default function HomeMatchedTravelers() {
 
       setMatches(Array.from(uniqueMap.values()).slice(0, 6));
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     } finally {
       setLoading(false);
     }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -84,7 +85,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
     setEditingId(null);
     await fetchHostReviews();
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     await Swal.fire({
       icon: "error",
       title: "Something went wrong",
@@ -120,7 +121,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
         setMyStatus(null);
       }
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   }
 
@@ -138,7 +139,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
         setReviews(json.reviews ?? []);
       }
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     } finally {
       setLoadingReviews(false);
     }
@@ -189,7 +190,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
    
       await fetchPlanForParticipants();
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       await Swal.fire({
         icon: "error",
         title: "Something went wrong",
@@ -238,7 +239,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
 
       await fetchPlanForParticipants();
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       await Swal.fire({
         icon: "error",
         title: "Something went wrong",
@@ -303,7 +304,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
 
       await fetchHostReviews();
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       await Swal.fire({
         icon: "error",
         title: "Something went wrong",
@@ -357,7 +358,7 @@ async function handleEditReviewSubmit(e: React.FormEvent) {
 
       await fetchHostReviews();
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       await Swal.fire({
         icon: "error",
         title: "Something went wrong",

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -36,13 +37,13 @@ export default function GiveReviewPage() {
       });
       const json = await res.json();
       if (!res.ok || !json.success) {
-        console.error(json.message);
+        // console.error(json.message);
         setTrips([]);
       } else {
         setTrips(json.reviewableTrips || []);
       }
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       setTrips([]);
     } finally {
       setLoading(false);

@@ -60,7 +60,7 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
         profileImageUrl = resp?.data?.display_url || resp?.data?.url || resp?.display_url || resp?.url || profileImageUrl;
       }
     } catch (err: any) {
-      console.error("Image upload failed:", err);
+      // console.error("Image upload failed:", err);
       Swal.fire("Error", err?.message || "Image upload failed", "error");
       return;
     }
@@ -119,7 +119,7 @@ export default function ProfileForm({ defaultValues, onSuccess, onCancel }: Prop
 
       onSuccess(updated);
     } catch (err: any) {
-      console.error("Update failed:", err);
+      // console.error("Update failed:", err);
       Swal.fire("Error", err?.response?.data?.message || err?.message || "Failed to update profile", "error");
     }
   }

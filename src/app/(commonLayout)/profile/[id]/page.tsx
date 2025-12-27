@@ -9,7 +9,7 @@ export default async function ProfilePage({ params }: Props) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000"}/api/users/${id}`, { next: { revalidate: 30 }});
   if (!res.ok) return notFound();
   const j = await res.json();
-  console.log(j,"USer");
+  // console.log(j,"USer");
   const user = j.user;
 
   return (

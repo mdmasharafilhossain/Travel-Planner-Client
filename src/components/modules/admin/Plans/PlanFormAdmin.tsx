@@ -66,7 +66,7 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
       onSaved(updated);
       reset(values);
     } catch (err: any) {
-      console.error(err);
+      // console.error(err);
       await Swal.fire({
         icon: "error",
         title: "Failed",

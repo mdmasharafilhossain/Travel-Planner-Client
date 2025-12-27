@@ -45,7 +45,7 @@ export default function PaymentSuccessClient() {
           }
         }
       } catch (err) {
-        console.error(err);
+        // console.error(err);
       }
     }
 

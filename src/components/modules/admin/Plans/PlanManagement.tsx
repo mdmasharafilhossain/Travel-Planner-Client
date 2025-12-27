@@ -37,7 +37,7 @@ export default function PlanManagementPage() {
       setPlans(Array.isArray(data) ? data : []);
       setMeta(metaInfo);
     } catch (err: any) {
-      console.error(err);
+      // console.error(err);
       setError(
         err?.response?.data?.message || err?.message || "Failed to load plans"
       );
@@ -77,7 +77,7 @@ export default function PlanManagementPage() {
           confirmButtonColor: "#fb923c",
         });
       } catch (err: any) {
-        console.error(err);
+        // console.error(err);
         await Swal.fire({
           icon: "error",
           title: "Failed",

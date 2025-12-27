@@ -70,7 +70,7 @@ export default function EditPlanPage() {
         setValue("travelType", p.travelType);
         setValue("visibility", p.visibility);
       } catch (err) {
-        console.error(err);
+        // console.error(err);
       }
     })();
   }, [planId, setValue]);

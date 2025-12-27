@@ -21,7 +21,7 @@ export default async function PlanDetail({ params }: Props) {
   if (!res.ok) return notFound();
 
   const j = await res.json();
-  console.log("API response:", j);
+  // console.log("API response:", j);
 
   const plan: ITravelPlan = j.plan || j.data || j.plans || null;
 

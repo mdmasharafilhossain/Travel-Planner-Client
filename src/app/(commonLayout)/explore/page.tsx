@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* app/explore/page.tsx */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -56,13 +57,13 @@ export default function ExplorePage() {
       const json = await res.json();
 
       if (!res.ok || !json.success) {
-        console.error(json.message || "Failed to fetch matches");
+        // console.error(json.message || "Failed to fetch matches");
         setMatches([]);
       } else {
         setMatches(json.matches || []);
       }
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       setMatches([]);
     } finally {
       setLoading(false);

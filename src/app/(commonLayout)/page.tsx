@@ -30,13 +30,13 @@ useEffect(() => {
          credentials: "include",});
       const json = await res.json();
       if (!res.ok || !json.success) {
-        console.error(json.message);
+        // console.error(json.message);
       } else {
         setUpcomingPlans(json.upcomingPlans || []);
         setMatchesByPlan(json.matchesByPlan || {});
       }
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     } finally {
       setLoading(false);
     }

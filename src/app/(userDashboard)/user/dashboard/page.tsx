@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -50,13 +51,13 @@ export default function UserDashboardPage() {
       });
       const json = await res.json();
       if (!res.ok || !json.success) {
-        console.error(json.message);
+        // console.error(json.message);
         setData(null);
       } else {
         setData(json);
       }
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       setData(null);
     } finally {
       setLoading(false);

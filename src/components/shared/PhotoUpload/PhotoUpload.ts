@@ -18,7 +18,7 @@ export const PhotoUpload = async (image: File ): Promise<any> => {
     formData
   );
 
-  console.log(data);
+  // console.log(data);
 
   return data;
 };

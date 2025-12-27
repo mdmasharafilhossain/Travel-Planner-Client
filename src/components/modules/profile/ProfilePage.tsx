@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 "use client";
@@ -40,7 +41,7 @@ export default function ProfilePage() {
       return;
     }
   } catch (err) {
-    console.error("Failed to refresh /me after profile update:", err);
+    // console.error("Failed to refresh /me after profile update:", err);
     
     try {
       const safe = { ...(user || {}) };
@@ -63,7 +64,7 @@ export default function ProfilePage() {
       setUser(safe as any);
       return;
     } catch (e) {
-      console.error("Fallback merge failed:", e);
+      // console.error("Fallback merge failed:", e);
     }
   }
 }

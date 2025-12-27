@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -31,10 +32,10 @@ export default function UserPaymentsPage() {
     if (json.ok) {
       setData(json.data);
     } else {
-      console.error("Failed to load payments:", json.message);
+      // console.error("Failed to load payments:", json.message);
     }
   } catch (err) {
-    console.error(err);
+    // console.error(err);
   } finally {
     setLoading(false);
   }

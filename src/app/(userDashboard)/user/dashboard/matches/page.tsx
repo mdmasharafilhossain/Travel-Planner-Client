@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -39,13 +40,13 @@ export default function MatchesPage() {
          credentials: "include",});
       const json = await res.json();
       if (!res.ok || !json.success) {
-        console.error(json.message);
+        // console.error(json.message);
       } else {
         setUpcomingPlans(json.upcomingPlans || []);
         setMatchesByPlan(json.matchesByPlan || {});
       }
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     } finally {
       setLoading(false);
     }
