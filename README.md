@@ -7,7 +7,7 @@ Users can create travel plans, find travel buddies, request to join trips, chat,
 
 ## Project Overview
 
-The Travel Planner Frontend enables:
+
 
 
 
