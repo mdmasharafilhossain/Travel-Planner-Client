@@ -7,11 +7,11 @@ Users can create travel plans, find travel buddies, request to join trips, chat,
 
 ## Project Overview
 
-The Travel Planner Frontend enables:
 
 
 
-## Public Features
+
+### Public Features
 
 - Landing Page with Top Destinations  
 - Find Travel Buddies CTA  
@@ -22,7 +22,7 @@ The Travel Planner Frontend enables:
 
 
 
-## User Features
+### User Features
 
 - Authentication (Login / Register)
 - Create Travel Plans
@@ -38,7 +38,7 @@ The Travel Planner Frontend enables:
 
 
 
-## Admin Features
+### Admin Features
 
 - Admin Dashboard  
 - Manage All Travel Plans (edit/delete)  
