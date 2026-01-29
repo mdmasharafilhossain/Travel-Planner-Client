@@ -669,7 +669,7 @@ bg-gray-50 dark:bg-gray-800 flex flex-col sm:flex-row sm:items-center sm:justify
         )}
 
         {user && !isHost && (
-  <div className="mt-4 text-xs text-gray-500 dark:text-gray-400 dark:text-gray-400">
+  <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
     {hasMyReview ? (
       <span>
         You have already reviewed this host. You can edit or delete your review above.
