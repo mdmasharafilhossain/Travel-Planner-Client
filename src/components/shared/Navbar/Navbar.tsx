@@ -276,15 +276,99 @@ export default function Navbar() {
       )}
 
       {/* Tour Modal */}
-      {showTour && (
-        <div className="fixed inset-0 z-40 flex justify-center items-start mt-20 px-4">
-          <div className="max-w-md w-full bg-white dark:bg-gray-800 shadow-xl rounded-lg border border-orange-100 dark:border-gray-700 p-4">
+       {showTour && (
+  <div className="pointer-events-none fixed inset-0 z-40 flex justify-center items-start mt-20 px-4 bg-black/20 dark:bg-black/50">
+    <div className="pointer-events-auto max-w-md w-full bg-white dark:bg-gray-800 shadow-xl rounded-lg border border-orange-100 dark:border-gray-700 p-4">
 
-            {/* Content unchanged */}
+      <div className="flex justify-between items-start gap-3">
+        <div>
+          <p className="text-xs uppercase tracking-wide text-orange-500 font-semibold">
+            Quick Tour {tourStep + 1}/3
+          </p>
 
-          </div>
+          {tourStep === 0 && (
+            <>
+              <h3 className="mt-1 text-lg font-semibold text-gray-900 dark:text-white">
+                Explore Travelers & Buddies
+              </h3>
+              <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
+                Use the <span className="font-semibold">Explore</span> menu to find travelers going to similar
+                destinations and discover public travel plans.
+              </p>
+            </>
+          )}
+
+          {tourStep === 1 && (
+            <>
+              <h3 className="mt-1 text-lg font-semibold text-gray-900 dark:text-white">
+                Create & Manage Your Plans
+              </h3>
+              <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
+                The <span className="font-semibold">Plans</span> section lets you create and manage your own
+                travel plans with dates, budget, and travel type.
+              </p>
+            </>
+          )}
+
+          {tourStep === 2 && (
+            <>
+              <h3 className="mt-1 text-lg font-semibold text-gray-900 dark:text-white">
+                Sign Up to Unlock Features
+              </h3>
+              <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
+                Use <span className="font-semibold">Login</span> or{" "}
+                <span className="font-semibold">Register</span> to create an account, save plans, and get matched with travel buddies.
+              </p>
+            </>
+          )}
         </div>
-      )}
+
+        <button
+          onClick={closeTour}
+          className="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-200"
+          aria-label="Close tour"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div className="mt-4 flex justify-between items-center">
+
+        <button
+          onClick={prevStep}
+          disabled={tourStep === 0}
+          className={`px-3 py-1 rounded-md text-xs font-medium border ${
+            tourStep === 0
+              ? "border-gray-200 text-gray-300 cursor-default dark:border-gray-600 dark:text-gray-500"
+              : "border-gray-300 text-gray-600 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+          }`}
+        >
+          Previous
+        </button>
+
+        <div className="flex gap-1">
+
+          <button
+            onClick={closeTour}
+            className="px-3 py-1 rounded-md text-xs font-medium text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-700"
+          >
+            Skip
+          </button>
+
+          <button
+            onClick={nextStep}
+            className="px-3 py-1 rounded-md text-xs font-medium bg-orange-600 text-white hover:bg-orange-700"
+          >
+            {tourStep === 2 ? "Finish" : "Next"}
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+)}
+
     </nav>
   );
 }
