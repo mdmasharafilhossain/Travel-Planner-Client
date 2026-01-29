@@ -1,11 +1,8 @@
-
 import PlanCard from "@/components/modules/plan/PlanCard";
 import { API_BASE } from "@/lib/baseApi";
 import LoaderWrapper from "@/lib/LoaderWrapper";
 import { ITravelPlan, PlanPageProps } from "@/types/travelPlan.interface";
 import Link from "next/link";
-
-
 
 export default async function PlansPage({ searchParams }: PlanPageProps) {
 
@@ -33,100 +30,105 @@ export default async function PlansPage({ searchParams }: PlanPageProps) {
 
   return (
     <LoaderWrapper>
-      <div className="container mx-auto min-h-screen px-4 md:px-8 py-6">
 
-        
+      <div className="container mx-auto min-h-screen px-4 md:px-8 py-6 bg-gray-50 dark:bg-gray-900">
+
+        {/* Header */}
         <div className="flex justify-between items-center mb-6">
+
           <div>
-            <h2 className="text-2xl font-bold text-gray-800">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
               All Travel Plans
             </h2>
-            <p className="text-gray-500 text-sm mt-1">
+
+            <p className="text-gray-500 dark:text-gray-300 text-sm mt-1">
               Explore your saved trips and upcoming adventures.
             </p>
           </div>
 
+          {/* Add Plan */}
           <Link
-  href="/travel-plans/add"
-  className="
-    inline-flex items-center justify-center gap-2
-    px-4 py-2 sm:px-5 sm:py-2.5
-    rounded-lg
-    bg-orange-500 text-white
-    font-medium text-sm sm:text-base
-    
-    transition-all duration-200
-    hover:bg-orange-600 hover:shadow-lg
-    active:scale-95
-    focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2
-  "
->
-  <span className="text-lg leading-none">＋</span>
-  <span className="whitespace-nowrap">Add Plan</span>
-</Link>
+            href="/travel-plans/add"
+            className="
+              inline-flex items-center justify-center gap-2
+              px-4 py-2 sm:px-5 sm:py-2.5
+              rounded-lg
+              bg-orange-500 text-white
+              font-medium text-sm sm:text-base
+
+              transition-all duration-200
+              hover:bg-orange-600 hover:shadow-lg
+              active:scale-95
+              focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2
+              dark:focus:ring-offset-gray-900
+            "
+          >
+            <span className="text-lg leading-none">＋</span>
+            <span className="whitespace-nowrap">Add Plan</span>
+          </Link>
 
         </div>
 
-  
-        
-
-
+        {/* Empty */}
         {plans.length === 0 && (
-          <p className="text-center text-gray-500 mt-10">
+          <p className="text-center text-gray-500 dark:text-gray-400 mt-10">
             No travel plans found.
           </p>
         )}
 
+        {/* Cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
           {plans.map((plan) => (
             <PlanCard key={plan.id} plan={plan} />
           ))}
         </div>
 
-     
+        {/* Pagination */}
         {meta?.totalPages > 1 && (
-  <div className="flex items-center justify-center gap-4 mt-10">
-    
-  
-    <Link
-      href={`?page=${page - 1}`}
-      aria-disabled={page === 1}
-      className={`px-4 py-2 rounded-lg border font-medium transition
-        ${
-          page === 1
-            ? "pointer-events-none bg-gray-100 text-gray-400 border-gray-200"
-            : "bg-orange-500 text-white border-orange-500 hover:bg-orange-600"
-        }
-      `}
-    >
-      ← Previous
-    </Link>
 
-   
-    <span className="text-sm font-medium text-gray-600">
-      Page <span className="font-semibold">{meta.page}</span> of{" "}
-      <span className="font-semibold">{meta.totalPages}</span>
-    </span>
+          <div className="flex items-center justify-center gap-4 mt-10">
 
-  
-    <Link
-      href={`?page=${page + 1}`}
-      aria-disabled={page === meta.totalPages}
-      className={`px-4 py-2 rounded-lg border font-medium transition
-        ${
-          page === meta.totalPages
-            ? "pointer-events-none bg-gray-100 text-gray-400 border-gray-200"
-            : "bg-orange-500 text-white border-orange-500 hover:bg-orange-600"
-        }
-      `}
-    >
-      Next →
-    </Link>
-  </div>
-)}
+            {/* Prev */}
+            <Link
+              href={`?page=${page - 1}`}
+              aria-disabled={page === 1}
+              className={`px-4 py-2 rounded-lg border font-medium transition
+                ${
+                  page === 1
+                    ? "pointer-events-none bg-gray-100 dark:bg-gray-800 text-gray-400 border-gray-200 dark:border-gray-700"
+                    : "bg-orange-500 text-white border-orange-500 hover:bg-orange-600"
+                }
+              `}
+            >
+              ← Previous
+            </Link>
+
+            {/* Info */}
+            <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
+              Page <span className="font-semibold">{meta.page}</span> of{" "}
+              <span className="font-semibold">{meta.totalPages}</span>
+            </span>
+
+            {/* Next */}
+            <Link
+              href={`?page=${page + 1}`}
+              aria-disabled={page === meta.totalPages}
+              className={`px-4 py-2 rounded-lg border font-medium transition
+                ${
+                  page === meta.totalPages
+                    ? "pointer-events-none bg-gray-100 dark:bg-gray-800 text-gray-400 border-gray-200 dark:border-gray-700"
+                    : "bg-orange-500 text-white border-orange-500 hover:bg-orange-600"
+                }
+              `}
+            >
+              Next →
+            </Link>
+
+          </div>
+        )}
 
       </div>
+
     </LoaderWrapper>
   );
 }
-
