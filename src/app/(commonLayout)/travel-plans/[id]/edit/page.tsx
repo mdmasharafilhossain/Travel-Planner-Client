@@ -11,11 +11,10 @@ import {
   updatePlanSchema,
   UpdatePlanFormType,
 } from "@/zod/plan/plan.validator";
+
 import { API_BASE } from "@/lib/baseApi";
 import UserAuthWrapper from "@/lib/UserAuthWrapper";
 import LoaderWrapper from "@/lib/LoaderWrapper";
-
-
 
 export default function EditPlanPage() {
   const router = useRouter();
@@ -42,7 +41,6 @@ export default function EditPlanPage() {
     },
   });
 
-
   useEffect(() => {
     if (!planId) return;
 
@@ -51,6 +49,7 @@ export default function EditPlanPage() {
         const res = await fetch(`${API_BASE}/api/travel-plans/${planId}`, {
           credentials: "include",
         });
+
         const json = await res.json();
 
         if (!json.success) {
@@ -69,12 +68,9 @@ export default function EditPlanPage() {
         setValue("budgetMax", p.budgetMax?.toString() || "");
         setValue("travelType", p.travelType);
         setValue("visibility", p.visibility);
-      } catch (err) {
-        // console.error(err);
-      }
+      } catch (err) {}
     })();
   }, [planId, setValue]);
-
 
   const onSubmit = async (data: UpdatePlanFormType) => {
     try {
@@ -102,9 +98,9 @@ export default function EditPlanPage() {
       }
 
       await Swal.fire("Success", "Travel plan updated", "success");
+
       router.refresh();
       router.push(`/user/my-posted-plan`);
-      
     } catch (err) {
       console.error(err);
     }
@@ -113,103 +109,145 @@ export default function EditPlanPage() {
   return (
     <UserAuthWrapper>
       <LoaderWrapper>
-    <div className="max-w-xl mx-auto px-4 py-10">
-      <h1 className="text-xl font-bold mb-4">Edit Travel Plan</h1>
 
-      <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-        {/* Title */}
-        <Input placeholder="Trip to Cox’s Bazar" label="Title" {...register("title")} error={errors.title?.message} />
+        <div className="max-w-xl mx-auto px-4 py-10 bg-gray-50 dark:bg-gray-900">
 
-        {/* Destination */}
-        <Input
-          label="Destination"
-          placeholder="Cox’s Bazar, Bangladesh"
-          {...register("destination")}
-          error={errors.destination?.message}
-        />
+          <h1 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">
+            Edit Travel Plan
+          </h1>
 
-        {/* Dates */}
-        <div className="flex gap-3">
-          <Input
-            label="Start Date"
-            type="date"
-            {...register("startDate")}
-            error={errors.startDate?.message}
-          />
-          <Input
-            label="End Date"
-            type="date"
-            {...register("endDate")}
-            error={errors.endDate?.message}
-          />
+          <form
+            className="space-y-4 bg-white dark:bg-gray-800 p-6 rounded-xl shadow border border-gray-200 dark:border-gray-700"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+
+            {/* Title */}
+            <Input
+              placeholder="Trip to Cox’s Bazar"
+              label="Title"
+              {...register("title")}
+              error={errors.title?.message}
+            />
+
+            {/* Destination */}
+            <Input
+              label="Destination"
+              placeholder="Cox’s Bazar, Bangladesh"
+              {...register("destination")}
+              error={errors.destination?.message}
+            />
+
+            {/* Dates */}
+            <div className="flex gap-3">
+
+              <Input
+                label="Start Date"
+                type="date"
+                {...register("startDate")}
+                error={errors.startDate?.message}
+              />
+
+              <Input
+                label="End Date"
+                type="date"
+                {...register("endDate")}
+                error={errors.endDate?.message}
+              />
+
+            </div>
+
+            {/* Description */}
+            <div>
+
+              <label className="text-sm text-gray-700 dark:text-gray-300">
+                Description
+              </label>
+
+              <textarea
+                {...register("description")}
+                placeholder="Short description about your travel plan..."
+                rows={3}
+                className="w-full border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-white rounded px-3 py-2 focus:ring-2 focus:ring-orange-400 outline-none"
+              />
+
+              {errors.description && (
+                <p className="text-xs text-red-500">
+                  {errors.description.message}
+                </p>
+              )}
+
+            </div>
+
+            {/* Budget */}
+            <div className="flex gap-3">
+
+              <Input
+                label="Min Budget"
+                type="number"
+                placeholder="e.g. 5000"
+                {...register("budgetMin")}
+                error={errors.budgetMin?.message}
+              />
+
+              <Input
+                label="Max Budget"
+                type="number"
+                placeholder="e.g. 15000"
+                {...register("budgetMax")}
+                error={errors.budgetMax?.message}
+              />
+
+            </div>
+
+            {/* Selects */}
+            <Select
+              label="Travel Type"
+              {...register("travelType")}
+              options={["SOLO", "FAMILY", "FRIENDS", "COUPLE", "GROUP"]}
+            />
+
+            <Select
+              label="Visibility"
+              {...register("visibility")}
+              options={["PUBLIC", "PRIVATE"]}
+            />
+
+            {/* Button */}
+            <button
+              disabled={isSubmitting}
+              className="w-full py-2 rounded bg-orange-600 hover:bg-orange-700 text-white font-medium transition"
+            >
+              {isSubmitting ? "Saving..." : "Save Changes"}
+            </button>
+
+          </form>
+
         </div>
 
-        {/* Description */}
-        <div>
-          <label className="text-sm">Description</label>
-          <textarea
-            {...register("description")}
-            placeholder="Short description about your travel plan, activities, or expectations..."
-            rows={3}
-            className="w-full border rounded px-2 py-2"
-          />
-          {errors.description && (
-            <p className="text-xs text-red-500">{errors.description.message}</p>
-          )}
-        </div>
-
-        {/* Budget */}
-        <div className="flex gap-3">
-          <Input
-            label="Min Budget"
-            type="number"
-            placeholder="e.g. 5000"
-            {...register("budgetMin")}
-            error={errors.budgetMin?.message}
-          />
-          <Input
-            label="Max Budget"
-            type="number"
-            placeholder="e.g. 15000"
-            {...register("budgetMax")}
-            error={errors.budgetMax?.message}
-          />
-        </div>
-
-        {/* Selects */}
-        <Select
-          label="Travel Type"
-          {...register("travelType")}
-          options={["SOLO", "FAMILY", "FRIENDS", "COUPLE", "GROUP"]}
-        />
-
-        <Select
-          label="Visibility"
-          {...register("visibility")}
-          options={["PUBLIC", "PRIVATE"]}
-        />
-
-        <button
-          disabled={isSubmitting}
-          className="w-full py-2 rounded bg-orange-600 text-white hover:bg-orange-700"
-        >
-          {isSubmitting ? "Saving..." : "Save Changes"}
-        </button>
-      </form>
-    </div>
-    </LoaderWrapper>
+      </LoaderWrapper>
     </UserAuthWrapper>
   );
 }
 
-
+/* ---------- Reusable Inputs ---------- */
 
 function Input({ label, error, ...props }: any) {
   return (
     <div className="flex-1">
-      <label className="text-sm">{label}</label>
-      <input {...props} className="w-full px-2 py-2 border rounded" />
-      {error && <p className="text-xs text-red-500">{error}</p>}
+
+      <label className="text-sm text-gray-700 dark:text-gray-300">
+        {label}
+      </label>
+
+      <input
+        {...props}
+        className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-white rounded focus:ring-2 focus:ring-orange-400 outline-none"
+      />
+
+      {error && (
+        <p className="text-xs text-red-500">{error}</p>
+      )}
+
     </div>
   );
 }
@@ -217,14 +255,24 @@ function Input({ label, error, ...props }: any) {
 function Select({ label, options, ...props }: any) {
   return (
     <div>
-      <label className="text-sm">{label}</label>
-      <select {...props} className="w-full px-2 py-2 border rounded">
+
+      <label className="text-sm text-gray-700 dark:text-gray-300">
+        {label}
+      </label>
+
+      <select
+        {...props}
+        className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-white rounded focus:ring-2 focus:ring-orange-400 outline-none"
+      >
+
         {options.map((o: string) => (
           <option key={o} value={o}>
             {o}
           </option>
         ))}
+
       </select>
+
     </div>
   );
 }

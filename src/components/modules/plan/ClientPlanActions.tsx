@@ -411,18 +411,19 @@ if (isCompletedTour || isOngoingTour) {
   }
 
   return (
-    <div className="mt-8 space-y-6">
+    <div className="mt-8 space-y-6 text-gray-900 dark:text-gray-100">
       {/* USER: Request to join */}
-      <div className="p-4 border border-gray-100 rounded-lg bg-gray-50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <div className="p-4 border border-gray-100 dark:border-gray-700 rounded-lg 
+bg-gray-50 dark:bg-gray-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <div className="text-sm font-semibold text-gray-800">
+          <div className="text-sm font-semibold text-gray-800 dark:text-white">
             Want to join this trip?
           </div>
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-400">
             Send a request to the host. The host can accept or reject your request.
           </div>
           {myStatus && userId !== hostId && (
-            <div className="text-xs text-gray-600 mt-1">
+            <div className="text-xs text-gray-600 dark:text-gray-300 mt-1">
               Your current status:{" "}
               <span className="font-semibold">{myStatus}</span>
             </div>
@@ -433,7 +434,7 @@ if (isCompletedTour || isOngoingTour) {
           disabled={joinDisabled}
           className={`inline-flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium ${
             joinDisabled
-              ? "bg-gray-300 text-gray-700 cursor-not-allowed"
+              ? "bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-300 cursor-not-allowed"
               : "bg-linear-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700"
           } transition`}
         >
@@ -443,14 +444,14 @@ if (isCompletedTour || isOngoingTour) {
 
       {/* HOST: manage join requests */}
       {isHost && (
-        <div className="p-4 border border-gray-100 rounded-lg bg-white">
-          <div className="text-sm font-semibold text-gray-800">Join Requests</div>
-          <div className="text-xs text-gray-500 mb-2">
+        <div className="p-4 border border-gray-100 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800">
+          <div className="text-sm font-semibold text-gray-800 dark:text-white">Join Requests</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-400 mb-2">
             Accept or reject travelers who requested to join.
           </div>
           <div className="space-y-2 mt-2">
             {participants.length === 0 && (
-              <div className="text-xs text-gray-500">No requests yet.</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-400">No requests yet.</div>
             )}
             {participants.map((p) => (
               <div
@@ -469,7 +470,7 @@ if (isCompletedTour || isOngoingTour) {
                     <div className="text-sm font-semibold">
                       {p.user.fullName || "Unnamed traveler"}
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
                       Status: {p.status}
                     </div>
                   </div>
@@ -495,7 +496,7 @@ if (isCompletedTour || isOngoingTour) {
                   </button>
                   <button
                     onClick={() => handleHostRespond(p.id, "CANCELLED")}
-                    className="text-xs px-2 py-1 rounded border border-gray-200 text-gray-700 hover:bg-gray-50"
+                    className="text-xs px-2 py-1 rounded border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white text-gray-700 hover:bg-gray-50"
                   >
                     Cancel
                   </button>
@@ -509,11 +510,11 @@ if (isCompletedTour || isOngoingTour) {
       )}
 
       {/* Host Reviews (everyone can see) */}
-      <div className="p-4 border border-gray-100 rounded-lg bg-white">
+      <div className="p-4 border border-gray-100 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800">
         <div className="flex items-center justify-between gap-3">
           <div>
             <div className="text-sm font-semibold text-gray-800">Host Reviews</div>
-            <div className="text-xs text-gray-500">
+            <div className="text-xs text-gray-500 dark:text-gray-400">
               Average rating:{" "}
               {loadingReviews
                 ? "Loading..."
@@ -526,7 +527,7 @@ if (isCompletedTour || isOngoingTour) {
 
         <div className="mt-4 space-y-3">
           {reviews.map((r) => (
-            <div key={r.id} className="p-3 border border-gray-100 rounded-md">
+            <div key={r.id} className="p-3 border border-gray-100 dark:border-gray-700 rounded-md">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <Image
@@ -540,7 +541,7 @@ if (isCompletedTour || isOngoingTour) {
                     <div className="text-sm font-semibold">
                       {r.author.fullName || "Traveler"}
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
                       {new Date(r.createdAt).toLocaleString()}
                     </div>
                   </div>
@@ -550,7 +551,7 @@ if (isCompletedTour || isOngoingTour) {
                 </div>
               </div>
               {r.comment && (
-                <div className="mt-2 text-sm text-gray-700">{r.comment}</div>
+                <div className="mt-2 text-sm text-gray-700 dark:text-gray-300">{r.comment}</div>
               )}
               {userId === r.authorId && (
   <div className="mt-2">
@@ -561,7 +562,7 @@ if (isCompletedTour || isOngoingTour) {
           <select
             value={editingRating}
             onChange={(e) => setEditingRating(Number(e.target.value))}
-            className="border border-gray-200 rounded px-2 py-1 text-xs"
+            className="border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded px-2 py-1 text-xs"
           >
             <option value={5}>5 - Excellent</option>
             <option value={4}>4 - Very good</option>
@@ -574,7 +575,7 @@ if (isCompletedTour || isOngoingTour) {
           <textarea
             value={editingComment}
             onChange={(e) => setEditingComment(e.target.value)}
-            className="w-full border border-gray-200 rounded px-2 py-1 text-xs"
+            className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded px-2 py-1 text-xs"
             rows={2}
           />
         </div>
@@ -587,7 +588,7 @@ if (isCompletedTour || isOngoingTour) {
           </button>
           <button
             type="button"
-            className="text-xs px-3 py-1 rounded-md border border-gray-200 text-gray-700 hover:bg-gray-50"
+            className="text-xs px-3 py-1 rounded-md border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white text-gray-700 hover:bg-gray-50"
             onClick={() => setEditingId(null)}
           >
             Cancel
@@ -597,7 +598,7 @@ if (isCompletedTour || isOngoingTour) {
     ) : (
       <div className="flex gap-2 mt-2">
         <button
-          className="text-xs px-2 py-1 rounded border border-gray-200 hover:bg-gray-50"
+          className="text-xs px-2 py-1 rounded border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white hover:bg-gray-50"
           onClick={() => startEditReview(r)}
         >
           Edit
@@ -617,7 +618,7 @@ if (isCompletedTour || isOngoingTour) {
           ))}
 
           {!loadingReviews && reviews.length === 0 && (
-            <div className="text-xs text-gray-500">
+            <div className="text-xs text-gray-500 dark:text-gray-400">
               No reviews for this host yet.
             </div>
           )}
@@ -625,7 +626,7 @@ if (isCompletedTour || isOngoingTour) {
 
         {/* Review form: only ACCEPTED + trip complete + not host */}
         {user && canReview &&   (
-          <div className="mt-6 border-t border-gray-100 pt-4">
+          <div className="mt-6 border-t border-gray-100 dark:border-gray-700 pt-4">
             <div className="text-sm font-semibold text-gray-800 mb-2">
               Leave a Review
             </div>
@@ -635,7 +636,7 @@ if (isCompletedTour || isOngoingTour) {
                 <select
                   value={rating}
                   onChange={(e) => setRating(Number(e.target.value))}
-                  className="w-32 border border-gray-200 rounded px-2 py-1 text-sm"
+                  className="w-32 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded px-2 py-1 text-sm"
                 >
                   <option value={5}>5 - Excellent</option>
                   <option value={4}>4 - Very good</option>
@@ -652,7 +653,7 @@ if (isCompletedTour || isOngoingTour) {
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                   rows={3}
-                  className="w-full border border-gray-200 rounded px-2 py-1 text-sm"
+                  className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded px-2 py-1 text-sm"
                   placeholder="Share your experience with this host..."
                 />
               </div>
@@ -668,7 +669,7 @@ if (isCompletedTour || isOngoingTour) {
         )}
 
         {user && !isHost && (
-  <div className="mt-4 text-xs text-gray-500">
+  <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
     {hasMyReview ? (
       <span>
         You have already reviewed this host. You can edit or delete your review above.
