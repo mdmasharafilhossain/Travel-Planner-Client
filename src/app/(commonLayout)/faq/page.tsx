@@ -74,7 +74,6 @@ const faqs: FAQItem[] = [
   },
 ];
 
-
 const FAQPage: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -83,15 +82,16 @@ const FAQPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 md:px-8 py-10">
-      <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md border border-gray-200 p-6 md:p-10">
-        
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 px-4 md:px-8 py-10">
+
+      <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 p-6 md:p-10">
+
         {/* Header */}
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 text-center">
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white text-center">
           Frequently Asked <span className="text-orange-500">Questions</span>
         </h1>
 
-        <p className="text-gray-500 text-center mt-3 max-w-2xl mx-auto">
+        <p className="text-gray-500 dark:text-gray-300 text-center mt-3 max-w-2xl mx-auto">
           Find answers to common questions about using Travel Planner.
         </p>
 
@@ -100,20 +100,21 @@ const FAQPage: React.FC = () => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-gray-200 rounded-lg overflow-hidden"
+              className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center px-4 py-3 text-left text-gray-800 font-medium hover:bg-gray-50 transition"
+                className="w-full flex justify-between items-center px-4 py-3 text-left text-gray-800 dark:text-gray-200 font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition"
               >
                 <span>{faq.question}</span>
+
                 <span className="text-orange-500 text-xl font-bold">
                   {openIndex === index ? "−" : "+"}
                 </span>
               </button>
 
               {openIndex === index && (
-                <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+                <div className="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                   {faq.answer}
                 </div>
               )}
