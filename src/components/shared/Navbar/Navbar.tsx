@@ -289,7 +289,7 @@ export default function Navbar() {
           {tourStep === 0 && (
             <>
               <h3 className="mt-1 text-lg font-semibold text-gray-900 dark:text-white">
-                Explore Travelers & Buddies
+                Explore Travelers & Others Common Routes
               </h3>
               <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
                 Use the <span className="font-semibold">Explore</span> menu to find travelers going to similar
