@@ -5,40 +5,35 @@ import { useTheme } from "@/hooks/useTheme";
 export default function ThemeToggle() {
   const { theme, changeTheme } = useTheme();
 
+  function handleToggle() {
+    if (theme === "light") {
+      changeTheme("dark");
+    } else if (theme === "dark") {
+      changeTheme("system");
+    } else {
+      changeTheme("light");
+    }
+  }
+
+  // Icon based on current theme
+  const icon =
+    theme === "light" ? "☀️" : theme === "dark" ? "🌙" : "💻";
+
   return (
-    <div className="flex gap-2 rounded-lg border p-2">
-      <button
-        onClick={() => changeTheme("light")}
-        className={`px-3 py-1 rounded ${
-          theme === "light"
-            ? "bg-black text-white"
-            : "hover:bg-gray-200 dark:hover:bg-gray-700"
-        }`}
-      >
-        ☀️
-      </button>
-
-      <button
-        onClick={() => changeTheme("dark")}
-        className={`px-3 py-1 rounded ${
-          theme === "dark"
-            ? "bg-black text-white dark:bg-white dark:text-black"
-            : "hover:bg-gray-200 dark:hover:bg-gray-700"
-        }`}
-      >
-        🌙
-      </button>
-
-      <button
-        onClick={() => changeTheme("system")}
-        className={`px-3 py-1 rounded ${
-          theme === "system"
-            ? "bg-black text-white dark:bg-white dark:text-black"
-            : "hover:bg-gray-200 dark:hover:bg-gray-700"
-        }`}
-      >
-        💻
-      </button>
-    </div>
+    <button
+      onClick={handleToggle}
+      className="
+        flex items-center justify-center
+        w-10 h-10 rounded-full
+        border border-gray-300 dark:border-gray-700
+        bg-white dark:bg-gray-900
+        text-lg
+        hover:bg-gray-100 dark:hover:bg-gray-800
+        transition
+      "
+      title={`Theme: ${theme}`}
+    >
+      {icon}
+    </button>
   );
 }
