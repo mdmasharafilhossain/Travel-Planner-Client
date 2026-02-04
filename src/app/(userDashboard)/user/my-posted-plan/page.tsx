@@ -95,7 +95,7 @@ const MyPostedPlan = () => {
 
               <div className="flex gap-2 mt-3">
 
-                {/* View */}
+                
                 <Link
                   href={`/travel-plans/${plan.id}`}
                   className="text-xs px-3 py-1 rounded bg-orange-500 text-white hover:bg-orange-600"
@@ -103,7 +103,7 @@ const MyPostedPlan = () => {
                   View
                 </Link>
 
-                {/* Edit */}
+              
                 <Link
                   href={`/travel-plans/${plan.id}/edit`}
                   className="text-xs px-3 py-1 rounded border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
@@ -111,7 +111,7 @@ const MyPostedPlan = () => {
                   Edit
                 </Link>
 
-                {/* Delete */}
+               
                 <button
                   onClick={() => handleDelete(plan.id)}
                   className="text-xs px-3 py-1 rounded border border-red-200 dark:border-red-500 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20"
