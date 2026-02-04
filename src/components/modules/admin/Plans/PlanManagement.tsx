@@ -104,78 +104,100 @@ export default function PlanManagementPage() {
     });
 
   const html = `
-    <div class="text-left text-sm text-gray-700 space-y-4">
+  <div class="text-left text-sm space-y-4 text-gray-700 dark:text-gray-200">
 
-      <!-- Header -->
-      <div class="pb-3 border-b">
-        <h3 class="text-lg font-semibold text-gray-800">
-          ${plan.title || plan.destination}
-        </h3>
-        <p class="text-xs text-gray-500">
-          ${formatDate(plan.startDate)} → ${formatDate(plan.endDate)}
-        </p>
+    <!-- Header -->
+    <div class="pb-3 border-b border-gray-200 dark:border-gray-700">
+      <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">
+        ${plan.title || plan.destination}
+      </h3>
+
+      <p class="text-xs text-gray-500 dark:text-gray-400">
+        ${formatDate(plan.startDate)} → ${formatDate(plan.endDate)}
+      </p>
+    </div>
+
+    <!-- Info Grid -->
+    <div class="grid grid-cols-2 gap-3">
+
+      <div>
+        <p class="text-xs text-gray-500 dark:text-gray-400">Destination</p>
+        <p class="font-medium">${plan.destination}</p>
       </div>
 
-      <!-- Info Grid -->
-      <div class="grid grid-cols-2 gap-3">
-        <div>
-          <p class="text-xs text-gray-500">Destination</p>
-          <p class="font-medium">${plan.destination}</p>
-        </div>
-
-        <div>
-          <p class="text-xs text-gray-500">Travel Type</p>
-          <p class="font-medium">${plan.travelType}</p>
-        </div>
-
-        <div>
-          <p class="text-xs text-gray-500">Visibility</p>
-          <span class="inline-block px-2 py-1 rounded-full text-xs font-medium ${
-            plan.visibility === "PUBLIC"
-              ? "bg-orange-100 text-orange-700"
-              : "bg-gray-100 text-gray-700"
-          }">
-            ${plan.visibility}
-          </span>
-        </div>
-
-        <div>
-          <p class="text-xs text-gray-500">Budget</p>
-          <p class="font-medium">
-            ${plan.budgetMin ?? "-"} – ${plan.budgetMax ?? "-"}
-          </p>
-        </div>
+      <div>
+        <p class="text-xs text-gray-500 dark:text-gray-400">Travel Type</p>
+        <p class="font-medium">${plan.travelType}</p>
       </div>
 
-      <!-- Host -->
-      <div class="pt-3 border-t">
-        <p class="text-xs text-gray-500">Host</p>
+      <div>
+        <p class="text-xs text-gray-500 dark:text-gray-400">Visibility</p>
+
+        <span class="inline-block px-2 py-1 rounded-full text-xs font-medium ${
+          plan.visibility === "PUBLIC"
+            ? "bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300"
+            : "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+        }">
+          ${plan.visibility}
+        </span>
+      </div>
+
+      <div>
+        <p class="text-xs text-gray-500 dark:text-gray-400">Budget</p>
+
         <p class="font-medium">
-          ${plan.host?.fullName || "-"}
-        </p>
-        <p class="text-xs text-gray-500">
-          ${plan.host?.email || "-"}
-        </p>
-      </div>
-
-      <!-- Description -->
-      <div class="pt-3 border-t">
-        <p class="text-xs text-gray-500 mb-1">Description</p>
-        <p class="leading-relaxed">
-          ${plan.description || "-"}
+          ${plan.budgetMin ?? "-"} – ${plan.budgetMax ?? "-"}
         </p>
       </div>
 
     </div>
-  `;
+
+    <!-- Host -->
+    <div class="pt-3 border-t border-gray-200 dark:border-gray-700">
+
+      <p class="text-xs text-gray-500 dark:text-gray-400">Host</p>
+
+      <p class="font-medium">
+        ${plan.host?.fullName || "-"}
+      </p>
+
+      <p class="text-xs text-gray-500 dark:text-gray-400">
+        ${plan.host?.email || "-"}
+      </p>
+
+    </div>
+
+    <!-- Description -->
+    <div class="pt-3 border-t border-gray-200 dark:border-gray-700">
+
+      <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">
+        Description
+      </p>
+
+      <p class="leading-relaxed">
+        ${plan.description || "-"}
+      </p>
+
+    </div>
+
+  </div>
+`;
+
 
   await Swal.fire({
-    title: "Plan Details",
-    html,
-    width: 640,
-    confirmButtonColor: "#fb923c",
-    confirmButtonText: "Close",
-  });
+  title: "Plan Details",
+  html,
+  width: 640,
+  background: document.documentElement.classList.contains("dark")
+    ? "#020617"
+    : "#ffffff",
+  color: document.documentElement.classList.contains("dark")
+    ? "#e5e7eb"
+    : "#111827",
+  confirmButtonColor: "#fb923c",
+  confirmButtonText: "Close",
+});
+
 }, []);
 
 
