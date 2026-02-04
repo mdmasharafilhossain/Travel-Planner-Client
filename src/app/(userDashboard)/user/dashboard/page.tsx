@@ -32,8 +32,6 @@ export default function UserDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<any | null>(null);
 
- 
-
   useEffect(() => {
     if (!user) {
       setLoading(false);
@@ -47,17 +45,15 @@ export default function UserDashboardPage() {
     setLoading(true);
     try {
       const res = await fetch(`${API_BASE}/api/dashboard/user`, {
-       credentials: "include",
+        credentials: "include",
       });
       const json = await res.json();
       if (!res.ok || !json.success) {
-        // console.error(json.message);
         setData(null);
       } else {
         setData(json);
       }
     } catch (err) {
-      // console.error(err);
       setData(null);
     } finally {
       setLoading(false);
@@ -67,8 +63,8 @@ export default function UserDashboardPage() {
   if (!user) {
     return (
       <div className="max-w-4xl mx-auto py-10 px-4">
-        <div className="bg-white shadow rounded-xl p-6 text-center">
-          <p className="text-gray-700 text-sm">
+        <div className="bg-white dark:bg-gray-800 shadow rounded-xl p-6 text-center">
+          <p className="text-gray-700 dark:text-gray-300 text-sm">
             Please login to see your dashboard.
           </p>
         </div>
@@ -77,15 +73,13 @@ export default function UserDashboardPage() {
   }
 
   if (loading) {
-    return (
-      <Loader/>
-    );
+    return <Loader />;
   }
 
   if (!data) {
     return (
       <div className="max-w-4xl mx-auto py-10 px-4">
-        <div className="bg-white shadow rounded-xl p-6 text-center">
+        <div className="bg-white dark:bg-gray-800 shadow rounded-xl p-6 text-center">
           <p className="text-red-600 text-sm">
             Failed to load dashboard data.
           </p>
@@ -99,20 +93,19 @@ export default function UserDashboardPage() {
   const reviewableTrips: TravelPlan[] = data.reviewableTrips || [];
 
   return (
-   
-    <div className="container mx-auto py-10 px-4 space-y-6">
+    <div className="container mx-auto py-10 px-4 space-y-6 bg-gray-100 dark:bg-gray-900 min-h-screen">
+
       {/* Header */}
       <div className="flex items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
             Hello, {user.fullName || user.email}
           </h1>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             Manage your travel plans, matches and reviews from here.
           </p>
         </div>
 
-        {/* Quick links */}
         <div className="flex gap-2">
           <Link
             href="/user/dashboard/give-review"
@@ -130,9 +123,10 @@ export default function UserDashboardPage() {
       </div>
 
       {/* My Travel Plans */}
-      <section className="bg-white rounded-xl shadow border border-gray-100 p-4 sm:p-6">
+      <section className="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-100 dark:border-gray-700 p-4 sm:p-6">
+
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-lg font-semibold text-gray-900">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
             My Travel Plans
           </h2>
           <Link
@@ -144,13 +138,15 @@ export default function UserDashboardPage() {
         </div>
 
         <div className="space-y-4">
+
           {/* Hosted */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-700 mb-2">
+            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
               Plans I&apos;m Hosting
             </h3>
+
             {hostedPlans.length === 0 ? (
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 You are not hosting any travel plans yet.
               </p>
             ) : (
@@ -164,11 +160,12 @@ export default function UserDashboardPage() {
 
           {/* Joined */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-700 mb-2">
+            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
               Plans I&apos;ve Joined (Accepted)
             </h3>
+
             {joinedPlans.length === 0 ? (
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 You have no accepted join requests yet.
               </p>
             ) : (
@@ -179,72 +176,84 @@ export default function UserDashboardPage() {
               </div>
             )}
           </div>
+
         </div>
       </section>
 
-      {/* Quick preview: Reviewable trips */}
-      <section className="bg-white rounded-xl shadow border border-gray-100 p-4 sm:p-6">
+      {/* Reviewable */}
+      <section className="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-100 dark:border-gray-700 p-4 sm:p-6">
+
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-lg font-semibold text-gray-900">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
             Trips You Can Review
           </h2>
+
           <Link
             href="/user/dashboard/give-review"
             className="text-xs text-orange-600 hover:underline"
           >
-            Go to &quot;Give Review&quot;
+            Go to Give Review
           </Link>
         </div>
 
         {reviewableTrips.length === 0 ? (
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-500 dark:text-gray-400">
             No completed trips pending review.
           </p>
         ) : (
           <div className="space-y-2">
+
             {reviewableTrips.map((p) => (
               <div
                 key={p.id}
-                className="flex items-center justify-between border border-gray-100 rounded-lg px-3 py-2"
+                className="flex items-center justify-between border border-gray-100 dark:border-gray-700 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-900"
               >
                 <div>
-                  <div className="text-sm font-semibold text-gray-900">
+                  <div className="text-sm font-semibold text-gray-900 dark:text-white">
                     {p.title || p.destination}
                   </div>
-                  <div className="text-xs text-gray-500">
+
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
                     {new Date(p.startDate).toLocaleDateString()} -{" "}
                     {new Date(p.endDate).toLocaleDateString()}
                   </div>
                 </div>
+
                 <Link
                   href={`/travel-plans/${p.id}`}
                   className="text-xs px-3 py-1 rounded-md bg-green-600 text-white hover:bg-green-700"
                 >
                   Give Review
                 </Link>
+
               </div>
             ))}
+
           </div>
         )}
+
       </section>
+
     </div>
-    
   );
 }
 
 function PlanItem({ plan, label }: { plan: TravelPlan; label: string }) {
   return (
-    <div className="border border-gray-100 rounded-lg p-3 bg-gray-50 flex flex-col justify-between">
+    <div className="border border-gray-100 dark:border-gray-700 rounded-lg p-3 bg-gray-50 dark:bg-gray-900 flex flex-col justify-between">
+
       <div>
         <div className="flex items-center justify-between mb-1">
-          <h3 className="text-sm font-semibold text-gray-900">
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
             {plan.title || plan.destination}
           </h3>
+
           <span className="text-[10px] px-2 py-0.5 rounded-full bg-gray-800 text-white">
             {label}
           </span>
         </div>
-        <p className="text-xs text-gray-500">
+
+        <p className="text-xs text-gray-500 dark:text-gray-400">
           {plan.destination} •{" "}
           {new Date(plan.startDate).toLocaleDateString()} -{" "}
           {new Date(plan.endDate).toLocaleDateString()}
@@ -259,6 +268,7 @@ function PlanItem({ plan, label }: { plan: TravelPlan; label: string }) {
           View Plan
         </Link>
       </div>
+
     </div>
   );
 }
