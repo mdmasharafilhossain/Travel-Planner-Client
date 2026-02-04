@@ -80,183 +80,247 @@ export default function PlanFormAdmin({ plan, onCancel, onSaved }: TravelFormPro
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-4 md:p-5">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-800">
-          Edit Plan: {plan.title || plan.destination}
-        </h2>
-        <button
-          onClick={onCancel}
-          className="text-xs text-gray-500 hover:text-gray-700"
-        >
-          Cancel
-        </button>
-      </div>
+  <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm p-4 md:p-5">
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-sm">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-gray-700 mb-1">Title</label>
-            <input
-              type="text"
-              placeholder="Trip to Cox’s Bazar"
-              {...register("title")}
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
-                errors.title ? "border-red-300" : "border-gray-300"
-              }`}
-            />
-            {errors.title && (
-              <p className="text-red-600 text-xs mt-1">{errors.title.message}</p>
-            )}
-          </div>
+    {/* Header */}
+    <div className="flex items-center justify-between mb-4">
+      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+        Edit Plan: {plan.title || plan.destination}
+      </h2>
 
-          <div>
-            <label className="block text-gray-700 mb-1">Destination</label>
-            <input
-              type="text"
-              {...register("destination")}
-               placeholder="Cox’s Bazar, Bangladesh"
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
-                errors.destination ? "border-red-300" : "border-gray-300"
-              }`}
-            />
-            {errors.destination && (
-              <p className="text-red-600 text-xs mt-1">{errors.destination.message}</p>
-            )}
-          </div>
-        </div>
+      <button
+        onClick={onCancel}
+        className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+      >
+        Cancel
+      </button>
+    </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-gray-700 mb-1">Start Date</label>
-            <input
-              type="date"
-              {...register("startDate")}
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
-                errors.startDate ? "border-red-300" : "border-gray-300"
-              }`}
-            />
-            {errors.startDate && (
-              <p className="text-red-600 text-xs mt-1">{errors.startDate.message}</p>
-            )}
-          </div>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-sm">
 
-          <div>
-            <label className="block text-gray-700 mb-1">End Date</label>
-            <input
-              type="date"
-              {...register("endDate")}
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
-                errors.endDate ? "border-red-300" : "border-gray-300"
-              }`}
-            />
-            {errors.endDate && (
-              <p className="text-red-600 text-xs mt-1">{errors.endDate.message}</p>
-            )}
-          </div>
-        </div>
+      {/* Grid 1 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-gray-700 mb-1">Minimum Budget</label>
-            <input
-              type="number"
-              placeholder="e.g. 5000"
-              {...register("budgetMin")}
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
-                errors.budgetMin ? "border-red-300" : "border-gray-300"
-              }`}
-            />
-            {errors.budgetMin && (
-              <p className="text-red-600 text-xs mt-1">{errors.budgetMin.message}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block text-gray-700 mb-1">Maximum Budget</label>
-            <input
-              type="number"
-              {...register("budgetMax")}
-              placeholder="e.g. 15000"
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
-                errors.budgetMax ? "border-red-300" : "border-gray-300"
-              }`}
-            />
-            {errors.budgetMax && (
-              <p className="text-red-600 text-xs mt-1">{errors.budgetMax.message}</p>
-            )}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-gray-700 mb-1">Travel Type</label>
-            <select
-              {...register("travelType")}
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
-                errors.travelType ? "border-red-300" : "border-gray-300"
-              }`}
-            >
-              <option value="SOLO">Solo</option>
-              <option value="FAMILY">Family</option>
-              <option value="FRIENDS">Friends</option>
-              <option value="COUPLE">Couple</option>
-              <option value="GROUP">Group</option>
-            </select>
-            {errors.travelType && (
-              <p className="text-red-600 text-xs mt-1">{errors.travelType.message}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block text-gray-700 mb-1">Visibility</label>
-            <select
-              {...register("visibility")}
-              className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
-                errors.visibility ? "border-red-300" : "border-gray-300"
-              }`}
-            >
-              <option value="PUBLIC">Public</option>
-              <option value="PRIVATE">Private</option>
-            </select>
-            {errors.visibility && (
-              <p className="text-red-600 text-xs mt-1">{errors.visibility.message}</p>
-            )}
-          </div>
-        </div>
-
+        {/* Title */}
         <div>
-          <label className="block text-gray-700 mb-1">Description</label>
-          <textarea
-            rows={3}
-            {...register("description")}
-            placeholder="Short description about your travel plan, activities, or expectations..."
-            className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400 ${
-              errors.description ? "border-red-300" : "border-gray-300"
-            }`}
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Title
+          </label>
+
+          <input
+            type="text"
+            placeholder="Trip to Cox’s Bazar"
+            {...register("title")}
+            className={`w-full rounded-md px-3 py-2 border
+              bg-white dark:bg-gray-800
+              text-gray-900 dark:text-gray-100
+              placeholder-gray-400 dark:placeholder-gray-500
+              focus:outline-none focus:ring-1 focus:ring-orange-400
+              ${
+                errors.title
+                  ? "border-red-300"
+                  : "border-gray-300 dark:border-gray-600"
+              }`}
           />
-          {errors.description && (
-            <p className="text-red-600 text-xs mt-1">{errors.description.message}</p>
+
+          {errors.title && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.title.message}
+            </p>
           )}
         </div>
 
-        <div className="flex justify-end gap-2 mt-2">
-          <button
-            type="button"
-            onClick={onCancel}
-            className="px-4 py-2 text-xs md:text-sm border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="px-4 py-2 text-xs md:text-sm bg-orange-400 hover:bg-orange-500 text-white rounded-md shadow disabled:opacity-60"
-          >
-            {isSubmitting ? "Saving..." : "Save Changes"}
-          </button>
+        {/* Destination */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Destination
+          </label>
+
+          <input
+            type="text"
+            {...register("destination")}
+            placeholder="Cox’s Bazar, Bangladesh"
+            className={`w-full rounded-md px-3 py-2 border
+              bg-white dark:bg-gray-800
+              text-gray-900 dark:text-gray-100
+              placeholder-gray-400 dark:placeholder-gray-500
+              focus:outline-none focus:ring-1 focus:ring-orange-400
+              ${
+                errors.destination
+                  ? "border-red-300"
+                  : "border-gray-300 dark:border-gray-600"
+              }`}
+          />
+
+          {errors.destination && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.destination.message}
+            </p>
+          )}
         </div>
-      </form>
-    </div>
-  );
+      </div>
+
+      {/* Dates */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        {/* Start */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Start Date
+          </label>
+
+          <input
+            type="date"
+            {...register("startDate")}
+            className={`w-full rounded-md px-3 py-2 border
+              bg-white dark:bg-gray-800
+              text-gray-900 dark:text-gray-100
+              focus:outline-none focus:ring-1 focus:ring-orange-400
+              ${
+                errors.startDate
+                  ? "border-red-300"
+                  : "border-gray-300 dark:border-gray-600"
+              }`}
+          />
+
+          {errors.startDate && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.startDate.message}
+            </p>
+          )}
+        </div>
+
+        {/* End */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            End Date
+          </label>
+
+          <input
+            type="date"
+            {...register("endDate")}
+            className={`w-full rounded-md px-3 py-2 border
+              bg-white dark:bg-gray-800
+              text-gray-900 dark:text-gray-100
+              focus:outline-none focus:ring-1 focus:ring-orange-400
+              ${
+                errors.endDate
+                  ? "border-red-300"
+                  : "border-gray-300 dark:border-gray-600"
+              }`}
+          />
+
+          {errors.endDate && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.endDate.message}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Selects */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        {/* Travel Type */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Travel Type
+          </label>
+
+          <select
+            {...register("travelType")}
+            className="w-full rounded-md px-3 py-2 border
+              bg-white dark:bg-gray-800
+              text-gray-900 dark:text-gray-100
+              border-gray-300 dark:border-gray-600
+              focus:outline-none focus:ring-1 focus:ring-orange-400"
+          >
+            <option value="SOLO">Solo</option>
+            <option value="FAMILY">Family</option>
+            <option value="FRIENDS">Friends</option>
+            <option value="COUPLE">Couple</option>
+            <option value="GROUP">Group</option>
+          </select>
+        </div>
+
+        {/* Visibility */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Visibility
+          </label>
+
+          <select
+            {...register("visibility")}
+            className="w-full rounded-md px-3 py-2 border
+              bg-white dark:bg-gray-800
+              text-gray-900 dark:text-gray-100
+              border-gray-300 dark:border-gray-600
+              focus:outline-none focus:ring-1 focus:ring-orange-400"
+          >
+            <option value="PUBLIC">Public</option>
+            <option value="PRIVATE">Private</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Description */}
+      <div>
+        <label className="block text-gray-700 dark:text-gray-300 mb-1">
+          Description
+        </label>
+
+        <textarea
+          rows={3}
+          {...register("description")}
+          placeholder="Short description about your travel plan..."
+          className={`w-full rounded-md px-3 py-2 border
+            bg-white dark:bg-gray-800
+            text-gray-900 dark:text-gray-100
+            placeholder-gray-400 dark:placeholder-gray-500
+            focus:outline-none focus:ring-1 focus:ring-orange-400
+            ${
+              errors.description
+                ? "border-red-300"
+                : "border-gray-300 dark:border-gray-600"
+            }`}
+        />
+      </div>
+
+      {/* Buttons */}
+      <div className="flex justify-end gap-2 mt-2">
+
+        <button
+          type="button"
+          onClick={onCancel}
+          className="
+            px-4 py-2 text-xs md:text-sm
+            border border-gray-300 dark:border-gray-600
+            rounded-md
+            text-gray-700 dark:text-gray-300
+            hover:bg-gray-50 dark:hover:bg-gray-800
+          "
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="
+            px-4 py-2 text-xs md:text-sm
+            bg-orange-400 hover:bg-orange-500
+            text-white
+            rounded-md shadow
+            disabled:opacity-60
+          "
+        >
+          {isSubmitting ? "Saving..." : "Save Changes"}
+        </button>
+
+      </div>
+
+    </form>
+  </div>
+);
+
 }
