@@ -53,7 +53,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       icon: "success",
       confirmButtonColor: "#f97316",
     });
-    return res.data;
+    return loginUser;
   };
 
   const register = async (payload: any) => {

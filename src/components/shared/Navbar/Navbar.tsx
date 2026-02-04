@@ -65,20 +65,20 @@ export default function Navbar() {
     return <Loader />;
   }
 
-  const highlightExplore =
-    showTour && tourStep === 0
-      ? "ring-2 ring-orange-400 ring-offset-2"
-      : "";
+  // const highlightExplore =
+  //   showTour && tourStep === 0
+  //     ? "ring-2 ring-orange-400 ring-offset-2"
+  //     : "";
 
-  const highlightPlans =
-    showTour && tourStep === 1
-      ? "ring-2 ring-orange-400 ring-offset-2"
-      : "";
+  // const highlightPlans =
+  //   showTour && tourStep === 1
+  //     ? "ring-2 ring-orange-400 ring-offset-2"
+  //     : "";
 
-  const highlightAuth =
-    showTour && tourStep === 2
-      ? "ring-2 ring-orange-400 ring-offset-2"
-      : "";
+  // const highlightAuth =
+  //   showTour && tourStep === 2
+  //     ? "ring-2 ring-orange-400 ring-offset-2"
+  //     : "";
 
   return (
     <nav className="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 relative">
@@ -107,7 +107,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-gray-700 dark:text-gray-200 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium ${highlightExplore}`}
+                className={`text-gray-700 dark:text-gray-200 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium ${"highlightAuth"}`}
               >
                 {item.label}
               </Link>
@@ -115,7 +115,7 @@ export default function Navbar() {
 
             <Link
               href="/travel-plans"
-              className={`text-gray-700 dark:text-gray-200 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium ${highlightPlans}`}
+              className={`text-gray-700 dark:text-gray-200 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium ${"highlightAuth"}`}
             >
               All Plans
             </Link>
@@ -158,14 +158,14 @@ export default function Navbar() {
               <>
                 <Link
                   href="/login"
-                  className={`px-3 py-1 bg-orange-600 hover:bg-orange-700 text-white rounded-md text-sm font-medium ${highlightAuth}`}
+                  className={`px-3 py-1 bg-orange-600 hover:bg-orange-700 text-white rounded-md text-sm font-medium ${"highlightAuth"}`}
                 >
                   Login
                 </Link>
 
                 <Link
                   href="/register"
-                  className={`px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:border-orange-500 hover:text-orange-600 ${highlightAuth}`}
+                  className={`px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:border-orange-500 hover:text-orange-600 ${"highlightAuth"}`}
                 >
                   Register
                 </Link>
@@ -198,7 +198,7 @@ export default function Navbar() {
                 key={path}
                 href={path}
                 onClick={() => setOpen(false)}
-                className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 ${highlightExplore}`}
+                className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 ${"highlightAuth"}`}
               >
                 {path === "/" ? "Home" : path.slice(1).toUpperCase()}
               </Link>
@@ -207,7 +207,7 @@ export default function Navbar() {
             <Link
               href="/travel-plans"
               onClick={() => setOpen(false)}
-              className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 ${highlightPlans}`}
+              className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 ${"highlightAuth"}`}
             >
               All Plans
             </Link>
@@ -276,7 +276,7 @@ export default function Navbar() {
       )}
 
       {/* Tour Modal */}
-       {showTour && (
+       {/* {showTour && (
   <div className="pointer-events-none fixed inset-0 z-40 flex justify-center items-start mt-20 px-4 bg-black/20 dark:bg-black/50">
     <div className="pointer-events-auto max-w-md w-full bg-white dark:bg-gray-800 shadow-xl rounded-lg border border-orange-100 dark:border-gray-700 p-4">
 
@@ -367,7 +367,7 @@ export default function Navbar() {
 
     </div>
   </div>
-)}
+)} */}
 
     </nav>
   );

@@ -24,14 +24,34 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
-  async function onSubmit(data: LoginType) {
-    try {
-      await login(data.email, data.password);
-      router.push("/");
-    } catch (err: any) {
-      Swal.fire("Error", err?.response?.data?.message || err.message, "error");
+//   async function onSubmit(data: LoginType) {
+//     try {
+//       await login(data.email, data.password);
+//       if(user?.role ==="ADMIN"){
+//         router.push("/admin");
+        
+//       }else if(user?.role ==="USER"){
+// router.push("/user");
+//       }
+      
+//     } catch (err: any) {
+//       Swal.fire("Error", err?.response?.data?.message || err.message, "error");
+//     }
+//   }
+async function onSubmit(data: LoginType) {
+  try {
+    const loggedUser = await login(data.email, data.password);
+
+    if (loggedUser?.role === "ADMIN") {
+      router.push("/admin");
+    } else if (loggedUser?.role === "USER") {
+      router.push("/user");
     }
+
+  } catch (err: any) {
+    Swal.fire("Error", err?.response?.data?.message || err.message, "error");
   }
+}
 
   const fillUserLogin = () => {
     setValue("email", "testUser@gmail.com");
