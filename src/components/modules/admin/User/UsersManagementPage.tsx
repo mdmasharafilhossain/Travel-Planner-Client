@@ -10,8 +10,7 @@ import Swal from "sweetalert2";
 import UsersTable from "./UsersTable";
 import Loader from "@/components/shared/Loader";
 
-
-const MySwal = (Swal);
+const MySwal = Swal;
 
 export default function UserManagementPage() {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -19,29 +18,27 @@ export default function UserManagementPage() {
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
-const [limit] = useState(8);
-const [meta, setMeta] = useState<any>(null);
+  const [limit] = useState(8);
+  const [meta, setMeta] = useState<any>(null);
 
- const fetchUsers = useCallback(async () => {
-  setLoading(true);
-  setError(null);
-  try {
-    const res = await UserAPI.listUsers({ page, limit });
+  const fetchUsers = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await UserAPI.listUsers({ page, limit });
 
-    setUsers(res.data?.users ?? []);
-    setMeta(res.data?.meta ?? null);
-  } catch (err: any) {
-    // console.error("fetchUsers:", err);
-    setError(
-      err?.response?.data?.message ||
-        err?.message ||
-        "Failed to fetch users"
-    );
-  } finally {
-    setLoading(false);
-  }
-}, [page, limit]);
-
+      setUsers(res.data?.users ?? []);
+      setMeta(res.data?.meta ?? null);
+    } catch (err: any) {
+      setError(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to fetch users"
+      );
+    } finally {
+      setLoading(false);
+    }
+  }, [page, limit]);
 
   useEffect(() => {
     fetchUsers();
@@ -63,21 +60,34 @@ const [meta, setMeta] = useState<any>(null);
 
       try {
         setActionLoading(userId);
-        
-        const prev = users;
-        setUsers(prevUsers => prevUsers.filter(u => u.id !== userId));
+
+        setUsers((prevUsers) =>
+          prevUsers.filter((u) => u.id !== userId)
+        );
 
         const res = await UserAPI.deleteUser(userId);
-        await MySwal.fire({ title: "Deleted", text: res.data?.message ?? "User deleted", icon: "success", confirmButtonColor: "#fb923c" });
+        await MySwal.fire({
+          title: "Deleted",
+          text: res.data?.message ?? "User deleted",
+          icon: "success",
+          confirmButtonColor: "#fb923c",
+        });
       } catch (err: any) {
-        // console.error("delete error", err);
-        await MySwal.fire({ title: "Failed", text: err?.response?.data?.message || err?.message || "Delete failed", icon: "error", confirmButtonColor: "#fb923c" });
-        fetchUsers(); 
+        await MySwal.fire({
+          title: "Failed",
+          text:
+            err?.response?.data?.message ||
+            err?.message ||
+            "Delete failed",
+          icon: "error",
+          confirmButtonColor: "#fb923c",
+        });
+        fetchUsers();
       } finally {
         setActionLoading(null);
       }
     },
-    [users, fetchUsers]
+    [fetchUsers]
   );
 
   const handleChangeRole = useCallback(
@@ -92,17 +102,39 @@ const [meta, setMeta] = useState<any>(null);
         cancelButtonText: "Cancel",
         confirmButtonColor: "#fb923c",
       });
+
       if (!confirmed.isConfirmed) return;
 
       try {
         setActionLoading(userId);
-        
-        setUsers(prev => prev.map(u => (u.id === userId ? { ...u, role: newRole } : u)));
-        const res = await UserAPI.changeRole(userId, newRole as "USER" | "ADMIN");
-        await MySwal.fire({ title: "Updated", text: res.data?.message ?? "Role updated", icon: "success", confirmButtonColor: "#fb923c" });
+
+        setUsers((prev) =>
+          prev.map((u) =>
+            u.id === userId ? { ...u, role: newRole } : u
+          )
+        );
+
+        const res = await UserAPI.changeRole(
+          userId,
+          newRole as "USER" | "ADMIN"
+        );
+
+        await MySwal.fire({
+          title: "Updated",
+          text: res.data?.message ?? "Role updated",
+          icon: "success",
+          confirmButtonColor: "#fb923c",
+        });
       } catch (err: any) {
-        // console.error("changeRole", err);
-        await MySwal.fire({ title: "Failed", text: err?.response?.data?.message || err?.message || "Change role failed", icon: "error", confirmButtonColor: "#fb923c" });
+        await MySwal.fire({
+          title: "Failed",
+          text:
+            err?.response?.data?.message ||
+            err?.message ||
+            "Change role failed",
+          icon: "error",
+          confirmButtonColor: "#fb923c",
+        });
         fetchUsers();
       } finally {
         setActionLoading(null);
@@ -110,22 +142,33 @@ const [meta, setMeta] = useState<any>(null);
     },
     [fetchUsers]
   );
+
   if (loading) {
-    return (
-      <Loader/>
-    );
+    return <Loader />;
   }
 
   return (
-    <div className="p-4 md:p-8">
+    <div className="p-4 md:p-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
       <div className="container mx-auto">
+
         <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
           <div>
-            <h1 className="text-2xl font-semibold text-gray-800">User Management</h1>
-            <p className="text-sm text-gray-500">View users, change roles, or delete accounts.</p>
+            <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
+              User Management
+            </h1>
+
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              View users, change roles, or delete accounts.
+            </p>
           </div>
+
           <div className="flex gap-2">
-            <button onClick={fetchUsers} className="bg-orange-400 hover:bg-orange-500 text-white px-3 py-2 rounded-md text-sm shadow">Refresh</button>
+            <button
+              onClick={fetchUsers}
+              className="bg-orange-400 hover:bg-orange-500 text-white px-3 py-2 rounded-md text-sm shadow"
+            >
+              Refresh
+            </button>
           </div>
         </header>
 
@@ -137,56 +180,58 @@ const [meta, setMeta] = useState<any>(null);
           onChangeRole={handleChangeRole}
           actionLoading={actionLoading}
         />
-       {meta?.totalPages > 1 && (
-  <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-    
-    {/* Previous */}
-    <button
-      disabled={page <= 1}
-      onClick={() => setPage(p => p - 1)}
-      className={`
-        inline-flex items-center gap-2
-        px-4 py-2 rounded-lg
-        border text-sm font-medium
-        transition-all duration-200
-        ${
-          page <= 1
-            ? "cursor-not-allowed bg-gray-100 text-gray-400 border-gray-200"
-            : "bg-orange-500 text-white border-gray-300 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600"
-        }
-      `}
-    >
-      ← Previous
-    </button>
 
-    {/* Page Info */}
-    <span className="text-sm font-medium text-gray-600">
-      Page <span className="font-semibold">{meta.page}</span> of{" "}
-      <span className="font-semibold">{meta.totalPages}</span>
-    </span>
+        {meta?.totalPages > 1 && (
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
 
-    {/* Next */}
-    <button
-      disabled={page >= meta.totalPages}
-      onClick={() => setPage(p => p + 1)}
-      className={`
-        inline-flex items-center gap-2
-        px-4 py-2 rounded-lg
-        border text-sm font-medium
-        transition-all duration-200
-        ${
-          page >= meta.totalPages
-            ? "cursor-not-allowed bg-gray-100 text-gray-400 border-gray-200"
-            : "bg-orange-500 text-white border-gray-300 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600"
-        }
-      `}
-    >
-      Next →
-    </button>
+           
+            <button
+              disabled={page <= 1}
+              onClick={() => setPage((p) => p - 1)}
+              className={`
+                inline-flex items-center gap-2
+                px-4 py-2 rounded-lg
+                border text-sm font-medium
+                transition-all duration-200
+                ${
+                  page <= 1
+                    ? "cursor-not-allowed bg-gray-100 dark:bg-gray-800 text-gray-400 border-gray-200 dark:border-gray-700"
+                    : "bg-orange-500 text-white border-gray-300 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600 dark:hover:bg-gray-800"
+                }
+              `}
+            >
+              ← Previous
+            </button>
 
-  </div>
-)}
+           
+            <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
+              Page <span className="font-semibold">{meta.page}</span> of{" "}
+              <span className="font-semibold">
+                {meta.totalPages}
+              </span>
+            </span>
 
+        
+            <button
+              disabled={page >= meta.totalPages}
+              onClick={() => setPage((p) => p + 1)}
+              className={`
+                inline-flex items-center gap-2
+                px-4 py-2 rounded-lg
+                border text-sm font-medium
+                transition-all duration-200
+                ${
+                  page >= meta.totalPages
+                    ? "cursor-not-allowed bg-gray-100 dark:bg-gray-800 text-gray-400 border-gray-200 dark:border-gray-700"
+                    : "bg-orange-500 text-white border-gray-300 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600 dark:hover:bg-gray-800"
+                }
+              `}
+            >
+              Next →
+            </button>
+
+          </div>
+        )}
 
       </div>
     </div>
