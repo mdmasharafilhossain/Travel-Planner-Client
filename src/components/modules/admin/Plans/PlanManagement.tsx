@@ -191,35 +191,46 @@ export default function PlanManagementPage() {
   if (loading) return <Loader />;
 
   return (
-    <div className="p-4 md:p-8">
-      <div className="container mx-auto">
-        <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-          <div>
-            <h1 className="text-2xl font-semibold text-gray-800">
-              Plan Management
-            </h1>
-            <p className="text-sm text-gray-500">
-              Manage all travel plans — view details, edit, or delete.
-            </p>
-          </div>
-          <button
-            onClick={fetchPlans}
-            className="bg-orange-400 hover:bg-orange-500 text-white px-3 py-2 rounded-md text-sm shadow"
-          >
-            Refresh
-          </button>
-        </header>
+  <div className="p-4 md:p-8 bg-gray-100 dark:bg-gray-950 min-h-screen">
+    <div className="container mx-auto">
 
-        {editingPlan && (
-          <div className="mb-6">
-            <PlanFormAdmin
-              plan={editingPlan}
-              onCancel={() => setEditingPlan(null)}
-              onSaved={handleUpdateSaved}
-            />
-          </div>
-        )}
+    
+      <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+        <div>
+          <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
+            Plan Management
+          </h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Manage all travel plans — view details, edit, or delete.
+          </p>
+        </div>
 
+        <button
+          onClick={fetchPlans}
+          className="
+            bg-orange-400 hover:bg-orange-500
+            text-white px-3 py-2
+            rounded-md text-sm shadow
+            transition
+          "
+        >
+          Refresh
+        </button>
+      </header>
+
+  
+      {editingPlan && (
+        <div className="mb-6 bg-white dark:bg-gray-900 rounded-xl shadow border border-gray-200 dark:border-gray-700 p-4">
+          <PlanFormAdmin
+            plan={editingPlan}
+            onCancel={() => setEditingPlan(null)}
+            onSaved={handleUpdateSaved}
+          />
+        </div>
+      )}
+
+      
+      <div className="bg-white dark:bg-gray-900 rounded-xl shadow border border-gray-200 dark:border-gray-700">
         <PlanTable
           plans={plans}
           loading={loading}
@@ -229,60 +240,62 @@ export default function PlanManagementPage() {
           onEdit={handleEditClick}
           onDelete={handleDelete}
         />
-
-        {/* ✅ PAGINATION UI */}
-        {meta?.totalPages > 1 && (
-  <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-
-    {/* Previous */}
-    <button
-      disabled={page <= 1}
-      onClick={() => setPage(p => p - 1)}
-      className={`
-        inline-flex items-center gap-2
-        px-4 py-2 rounded-lg
-        border font-medium text-sm
-        transition-all duration-200
-        ${
-          page <= 1
-            ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
-            : "bg-orange-500 text-white border-orange-500 hover:bg-orange-600 active:scale-95"
-        }
-      `}
-    >
-      ← Previous
-    </button>
-
-    {/* Page Info */}
-    <span className="text-sm font-medium text-gray-600">
-      Page <span className="font-semibold">{meta.page}</span> of{" "}
-      <span className="font-semibold">{meta.totalPages}</span>
-    </span>
-
-    {/* Next */}
-    <button
-      disabled={page >= meta.totalPages}
-      onClick={() => setPage(p => p + 1)}
-      className={`
-        inline-flex items-center gap-2
-        px-4 py-2 rounded-lg
-        border font-medium text-sm
-        transition-all duration-200
-        ${
-          page >= meta.totalPages
-            ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
-            : "bg-orange-500 text-white border-orange-500 hover:bg-orange-600 active:scale-95"
-        }
-      `}
-    >
-      Next →
-    </button>
-
-  </div>
-)}
-
       </div>
+
+   
+      {meta?.totalPages > 1 && (
+        <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+
+        
+          <button
+            disabled={page <= 1}
+            onClick={() => setPage(p => p - 1)}
+            className={`
+              inline-flex items-center gap-2
+              px-4 py-2 rounded-lg
+              border font-medium text-sm
+              transition-all duration-200
+              ${
+                page <= 1
+                  ? "bg-gray-200 dark:bg-gray-800 text-gray-400 border-gray-300 dark:border-gray-700 cursor-not-allowed"
+                  : "bg-orange-500 text-white border-orange-500 hover:bg-orange-600 active:scale-95"
+              }
+            `}
+          >
+            ← Previous
+          </button>
+
+         
+          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+            Page <span className="font-semibold">{meta.page}</span> of{" "}
+            <span className="font-semibold">{meta.totalPages}</span>
+          </span>
+
+       
+          <button
+            disabled={page >= meta.totalPages}
+            onClick={() => setPage(p => p + 1)}
+            className={`
+              inline-flex items-center gap-2
+              px-4 py-2 rounded-lg
+              border font-medium text-sm
+              transition-all duration-200
+              ${
+                page >= meta.totalPages
+                  ? "bg-gray-200 dark:bg-gray-800 text-gray-400 border-gray-300 dark:border-gray-700 cursor-not-allowed"
+                  : "bg-orange-500 text-white border-orange-500 hover:bg-orange-600 active:scale-95"
+              }
+            `}
+          >
+            Next →
+          </button>
+
+        </div>
+      )}
+
     </div>
-  );
+  </div>
+);
+
 }
 
