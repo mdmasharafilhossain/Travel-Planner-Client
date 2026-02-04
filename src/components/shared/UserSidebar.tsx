@@ -137,7 +137,7 @@ export default function UserSidebar() {
         <div className="p-5 border-b border-gray-100 dark:border-gray-800">
           <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
             {(!isCollapsed || isMobileOpen) && (
-              <Link href="/dashboard" className="flex items-center gap-3 group">
+              <Link href="/" className="flex items-center gap-3 group">
                 <div className="relative">
                   <div className="absolute -inset-1 bg-linear-to-r from-orange-400 to-gray-700 rounded-lg blur opacity-20"></div>
                   <div className="relative w-9 h-9 bg-linear-to-br from-orange-500 to-gray-700 rounded-lg flex items-center justify-center shadow-sm">
