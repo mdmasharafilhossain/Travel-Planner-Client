@@ -8,8 +8,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { API_BASE } from "@/lib/baseApi";
 
-
-
 export default function PaymentSuccessClient() {
   const search = useSearchParams();
   const transactionId = search.get("transactionId") || "";
@@ -62,16 +60,26 @@ export default function PaymentSuccessClient() {
   }, [transactionId, router]);
 
   return (
-    <div className="max-w-lg mx-auto mt-12 p-6 bg-white rounded shadow text-center">
-      <h2 className="text-xl font-semibold text-green-600">
+    <div className="max-w-lg mx-auto mt-12 p-6 bg-white dark:bg-gray-800 rounded shadow text-center border border-gray-200 dark:border-gray-700">
+
+      <h2 className="text-xl font-semibold text-green-600 dark:text-green-400">
         {status ? "Payment Successful!" : "Processing Payment..."}
       </h2>
-      <p className="mt-4">
-        Transaction: <span className="font-mono">{transactionId}</span>
+
+      <p className="mt-4 text-gray-700 dark:text-gray-300">
+        Transaction:{" "}
+        <span className="font-mono text-gray-900 dark:text-white">
+          {transactionId}
+        </span>
       </p>
-      <p className="mt-4">
-        Status: <strong>{status ?? "Checking..."}</strong>
+
+      <p className="mt-4 text-gray-700 dark:text-gray-300">
+        Status:{" "}
+        <strong className="text-gray-900 dark:text-white">
+          {status ?? "Checking..."}
+        </strong>
       </p>
+
     </div>
   );
 }
